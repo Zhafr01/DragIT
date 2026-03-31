@@ -1,0 +1,173 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "title": "Level 1 – Kenali Nama Komponen",
+      "description": "Seret nama komponen ke gambar yang sesuai",
+      "type": "name-to-image",
+      "xpReward": 50,
+      "timeLimit": 120,
+      "questions": [
+        {
+          "id": "l1-q1",
+          "instruction": "Cocokkan setiap nama komponen dengan gambarnya!",
+          "items": [
+            { "id": "ram", "label": "RAM", "emoji": "🔋", "color": "violet" },
+            { "id": "cpu", "label": "Processor (CPU)", "emoji": "🧠", "color": "blue" },
+            { "id": "motherboard", "label": "Motherboard", "emoji": "🖥️", "color": "green" },
+            { "id": "hdd", "label": "Harddisk (HDD)", "emoji": "💾", "color": "orange" },
+            { "id": "psu", "label": "Power Supply", "emoji": "⚡", "color": "yellow" },
+            { "id": "vga", "label": "VGA Card", "emoji": "🎮", "color": "red" }
+          ],
+          "targets": [
+            {
+              "id": "ram", "label": "Modul memori berbentuk panjang tipis dengan chip di atasnya",
+              "acceptsId": "ram",
+              "explanation": "RAM (Random Access Memory) adalah modul memori berbentuk panjang tipis yang dipasang di slot DIMM motherboard. RAM berfungsi sebagai penyimpanan sementara saat program berjalan."
+            },
+            {
+              "id": "cpu", "label": "Chip persegi dengan banyak pin atau kontak di bagian bawah",
+              "acceptsId": "cpu",
+              "explanation": "CPU (Central Processing Unit) adalah otak komputer berbentuk chip persegi. Bagian bawahnya memiliki ratusan/ribuan pin yang dipasang pada socket di motherboard."
+            },
+            {
+              "id": "motherboard", "label": "Papan sirkuit besar dengan banyak slot dan konektor",
+              "acceptsId": "motherboard",
+              "explanation": "Motherboard adalah papan induk yang menjadi penghubung semua komponen komputer. Di atasnya terdapat socket CPU, slot RAM, slot PCIe, dan berbagai konektor lainnya."
+            },
+            {
+              "id": "hdd", "label": "Kotak logam dengan piringan berputar di dalamnya",
+              "acceptsId": "hdd",
+              "explanation": "HDD (Hard Disk Drive) adalah perangkat penyimpanan data permanen yang menggunakan piringan magnetik berputar. Data disimpan menggunakan kepala baca/tulis yang bergerak di atas piringan."
+            },
+            {
+              "id": "psu", "label": "Kotak dengan kipas dan banyak kabel keluar",
+              "acceptsId": "psu",
+              "explanation": "PSU (Power Supply Unit) mengubah arus listrik AC dari stopkontak menjadi arus DC yang dibutuhkan komponen komputer. Memiliki kipas untuk pendinginan dan berbagai kabel output."
+            },
+            {
+              "id": "vga", "label": "Kartu panjang dengan kipas dan port display di belakang",
+              "acceptsId": "vga",
+              "explanation": "VGA Card (Graphics Card) adalah komponen yang khusus memproses dan menghasilkan gambar untuk monitor. Memiliki GPU tersendiri, memori VRAM, kipas pendingin, dan port HDMI/DisplayPort."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Level 2 – Cocokkan Fungsi",
+      "description": "Seret fungsi komponen ke komponen yang tepat",
+      "type": "function-to-component",
+      "xpReward": 75,
+      "timeLimit": 90,
+      "questions": [
+        {
+          "id": "l2-q1",
+          "instruction": "Cocokkan fungsi dengan komponen yang tepat!",
+          "items": [
+            { "id": "f1", "label": "Menyimpan data sementara saat program berjalan", "emoji": "📝", "color": "violet" },
+            { "id": "f2", "label": "Mengolah dan memproses semua instruksi program", "emoji": "⚙️", "color": "blue" },
+            { "id": "f3", "label": "Menghubungkan semua komponen komputer", "emoji": "🔗", "color": "green" },
+            { "id": "f4", "label": "Menyimpan data secara permanen", "emoji": "💿", "color": "orange" },
+            { "id": "f5", "label": "Mengubah arus AC menjadi DC untuk komponen", "emoji": "⚡", "color": "yellow" },
+            { "id": "f6", "label": "Mengolah dan menampilkan grafis di monitor", "emoji": "🖼️", "color": "red" }
+          ],
+          "targets": [
+            {
+              "id": "t-ram", "label": "RAM", "emoji": "🔋", "acceptsId": "f1",
+              "explanation": "RAM menyimpan data SEMENTARA (volatile) — artinya data hilang saat komputer dimatikan. Semakin besar RAM, semakin banyak program yang bisa berjalan bersamaan tanpa lemot."
+            },
+            {
+              "id": "t-cpu", "label": "Processor", "emoji": "🧠", "acceptsId": "f2",
+              "explanation": "CPU memproses SEMUA instruksi program — mulai dari matematika dasar hingga koordinasi antar komponen. Kecepatan CPU diukur dalam GHz (Gigahertz)."
+            },
+            {
+              "id": "t-mb", "label": "Motherboard", "emoji": "🖥️", "acceptsId": "f3",
+              "explanation": "Motherboard menghubungkan CPU, RAM, storage, dan komponen lain melalui jalur data (bus) dan power. Tanpa motherboard, komponen tidak bisa berkomunikasi."
+            },
+            {
+              "id": "t-hdd", "label": "Harddisk", "emoji": "💾", "acceptsId": "f4",
+              "explanation": "HDD/SSD menyimpan data PERMANEN (non-volatile) — data tetap ada walau komputer dimatikan. Ini tempat sistem operasi, program, dan file kamu tersimpan."
+            },
+            {
+              "id": "t-psu", "label": "Power Supply", "emoji": "⚡", "acceptsId": "f5",
+              "explanation": "PSU mengkonversi tegangan AC 220V dari listrik rumah menjadi tegangan DC 12V, 5V, dan 3.3V yang dibutuhkan komponen komputer."
+            },
+            {
+              "id": "t-vga", "label": "VGA Card", "emoji": "🎮", "acceptsId": "f6",
+              "explanation": "GPU (Graphics Processing Unit) pada VGA Card memiliki ribuan core kecil yang dirancang khusus untuk komputasi paralel dalam mengolah piksel gambar dan video."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Level 3 – Posisi di Motherboard",
+      "description": "Letakkan komponen pada slot yang benar di motherboard",
+      "type": "component-to-slot",
+      "xpReward": 100,
+      "timeLimit": 90,
+      "questions": [
+        {
+          "id": "l3-q1",
+          "instruction": "Pasang komponen ke slot yang benar pada motherboard!",
+          "items": [
+            { "id": "cpu-chip", "label": "CPU", "emoji": "🧠", "color": "blue" },
+            { "id": "ram-stick", "label": "RAM DDR4", "emoji": "🔋", "color": "violet" },
+            { "id": "ssd-drive", "label": "SSD NVMe", "emoji": "💨", "color": "green" },
+            { "id": "vga-card", "label": "VGA Card", "emoji": "🎮", "color": "red" }
+          ],
+          "targets": [
+            {
+              "id": "cpu-socket", "label": "Socket CPU / LGA1700", "description": "Slot besar persegi dengan banyak pin",
+              "acceptsId": "cpu-chip",
+              "explanation": "CPU dipasang di Socket CPU (misal LGA1700 untuk Intel generasi 12/13). Socket ini memiliki ribuan pin yang harus sangat hati-hati dipasang agar tidak bengkok."
+            },
+            {
+              "id": "dimm-slot", "label": "Slot DIMM", "description": "Slot panjang tipis untuk memori",
+              "acceptsId": "ram-stick",
+              "explanation": "RAM DDR4 dipasang di slot DIMM (Dual Inline Memory Module). Motherboard biasanya punya 2-4 slot DIMM. Pasang di slot yang direkomendasikan manual (biasanya slot 2 & 4 untuk dual channel)."
+            },
+            {
+              "id": "m2-slot", "label": "Slot M.2", "description": "Slot kecil untuk SSD NVMe",
+              "acceptsId": "ssd-drive",
+              "explanation": "SSD NVMe dipasang di slot M.2 yang kecil. SSD NVMe jauh lebih cepat dari SATA karena langsung terhubung ke PCIe lanes, bukan melalui controller SATA."
+            },
+            {
+              "id": "pcie-slot", "label": "Slot PCIe x16", "description": "Slot panjang untuk kartu ekspansi",
+              "acceptsId": "vga-card",
+              "explanation": "VGA Card dipasang di slot PCIe x16 (slot terpanjang pada motherboard). Slot ini menyediakan bandwidth tertinggi, cocok untuk kartu grafis yang butuh transfer data cepat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Level 4 – Rakit Komputer",
+      "description": "Urutkan langkah merakit komputer dari awal hingga jadi",
+      "type": "assembly-order",
+      "xpReward": 150,
+      "timeLimit": 120,
+      "questions": [
+        {
+          "id": "l4-q1",
+          "instruction": "Susun langkah merakit komputer dengan urutan yang benar!",
+          "explanation": "Urutan perakitan yang benar: CPU → Heatsink → RAM → Motherboard ke casing → PSU → HDD/SSD → Kabel → Tes. Pasang CPU dan heatsink SEBELUM motherboard dipasang ke casing karena lebih mudah diakses. RAM juga lebih mudah dipasang saat motherboard belum ada di casing.",
+          "items": [
+            { "id": "step-psu", "label": "Pasang PSU ke casing", "emoji": "⚡", "color": "yellow", "correctOrder": 5 },
+            { "id": "step-cpu", "label": "Pasang CPU ke socket motherboard", "emoji": "🧠", "color": "blue", "correctOrder": 1 },
+            { "id": "step-mb", "label": "Pasang motherboard ke casing", "emoji": "🖥️", "color": "green", "correctOrder": 4 },
+            { "id": "step-ram", "label": "Pasang RAM ke slot DIMM", "emoji": "🔋", "color": "violet", "correctOrder": 3 },
+            { "id": "step-hs", "label": "Pasang heatsink di atas CPU", "emoji": "❄️", "color": "cyan", "correctOrder": 2 },
+            { "id": "step-hdd", "label": "Pasang HDD/SSD", "emoji": "💾", "color": "orange", "correctOrder": 6 },
+            { "id": "step-cable", "label": "Hubungkan semua kabel", "emoji": "🔌", "color": "gray", "correctOrder": 7 },
+            { "id": "step-test", "label": "Nyalakan dan tes komputer", "emoji": "✅", "color": "emerald", "correctOrder": 8 }
+          ]
+        }
+      ]
+    }
+  ]
+}

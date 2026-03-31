@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #f0f4ff;
+    --text-primary: #1e293b;
+  }
+  .dark {
+    --bg-primary: #0f172a;
+    --text-primary: #f1f5f9;
+  }
+  body {
+    @apply text-slate-800 dark:text-slate-100;
+    background-color: #f0f4ff;
+    background-image: 
+      radial-gradient(at 20% 10%, hsla(215,100%,73%,0.18) 0px, transparent 50%),
+      radial-gradient(at 80% 5%, hsla(264,100%,72%,0.12) 0px, transparent 50%),
+      radial-gradient(at 0% 60%, hsla(199,100%,72%,0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 80%, hsla(340,100%,73%,0.08) 0px, transparent 50%);
+    background-attachment: fixed;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s, color 0.15s;
+  }
+  .dark body, body.dark {
+    background-color: #0f172a;
+    background-image: 
+      radial-gradient(at 20% 10%, hsla(215,100%,40%,0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 5%, hsla(264,100%,40%,0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 60%, hsla(199,100%,38%,0.06) 0px, transparent 50%),
+      radial-gradient(at 100% 80%, hsla(340,100%,40%,0.05) 0px, transparent 50%);
+  }
+  * {
+    @apply transition-colors duration-150;
+  }
+}
+
+@layer components {
+  /* ── Premium Card with glassmorphism ── */
+  .card {
+    @apply rounded-2xl border transition-all duration-200;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(226, 232, 240, 0.8);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+  .dark .card {
+    background: rgba(30, 41, 59, 0.80);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-color: rgba(51, 65, 85, 0.7);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 24px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* ── Card hover variant (for interactive cards) ── */
+  .card-hover {
+    @apply card cursor-pointer hover:-translate-y-1 hover:shadow-xl;
+  }
+  .dark .card-hover:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.07);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary-500/30 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98];
+    background: rgba(241, 245, 249, 0.9);
+    border: 1px solid rgba(203, 213, 225, 0.7);
+    color: #334155;
+    backdrop-filter: blur(4px);
+  }
+  .dark .btn-secondary {
+    background: rgba(51, 65, 85, 0.7);
+    border-color: rgba(71, 85, 105, 0.5);
+    color: #e2e8f0;
+  }
+  .btn-secondary:hover {
+    background: rgba(226, 232, 240, 0.95);
+  }
+  .dark .btn-secondary:hover {
+    background: rgba(71, 85, 105, 0.8);
+  }
+  .btn-accent {
+    @apply bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-accent-500/30 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* ── Input ── */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+    background: rgba(248, 250, 252, 0.9);
+    border: 1.5px solid rgba(203, 213, 225, 0.7);
+    backdrop-filter: blur(4px);
+  }
+  .dark .input-field {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(71, 85, 105, 0.6);
+  }
+
+  /* ── Sidebar ── */
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-200 font-medium cursor-pointer;
+  }
+  .sidebar-link.active {
+    @apply bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 font-semibold;
+  }
+
+  /* ── Glassmorphism utility ── */
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+  .dark .glass {
+    background: rgba(15, 23, 42, 0.8);
+    border-bottom-color: rgba(51, 65, 85, 0.5);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+
+  /* ── DnD Game ── */
+  .drag-item {
+    @apply cursor-grab active:cursor-grabbing select-none;
+  }
+  .drop-zone {
+    @apply border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl flex items-center justify-center transition-all duration-200;
+  }
+  .drop-zone.over {
+    @apply border-primary-400 bg-primary-50 dark:border-primary-500 dark:bg-primary-900/20 scale-[1.02];
+  }
+  .drop-zone.correct {
+    border-color: #4ade80;
+    background-color: #f0fdf4;
+  }
+  .dark .drop-zone.correct {
+    border-color: #22c55e;
+    background-color: rgb(20 83 45 / 0.2);
+  }
+  .drop-zone.wrong {
+    border-color: #f87171;
+    background-color: #fef2f2;
+  }
+  .dark .drop-zone.wrong {
+    border-color: #ef4444;
+    background-color: rgb(127 29 29 / 0.2);
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-semibold;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background-color: #3b82f6; border-radius: 4px; }
+  .scrollbar-none { scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent;
+  }
+  .bg-mesh {
+    background-image: radial-gradient(at 40% 20%, hsla(215,100%,73%,0.15) 0px, transparent 50%),
+                      radial-gradient(at 80% 0%, hsla(264,100%,72%,0.1) 0px, transparent 50%),
+                      radial-gradient(at 0% 50%, hsla(199,100%,72%,0.1) 0px, transparent 50%),
+                      radial-gradient(at 80% 50%, hsla(340,100%,73%,0.05) 0px, transparent 50%),
+                      radial-gradient(at 0% 100%, hsla(22,100%,72%,0.1) 0px, transparent 50%);
+  }
+}
+
+/* Animations */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.5); opacity: 0; }
+  80% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-slide-in-right { animation: slide-in-right 0.35s ease-out; }
+.animate-slide-in-up { animation: slide-in-up 0.35s ease-out; }
+.animate-pop-in { animation: pop-in 0.4s cubic-bezier(0.34,1.56,0.64,1); }

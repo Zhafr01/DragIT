@@ -1,0 +1,386 @@
+{
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Pengenalan Komputer",
+      "slug": "bab-1",
+      "icon": "Monitor",
+      "color": "blue",
+      "description": "Pelajari dasar-dasar komputer, hardware, software, dan fungsi utama komputer.",
+      "topics": [
+        {
+          "id": "1-1",
+          "title": "Pengertian Komputer",
+          "content": "Komputer adalah perangkat elektronik yang dapat menerima data sebagai input, memproses data tersebut sesuai instruksi yang diberikan, dan menghasilkan output berupa informasi. Kata 'komputer' berasal dari bahasa Latin 'computare' yang berarti menghitung.",
+          "image": "computer-intro",
+          "keyPoints": [
+            "Komputer adalah alat pemroses data",
+            "Terdiri dari hardware (perangkat keras) dan software (perangkat lunak)",
+            "Dapat menyimpan dan mengolah informasi dengan cepat",
+            "Digunakan di berbagai bidang kehidupan"
+          ]
+        },
+        {
+          "id": "1-2",
+          "title": "Hardware dan Software",
+          "content": "Hardware adalah komponen fisik komputer yang dapat dilihat dan disentuh, seperti monitor, keyboard, dan CPU. Software adalah program atau instruksi yang menjalankan hardware, seperti sistem operasi dan aplikasi.",
+          "image": "hardware-software",
+          "keyPoints": [
+            "Hardware = komponen fisik yang terlihat",
+            "Software = program yang tidak terlihat secara fisik",
+            "Keduanya saling bergantung satu sama lain",
+            "Contoh hardware: Monitor, CPU, RAM",
+            "Contoh software: Windows, Chrome, MS Office"
+          ]
+        },
+        {
+          "id": "1-3",
+          "title": "Fungsi Komputer",
+          "content": "Komputer memiliki empat fungsi dasar: Input (menerima data), Processing (memproses data), Output (menampilkan hasil), dan Storage (menyimpan data). Siklus ini disebut IPOS (Input-Process-Output-Storage).",
+          "image": "ipos-cycle",
+          "keyPoints": [
+            "Input: memasukkan data ke komputer",
+            "Processing: mengolah data",
+            "Output: menampilkan hasil",
+            "Storage: menyimpan data"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Apa arti dari kata 'computare' (asal kata komputer)?",
+          "options": ["Mengingat", "Menghitung", "Menyimpan", "Menulis"],
+          "answer": 1,
+          "explanation": "Kata komputer berasal dari bahasa Latin 'computare' yang berarti 'menghitung'."
+        },
+        {
+          "question": "Mana yang merupakan contoh dari Software (Perangkat Lunak)?",
+          "options": ["Monitor", "Keyboard", "Sistem Operasi Windows", "Motherboard"],
+          "answer": 2,
+          "explanation": "Software adalah program yang tidak terlihat secara fisik, seperti Sistem Operasi (Windows, macOS) atau aplikasi."
+        },
+        {
+          "question": "Siklus pemrosesan dasar komputer dikenal dengan istilah IPOS. Huruf 'S' pada IPOS singkatan dari...",
+          "options": ["System", "Software", "Storage", "Screen"],
+          "answer": 2,
+          "explanation": "IPOS singkatan dari Input - Processing - Output - Storage."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Komponen Internal Komputer",
+      "slug": "bab-2",
+      "icon": "Cpu",
+      "color": "violet",
+      "description": "Kenali komponen di dalam casing komputer: motherboard, processor, RAM, dan lainnya.",
+      "topics": [
+        {
+          "id": "2-1",
+          "title": "Motherboard",
+          "content": "Motherboard adalah papan sirkuit utama yang menghubungkan semua komponen komputer. Motherboard menyediakan jalur komunikasi antar komponen melalui bus dan slot ekspansi. Semua komponen seperti CPU, RAM, dan kartu grafis terhubung ke motherboard.",
+          "image": "motherboard",
+          "keyPoints": [
+            "Disebut juga mainboard atau papan induk",
+            "Menghubungkan semua komponen",
+            "Memiliki socket CPU untuk processor",
+            "Memiliki slot RAM (DIMM)",
+            "Memiliki slot PCIe untuk VGA card"
+          ]
+        },
+        {
+          "id": "2-2",
+          "title": "Processor (CPU)",
+          "content": "Processor atau Central Processing Unit (CPU) adalah otak dari komputer. CPU bertanggung jawab untuk mengeksekusi instruksi program dan melakukan kalkulasi. Kecepatan processor diukur dalam GHz (Gigahertz). Processor modern memiliki beberapa inti (core) untuk multitasking.",
+          "image": "processor",
+          "keyPoints": [
+            "Disebut juga CPU (Central Processing Unit)",
+            "Otak utama komputer",
+            "Kecepatan diukur dalam GHz",
+            "Memiliki Core (inti) untuk multitasking"
+          ]
+        },
+        {
+          "id": "2-3",
+          "title": "RAM (Random Access Memory)",
+          "content": "RAM adalah memori sementara yang digunakan komputer untuk menyimpan data dan instruksi yang sedang aktif digunakan. RAM bersifat volatile, artinya data hilang saat komputer dimatikan. Semakin besar kapasitas RAM, semakin banyak program yang dapat berjalan bersamaan.",
+          "image": "ram",
+          "keyPoints": [
+            "Memori sementara (volatile memory)",
+            "Data hilang saat komputer mati",
+            "Kapasitas diukur dalam GB",
+            "Semakin besar = semakin smooth"
+          ]
+        },
+        {
+          "id": "2-4",
+          "title": "Harddisk / SSD",
+          "content": "Harddisk (HDD) dan SSD adalah media penyimpanan permanen untuk komputer. HDD menggunakan piringan magnetik berputar, sedangkan SSD menggunakan chip memori flash. SSD jauh lebih cepat dari HDD namun biasanya lebih mahal.",
+          "image": "storage",
+          "keyPoints": [
+            "SSD = Solid State Drive, menggunakan chip flash",
+            "SSD lebih cepat dari HDD",
+            "Menyimpan data permanen (non-volatile)"
+          ]
+        },
+        {
+          "id": "2-5",
+          "title": "VGA Card (GPU)",
+          "content": "VGA Card atau Graphics Processing Unit (GPU) bertanggung jawab untuk mengolah dan menampilkan grafis di monitor. GPU yang kuat diperlukan untuk gaming, desain grafis, dan pengeditan video. GPU memiliki VRAM (Video RAM) tersendiri.",
+          "image": "vga",
+          "keyPoints": [
+            "VGA = Video Graphics Array",
+            "Mengolah dan menampilkan grafis",
+            "Penting untuk gaming dan desain"
+          ]
+        },
+        {
+          "id": "2-6",
+          "title": "Power Supply (PSU)",
+          "content": "Power Supply Unit (PSU) mengubah arus listrik AC dari stopkontak menjadi arus DC yang dibutuhkan komponen komputer. Daya PSU diukur dalam Watt. PSU yang tidak cukup daya dapat menyebabkan komputer tidak stabil.",
+          "image": "psu",
+          "keyPoints": [
+            "Mengubah arus AC dari PLN menjadi DC",
+            "Daya diukur dalam Watt",
+            "Menyuplai listrik ke seluruh sistem"
+          ]
+        },
+        {
+          "id": "2-7",
+          "title": "Heatsink & Fan",
+          "content": "Heatsink adalah komponen pendingin yang dipasang di atas processor untuk menyerap panas. Fan (kipas) mengalirkan udara untuk membuang panas dari heatsink. Tanpa pendinginan yang baik, processor bisa overheat dan merusak komputer.",
+          "image": "heatsink",
+          "keyPoints": [
+            "Menyerap panas dari processor",
+            "Mencegah overheat CPU"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Kecepatan sebuah Processor (CPU) umumnya diukur dengan satuan apa?",
+          "options": ["Gigabyte (GB)", "Watt (W)", "Gigahertz (GHz)", "Megapixel (MP)"],
+          "answer": 2,
+          "explanation": "Kecepatan clock processor (CPU) diukur dalam Hertz, umumnya Gigahertz (GHz) untuk CPU zaman modern."
+        },
+        {
+          "question": "Mengapa kita menyebut RAM sebagai penyimpanan 'Volatile'?",
+          "options": ["Karena ia mudah terbakar", "Karena kecepatannya sangat lambat", "Karena datanya akan hilang saat komputer dimatikan", "Karena ia tidak bisa dihapus"],
+          "answer": 2,
+          "explanation": "Volatile memory berarti penyimpanan yang membutuhkan daya listrik secara terus-menerus. Jika komputer mati, maka data di dalam RAM langsung hilang."
+        },
+        {
+          "question": "Komponen yang bertugas merubah arus listrik bolak-balik (AC) dari colokan rumah menjadi arus searah (DC) adalah?",
+          "options": ["Heatsink", "Power Supply (PSU)", "VGA Card", "Motherboard"],
+          "answer": 1,
+          "explanation": "Power Supply (PSU) bertugas menurunkan voltase listrik dari PLN (AC) dan mengubahnya menjadi DC kecil yang stabil untuk komponen komputer."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Komponen Eksternal",
+      "slug": "bab-3",
+      "icon": "Keyboard",
+      "color": "emerald",
+      "description": "Pelajari perangkat output dan input yang terhubung dari luar komputer.",
+      "topics": [
+        {
+          "id": "3-1",
+          "title": "Monitor",
+          "content": "Monitor adalah perangkat output utama yang menampilkan visual dari komputer. Monitor modern menggunakan teknologi LCD, LED, atau OLED. Ukuran monitor diukur secara diagonal dalam inci, dan kualitas gambar ditentukan oleh resolusi (misalnya 1920x1080 = Full HD).",
+          "image": "monitor",
+          "keyPoints": [
+            "Perangkat output utama visual",
+            "Resolusi: HD, Full HD, 4K",
+            "Ukuran diukur dalam inci (diagonal)"
+          ]
+        },
+        {
+          "id": "3-2",
+          "title": "Keyboard",
+          "content": "Keyboard adalah perangkat input utama untuk memasukkan teks dan perintah ke komputer. Keyboard standar memiliki 104 tombol yang terbagi menjadi tombol alfanumerik, tombol fungsi, tombol navigasi, dan numpad.",
+          "image": "keyboard",
+          "keyPoints": [
+            "Perangkat input teks utama",
+            "Standar 104 tombol",
+            "Jenis: membrane, mechanical"
+          ]
+        },
+        {
+          "id": "3-3",
+          "title": "Mouse",
+          "content": "Mouse adalah perangkat pointing device yang digunakan untuk menggerakkan kursor di layar monitor. Mouse memiliki tombol kiri, kanan, dan scroll wheel. Mouse modern menggunakan teknologi optik atau laser.",
+          "image": "mouse",
+          "keyPoints": [
+            "Pointing device penggerak kursor",
+            "Sensitivitas diukur dalam DPI"
+          ]
+        },
+        {
+          "id": "3-4",
+          "title": "Printer",
+          "content": "Printer adalah perangkat output yang mencetak dokumen digital menjadi bentuk fisik (kertas). Jenis printer yang umum adalah inkjet (menggunakan tinta cair) dan laser (menggunakan toner). Printer modern juga dapat scan dan fotokopi.",
+          "image": "printer",
+          "keyPoints": [
+            "Perangkat output cetak fisik",
+            "Inkjet = tinta cair, Laser = serbuk toner"
+          ]
+        },
+        {
+          "id": "3-5",
+          "title": "Speaker",
+          "content": "Speaker adalah perangkat output audio yang menghasilkan suara dari komputer. Speaker terhubung ke sound card komputer melalui jack audio atau interface digital. Speaker yang baik menghasilkan suara yang jernih dan detail.",
+          "image": "speaker",
+          "keyPoints": [
+            "Perangkat output audio",
+            "Terhubung via kabel audio 3.5mm atau USB"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Resolusi 1920x1080 pada sebuah monitor biasa kita kenal juga dengan sebutan apa?",
+          "options": ["HD (High Definition)", "Full HD (FHD)", "4K Ultra HD", "Standard Definition (SD)"],
+          "answer": 1,
+          "explanation": "Resolusi 1920x1080 sering disebut sebagai resolusi Full HD (FHD)."
+        },
+        {
+          "question": "Sensitivitas pembacaan gerak pada sebuah Mouse komputer diukur menggunakan satuan apa?",
+          "options": ["Hz", "GHz", "DPI", "RPM"],
+          "answer": 2,
+          "explanation": "DPI (Dots Per Inch) adalah standar ukuran sensitivitas sebuah mouse. Semakin tinggi DPI-nya, maka cursor di layar akan bergerak semakin jauh meski digerakkan sedikit saja."
+        },
+        {
+          "question": "Teknologi pencetakan gambar yang mana yang menggunakan 'serbuk panas' (toner) dan bukan tinta cair pelangi biasa?",
+          "options": ["Printer Inkjet", "Printer Dot-Matrix", "Printer Laser", "Printer Thermal"],
+          "answer": 2,
+          "explanation": "Printer Laser menggunakan sinar laser dan serbuk kering halus bernama Toner yang dipanaskan agar menempel secara permanen di atas kertas."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Fungsi Setiap Komponen",
+      "slug": "bab-4",
+      "icon": "CircuitBoard",
+      "color": "amber",
+      "description": "Pahami fungsi detail setiap komponen dan bagaimana mereka bekerja bersama.",
+      "topics": [
+        {
+          "id": "4-1",
+          "title": "Fungsi Motherboard",
+          "content": "Motherboard berfungsi sebagai penghubung utama (backbone) semua komponen komputer. Chipset pada motherboard mengatur aliran data antar komponen. BIOS/UEFI pada motherboard bertanggung jawab menginisialisasi hardware saat komputer menyala.",
+          "image": "motherboard-function",
+          "keyPoints": [
+            "Menghubungkan semua komponen utama",
+            "Chipset pengatur komunikasi data",
+            "BIOS/UEFI menginisialisasi hardware saat start"
+          ]
+        },
+        {
+          "id": "4-2",
+          "title": "Fungsi RAM",
+          "content": "RAM berfungsi sebagai ruang kerja sementara bagi processor. Ketika menjalankan program, sistem operasi memuat instruksi dan data ke RAM agar processor dapat mengaksesnya dengan cepat. RAM jauh lebih cepat dari harddisk.",
+          "image": "ram-function",
+          "keyPoints": [
+            "Ruang kerja super-cepat processor",
+            "Menampung instruksi dan aplikasi jalan"
+          ]
+        },
+        {
+          "id": "4-3",
+          "title": "Fungsi Processor",
+          "content": "Processor menjalankan instruksi program dengan kecepatan miliaran kalkulasi per detik. CPU mengikuti siklus Fetch-Decode-Execute: mengambil instruksi dari memori, mendekode instruksi, lalu mengeksekusinya. Kecepatan clock CPU menentukan berapa banyak siklus per detik yang bisa dilakukan.",
+          "image": "cpu-function",
+          "keyPoints": [
+            "Siklus utama CPU: Fetch → Decode → Execute",
+            "Menjalankan aritmatika dan kalkulasi logis"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Komponen (chip) apa yang ada di motherboard yang tugasnya membangunkan layar dan memeriksa/menginisialisasi semua hardware sebelum Windows berjalan?",
+          "options": ["Chipset", "BIOS/UEFI", "RAM", "Power Supply"],
+          "answer": 1,
+          "explanation": "BIOS (Basic Input/Output System) atau penerusnya UEFI bertugas untuk bangun pertama kali. Ia memeriksa memori, processor, dan menginisialisasi hardware sebelum meload sistem operasi OS dari Disk."
+        },
+        {
+          "question": "Siklus kerja inti pada sebuah Processor (CPU) terdiri atas 3 langkah dasar yaitu?",
+          "options": ["Read → Write → Erase", "Download → Install → Run", "Fetch → Decode → Execute", "Input → Store → Output"],
+          "answer": 2,
+          "explanation": "Siklus utama CPU dimulai dengan Fetch (mengambil instruksi dari RAM), Decode (menerjemahkan bahasa mesin), kemudian Execute (melaksanakan aksi)."
+        },
+        {
+          "question": "Manakah pernyataan di bawah ini yang BENAR terkait hubungan RAM dan Processor (CPU)?",
+          "options": ["CPU menyimpan semua data foto, dan RAM untuk game.", "Processor mengambil instruksi dan menyimpan kalkulasi yang sedang berjalan ke dalam RAM.", "RAM mengambil perintah kecepatan dari CPU agar tidak overheat.", "Keduanya dikendalikan langsung oleh VGA Card."],
+          "answer": 1,
+          "explanation": "Processor membutuhkan asupan data instruksi yang sangat cepat. Harddisk terlalu pelan untuk menyuplai, makanya informasi dinaikkan dulu ke RAM agar bisa diakses dalam mikrodetik oleh Processor."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Cara Merakit Komputer",
+      "slug": "bab-5",
+      "icon": "Wrench",
+      "color": "rose",
+      "description": "Pelajari langkah-langkah merakit komputer dari awal hingga selesai.",
+      "topics": [
+        {
+          "id": "5-1",
+          "title": "Langkah-langkah Pemasangan",
+          "content": "Merakit komputer harus dilakukan secara urut dan hati-hati. Pastikan tangan dalam keadaan kering dan gunakan gloves anti-statis. Persiapkan semua komponen dan tools yang diperlukan sebelum mulai merakit.",
+          "image": "assembly",
+          "keyPoints": [
+            "Jangan rakit dengan tangan basah",
+            "Siapkan obeng dan gelang anti-statis (opsional tapi disarankan)"
+          ]
+        },
+        {
+          "id": "5-2",
+          "title": "Urutan Pemasangan Komponen",
+          "content": "Urutan pemasangan yang benar sangat penting untuk mencegah kerusakan. Selalu mulai dari komponen yang paling kecil dan sensitif (CPU) sebelum komponen besar. Jangan memaksakan komponen jika terasa sulit dipasang.",
+          "image": "assembly-order",
+          "keyPoints": [
+            "Pasang CPU ke Motherboard lebih dulu",
+            "Pasang Heatsink CPU dan RAM KEDUA",
+            "Baru masukkan Motherboard utuh ke Casing"
+          ]
+        },
+        {
+          "id": "5-3",
+          "title": "Kesalahan Umum",
+          "content": "Banyak pemula melakukan kesalahan saat merakit yang dapat merusak komponen. Pelajari kesalahan umum ini agar dapat dihindari dan proses perakitan berjalan lancar.",
+          "image": "common-mistakes",
+          "keyPoints": [
+            "Lupa memasang baut standoff pada motherboard (bisa korslet)",
+            "Lupa memasang Thermal Paste pembuang panas",
+            "Lupa menancapkan kabel daya (power 8-pin) khusus untuk CPU"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Komponen apa yang disarankan untuk dipasang PERTAMA KALI pada motherboard sebelum dimasukkan ke dalam casing sempit komputer?",
+          "options": ["VGA Card", "Processor (CPU) dan RAM", "Power Supply (PSU)", "Harddisk (HDD)"],
+          "answer": 1,
+          "explanation": "Memasang CPU dan RAM yang sangat rapat kakinya jauh lebih mudah dan lapang (aman) saat dilakukan di atas meja dibandingkan di dalam casing."
+        },
+        {
+          "question": "Benda apakah yang sangat penting untuk dioleskan di atas permukaan CPU sebelum memasang Heatsink (Kipas)?",
+          "options": ["Lem Perekat Setan", "Minyak Singer", "Thermal Paste (Silikon Panas)", "Air Aki (Accu)"],
+          "answer": 2,
+          "explanation": "Thermal Paste berbentuk seperti krim abu-abu/putih wajib ada untuk merapatkan mikro-celah antara besi CPU dan besi Heatsink agar transfer panas 100% tersalurkan."
+        },
+        {
+          "question": "Apa fungsi baut peninggi alas tembaga bernama 'Standoff' saat memasang motherboard ke casing besi?",
+          "options": ["Agar angin dari kipas bisa tiup lebih jauh", "Agar motherboard terlihat lebih besar dari luar", "Untuk mengunci Processor agar menempel erat di slotnya", "Agar pin tajam sirkuit di bawah motherboard tidak bersentuhan dengan besi casing (korsleting)"],
+          "answer": 3,
+          "explanation": "Standoff memisahkan papan sirkuit hijau Motherboard yang berarus listrik dengan dudukan besi pelat belakang casing, sehingga mencegah terjadinya arus pendek (Korsleting Listrik/Short Circuit)."
+        }
+      ]
+    }
+  ]
+}

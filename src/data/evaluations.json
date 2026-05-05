@@ -1,0 +1,216 @@
+{
+    "evaluations": [
+        {
+            "id": 1,
+            "title": "Evaluasi Dasar Komputer",
+            "description": "Evaluasi tingkat dasar mengenai komponen-komponen vital di dalam komputer.",
+            "questions": [
+                {
+                    "question": "Komponen apa yang berfungsi sebagai otak utama komputer?",
+                    "options": [
+                        "RAM",
+                        "Motherboard",
+                        "Processor (CPU)",
+                        "Harddisk"
+                    ],
+                    "answer": 2,
+                    "explanation": "CPU (Central Processing Unit) dijuluki \"otak komputer\" karena bertugas memproses SEMUA instruksi program \u2014 mulai dari logika, matematika, hingga koordinasi antar komponen. RAM bukan otak; ia hanya penyimpanan sementara."
+                },
+                {
+                    "question": "Apa singkatan dari RAM dalam komputer?",
+                    "options": [
+                        "Read Access Memory",
+                        "Random Access Memory",
+                        "Regular Application Memory",
+                        "Rapid Action Memory"
+                    ],
+                    "answer": 1,
+                    "explanation": "RAM = Random Access Memory. \"Random Access\" berarti CPU bisa mengakses data di RAM secara acak (tidak harus berurutan), sangat cepat, sehingga cocok untuk menyimpan data sementara saat program berjalan."
+                },
+                {
+                    "question": "Komponen mana yang menyimpan data secara permanen meski komputer mati?",
+                    "options": [
+                        "RAM",
+                        "CPU Cache",
+                        "Harddisk\/SSD",
+                        "Register CPU"
+                    ],
+                    "answer": 2,
+                    "explanation": "HDD\/SSD bersifat non-volatile \u2014 data tetap tersimpan walau listrik dimatikan. RAM, CPU cache, dan register CPU bersifat volatile (data hilang saat mati). Itulah kenapa OS dan file kamu tersimpan di HDD\/SSD, bukan di RAM."
+                },
+                {
+                    "question": "Fungsi utama Power Supply (PSU) adalah...",
+                    "options": [
+                        "Mengolah grafis komputer",
+                        "Mengubah arus AC menjadi DC",
+                        "Menghubungkan semua komponen",
+                        "Menyimpan data sementara"
+                    ],
+                    "answer": 1,
+                    "explanation": "PSU mengkonversi tegangan AC (220V dari PLN) menjadi tegangan DC yang dibutuhkan komponen: +12V untuk motor dan CPU, +5V untuk USB dan storage, +3.3V untuk RAM dan komponen digital."
+                },
+                {
+                    "question": "Slot apa yang digunakan untuk memasang VGA Card pada motherboard?",
+                    "options": [
+                        "Slot DIMM",
+                        "Slot M.2",
+                        "Slot PCIe x16",
+                        "Socket LGA"
+                    ],
+                    "answer": 2,
+                    "explanation": "VGA Card dipasang di slot PCIe x16 (PCI Express) \u2014 slot terpanjang di motherboard yang menyediakan bandwidth tertinggi (hingga 64 GB\/s) untuk transfer data dari CPU ke GPU. DIMM untuk RAM, M.2 untuk SSD, LGA untuk CPU."
+                },
+                {
+                    "question": "Heatsink berfungsi untuk...",
+                    "options": [
+                        "Mempercepat processor",
+                        "Menyerap dan membuang panas dari CPU",
+                        "Menambah kapasitas memori",
+                        "Menghubungkan perangkat USB"
+                    ],
+                    "answer": 1,
+                    "explanation": "Heatsink adalah pendingin pasif (logam dengan sirip) yang dipasang di atas CPU untuk menyerap panas. Panas dialirkan dari permukaan CPU ke sirip heatsink, lalu dibuang oleh kipas ke udara sekitar."
+                },
+                {
+                    "question": "Perangkat output apa yang menghasilkan suara dari komputer?",
+                    "options": [
+                        "Monitor",
+                        "Printer",
+                        "Scanner",
+                        "Speaker"
+                    ],
+                    "answer": 3,
+                    "explanation": "Speaker adalah perangkat output audio. Monitor (output visual), Printer (output cetak), Scanner (perangkat INPUT yang membaca dokumen fisik ke digital)."
+                },
+                {
+                    "question": "Langkah pertama yang benar saat merakit komputer adalah...",
+                    "options": [
+                        "Memasang PSU ke casing",
+                        "Menghubungkan kabel power",
+                        "Memasang CPU ke socket motherboard",
+                        "Memasang RAM ke slot DIMM"
+                    ],
+                    "answer": 2,
+                    "explanation": "CPU dipasang PERTAMA karena lebih mudah dilakukan saat motherboard belum masuk casing. Setelah CPU, pasang heatsink, lalu RAM \u2014 semuanya di meja sebelum motherboard dipasang ke casing."
+                },
+                {
+                    "question": "SSD lebih unggul dari HDD karena...",
+                    "options": [
+                        "Harganya lebih murah",
+                        "Kapasitasnya lebih besar",
+                        "Kecepatannya jauh lebih tinggi",
+                        "Lebih berat dan tahan lama"
+                    ],
+                    "answer": 2,
+                    "explanation": "SSD menggunakan flash memory (seperti USB) tanpa komponen mekanik bergerak, sehingga kecepatannya 5\u201310x lebih tinggi dari HDD. HDD lebih murah per GB dan kapasitasnya lebih besar, tapi lambat karena piringan mekanisnya."
+                },
+                {
+                    "question": "Komponen mana yang berfungsi menghubungkan semua komponen komputer?",
+                    "options": [
+                        "RAM",
+                        "CPU",
+                        "Motherboard",
+                        "VGA Card"
+                    ],
+                    "answer": 2,
+                    "explanation": "Motherboard adalah \"papan induk\" yang menyediakan slot, socket, dan jalur komunikasi (bus) untuk semua komponen. Tanpa motherboard, CPU tidak bisa mengakses RAM dan storage tidak bisa mengirim data ke CPU."
+                },
+                {
+                    "question": "Jika kamu menyalakan komputer dan layar tidak menampilkan apa-apa, padahal mesin hidup, kemungkinan perangkat apa yang bermasalah?",
+                    "options": [
+                        "VGA Card \/ RAM",
+                        "Harddisk",
+                        "Sound Card",
+                        "Casing"
+                    ],
+                    "answer": 0,
+                    "explanation": "Tidak ada tampilan (No Display) atau blank screen paling sering disebabkan oleh RAM yang kotor\/longgar atau VGA Card yang bermasalah. Keduanya terkait langsung dengan pengiriman sinyal visual saat komputer POST (Power-On Self-Test)."
+                },
+                {
+                    "question": "Kabel yang menghubungkan monitor modern beresolusi tinggi (4K) dengan VGA Card biasanya disebut...",
+                    "options": [
+                        "Kabel USB",
+                        "Kabel LAN",
+                        "Kabel Power",
+                        "Kabel HDMI \/ DisplayPort"
+                    ],
+                    "answer": 3,
+                    "explanation": "HDMI dan DisplayPort adalah standar kabel digital canggih saat ini yang mampu menghantar video 4K+FPS tinggi sekaligus dengan audio dari PC (VGA Card) ke Monitor."
+                },
+                {
+                    "question": "Untuk komputer spesifikasi gaming berat yang memakai VGA tingkat ekstrem dan Prosesor besar, besaran PSU apa yang paling direkomendasikan?",
+                    "options": [
+                        "300 Watt",
+                        "450 Watt",
+                        "750 Watt atau lebih",
+                        "Bebas, Watt tidak penting"
+                    ],
+                    "answer": 2,
+                    "explanation": "Hardware kelas atas menyedot daya besar (VGA bisa >300W sendiri, CPU >150W), sehingga dibutuhkan Power Supply kapastias besar minimal 750 Watt agar suplai daya tidak drop saat bermain game."
+                },
+                {
+                    "question": "Saat meng-install ulang atau merakit dari 0, ke manakah sistem operasi Windows biasanya dipasang agar komputer bisa booting dengan cepat?",
+                    "options": [
+                        "Flashdisk penyimpan data",
+                        "Ke dalam SSD utama",
+                        "Ke dalam RAM",
+                        "Ke dalam VGA Card"
+                    ],
+                    "answer": 1,
+                    "explanation": "Windows harus diinstal ke dalam penyimpanan permanen utama (sebaiknya SSD agar sangat kencang). Meng-install di SSD membuat proses boot-up jauh lebih cepat ketimbang di Harddisk kuno."
+                },
+                {
+                    "question": "Motherboard memiliki chip utama yang mengatur pembagian dan komunikasi lalu lintas data ke berbagai slot (seperti ke USB, SATA, audio). Namanya adalah?",
+                    "options": [
+                        "Chipset",
+                        "BIOS",
+                        "Processor Socket",
+                        "Bluetooth"
+                    ],
+                    "answer": 0,
+                    "explanation": "Chipset adalah sekumpulan sirkuit pembantu processor yang mengendalikan lalu lintas I\/O (Input\/Output) perangkat sekunder di sekitar Motherboard."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Kuis Perakitan & Jaringan Dasar",
+            "description": "Menguji pemahamanmu tentang proses perakitan PC dan pengkabelan dasar jaringan yang penting untuk Teknisi Komputer.",
+            "questions": [
+                {
+                    "question": "Mengapa kita dituntut memakai gelang antistatik (ESD strap) saat merakit PC?",
+                    "options": [
+                        "Agar perakitan lebih bergaya",
+                        "Mempercepat pemasangan komponen",
+                        "Mencegah korsleting akibat listrik statis dari tubuh manusia",
+                        "Mencegah komputer terlalu panas"
+                    ],
+                    "answer": 2,
+                    "explanation": "Tubuh manusia bisa menyimpan listrik statis yang tanpa disadari dapat merusak komponen sensitif (seperti RAM dan Motherboard). Gelang ESD menetralisir listrik tersebut ke ground."
+                },
+                {
+                    "question": "Kabel Straight-Through (T568A ke T568A atau B ke B) digunakan untuk...",
+                    "options": [
+                        "Menghubungkan Router ke Router",
+                        "Menghubungkan dua PC yang sama",
+                        "Menghubungkan alat yang berbeda (seperti PC ke Switch)",
+                        "Mencolokkan listrik ke monitor"
+                    ],
+                    "answer": 2,
+                    "explanation": "Kabel Straight digunakan untuk menghubungkan dua perangkat yang BERBEDA (seperti PC dan Switch). Untuk dua perangkat yang SAMA (PC ke PC), dibutuhkan sistem Cross-Over."
+                },
+                {
+                    "question": "Ketika memasukkan Processor ke Motherboard, kita harus memperhatikan...",
+                    "options": [
+                        "Arah kipas casing",
+                        "Kecocokan segitiga emas\/panah di sudut pin CPU dengan di Motherboard",
+                        "Warna slot PCIe",
+                        "Panjang kabel SATA"
+                    ],
+                    "answer": 1,
+                    "explanation": "Setiap CPU punya indikator segitiga kecil di salah satu ujungnya yang harus disejajarkan dengan segitiga cetakan di atas Socket Motherboard agar posisinya presisi dan pin tidak bengkok."
+                }
+            ]
+        }
+    ]
+}

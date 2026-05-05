@@ -4,6 +4,8 @@ import { motion, useInView } from 'framer-motion';
 import { Monitor, Gamepad2, BookOpen, Trophy, Users, Star, ChevronRight, Cpu, HardDrive, Keyboard, Zap, Target, BarChart3 } from 'lucide-react';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
+import heroImage from '../assets/hero.png';
+import heroDarkImage from '../assets/hero_dark.png';
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } };
 
@@ -21,7 +23,7 @@ const features = [
   { icon: BookOpen, title: '5 Bab Materi', desc: 'Dari pengenalan komputer hingga cara merakit, terstruktur dan mudah dipahami.', color: 'blue', emoji: '📚' },
   { icon: Gamepad2, title: '4 Level Game', desc: 'Game drag and drop seru dari mengenal nama komponen hingga merakit komputer lengkap.', color: 'violet', emoji: '🎮' },
   { icon: Trophy, title: 'Sistem Poin & Badge', desc: 'Kumpulkan XP, naik level, dan raih badge keren untuk setiap pencapaian belajar.', color: 'amber', emoji: '🏆' },
-  { icon: BarChart3, title: 'Pantau Progres', desc: 'Guru dapat memantau perkembangan belajar setiap siswa secara real-time.', color: 'emerald', emoji: '📊' },
+  { icon: BarChart3, title: 'Pantau Progres', desc: 'Admin dapat memantau perkembangan belajar setiap siswa secara real-time.', color: 'emerald', emoji: '📊' },
   { icon: Target, title: 'Evaluasi Mandiri', desc: 'Ujian mandiri untuk mengukur pemahaman dengan sistem penilaian otomatis.', color: 'rose', emoji: '✅' },
   { icon: Zap, title: 'Mode Gelap/Terang', desc: 'Tampilan nyaman baik siang maupun malam, dilengkapi animasi yang menarik.', color: 'orange', emoji: '🌙' },
 ];
@@ -48,97 +50,33 @@ export default function LandingPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden bg-mesh">
-        <div className="absolute inset-0 hero-pattern opacity-40" />
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary-400/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent-400/10 rounded-full blur-3xl animate-pulse-slow" />
-
-        <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-          <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-semibold mb-6 border border-primary-200 dark:border-primary-700">
-              <Zap className="w-4 h-4" /> Media Pembelajaran SMK
-            </div>
-            <h1 className="font-display text-5xl md:text-6xl font-black leading-tight mb-6">
-              Belajar{' '}
-              <span className="text-gradient">Komponen Komputer</span>{' '}
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-20 pb-10 overflow-hidden bg-white dark:bg-slate-950">
+        <div className="relative w-full max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="z-10 mt-10 md:mt-0">
+            <h1 className="font-display text-[3.5rem] sm:text-6xl lg:text-[5.5rem] font-black leading-[1.1] mb-6 text-slate-900 dark:text-white tracking-tight">
+              DragIT:<br/>
+              Belajar<br/>
+              Hardware<br/>
               Jadi Seru!
             </h1>
-            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
-              Platform interaktif untuk siswa SMK memahami hardware komputer melalui materi visual dan <strong>game drag and drop</strong> yang menyenangkan. Belajar sambil bermain, nilai pasti meningkat!
+            <p className="text-xl md:text-2xl text-slate-400 font-bold leading-snug mb-10 md:w-4/5">
+              Platform LMS Gamifikasi<br/>
+              untuk Siswa SMK
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/register" className="btn-primary text-base gap-2 flex items-center">
-                Mulai Belajar Gratis <ChevronRight className="w-5 h-5" />
+              <Link to="/register" className="btn-primary text-lg gap-2 flex items-center py-4 px-8">
+                Mulai Belajar Beneran! <ChevronRight className="w-6 h-6" />
               </Link>
-              <Link to="/login" className="btn-secondary text-base">
-                Sudah Punya Akun? Masuk
+              <Link to="/login" className="btn-secondary text-lg flex items-center py-4 px-8">
+                Masuk
               </Link>
-            </div>
-
-            {/* Quick stats */}
-            <div className="flex gap-6 mt-8">
-              {stats.map((s) => (
-                <div key={s.label} className="text-center">
-                  <p className="font-display font-black text-2xl text-gradient">{s.value}</p>
-                  <p className="text-xs text-slate-500">{s.label}</p>
-                </div>
-              ))}
             </div>
           </motion.div>
 
           {/* Hero illustration */}
-          <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="flex justify-center">
-            <div className="relative w-full max-w-sm">
-              {/* Main card */}
-              <div className="card p-6 animate-float shadow-2xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center">
-                    <Monitor className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-sm">Game Level 3</p>
-                    <p className="text-xs text-slate-500">Pasang komponen ke motherboard</p>
-                  </div>
-                </div>
-
-                {/* Drag items preview */}
-                <div className="grid grid-cols-2 gap-3 mb-4">
-                  {[
-                    { label: 'CPU', emoji: '🧠', color: 'bg-blue-100 dark:bg-blue-900/50 border-blue-200 dark:border-blue-700' },
-                    { label: 'RAM', emoji: '🔋', color: 'bg-violet-100 dark:bg-violet-900/50 border-violet-200 dark:border-violet-700' },
-                    { label: 'SSD', emoji: '💨', color: 'bg-emerald-100 dark:bg-emerald-900/50 border-emerald-200 dark:border-emerald-700' },
-                    { label: 'VGA', emoji: '🎮', color: 'bg-rose-100 dark:bg-rose-900/50 border-rose-200 dark:border-rose-700' },
-                  ].map((item) => (
-                    <div key={item.label} className={`flex items-center gap-2 p-2.5 rounded-xl border ${item.color} cursor-grab`}>
-                      <span className="text-xl">{item.emoji}</span>
-                      <span className="font-semibold text-sm">{item.label}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Drop zone preview */}
-                <div className="border-2 border-dashed border-primary-300 dark:border-primary-600 rounded-xl p-3 text-center">
-                  <p className="text-sm text-primary-500 font-medium">📍 Socket CPU / LGA1700</p>
-                  <p className="text-xs text-slate-400 mt-0.5">Seret CPU ke sini!</p>
-                </div>
-
-                {/* Score */}
-                <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100 dark:border-slate-700">
-                  <span className="text-sm text-slate-500">Skor</span>
-                  <span className="font-display font-black text-xl text-gradient">85 / 100</span>
-                </div>
-              </div>
-
-              {/* Floating badges */}
-              <motion.div animate={{ y: [0, -8, 0] }} transition={{ repeat: Infinity, duration: 2.5, delay: 0.5 }}
-                className="absolute -top-4 -right-4 card px-3 py-2 shadow-xl text-sm font-semibold flex items-center gap-2">
-                <span>⚡</span> +50 XP!
-              </motion.div>
-              <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 3, delay: 1 }}
-                className="absolute -bottom-4 -left-4 card px-3 py-2 shadow-xl text-sm font-semibold flex items-center gap-2">
-                <span>🏅</span> Badge Baru!
-              </motion.div>
-            </div>
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="flex justify-center xl:justify-end relative order-first md:order-last">
+            <img src={heroImage} alt="DragIT Boy holding computer parts" className="w-[120%] md:w-full max-w-lg lg:max-w-xl xl:max-w-2xl drop-shadow-md object-contain dark:hidden" />
+            <img src={heroDarkImage} alt="DragIT Boy holding computer parts" className="w-[120%] md:w-full max-w-lg lg:max-w-xl xl:max-w-2xl drop-shadow-lg object-contain hidden dark:block" />
           </motion.div>
         </div>
       </section>

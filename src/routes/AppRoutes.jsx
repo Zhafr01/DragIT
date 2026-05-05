@@ -30,8 +30,8 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <Login />} />
-      <Route path="/register" element={user ? <Navigate to="/dashboard" replace /> : <Register />} />
+      <Route path="/login" element={user ? <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} replace /> : <Login />} />
+      <Route path="/register" element={user ? <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} replace /> : <Register />} />
 
       <Route path="/dashboard" element={
         <ProtectedRoute><Dashboard /></ProtectedRoute>
@@ -61,7 +61,7 @@ export default function AppRoutes() {
         <ProtectedRoute><DesignDiagrams /></ProtectedRoute>
       } />
       <Route path="/admin" element={
-        <ProtectedRoute allowedRoles={['guru']}><AdminPage /></ProtectedRoute>
+        <ProtectedRoute allowedRoles={['admin']}><AdminPage /></ProtectedRoute>
       } />
 
       <Route path="*" element={<Navigate to="/" replace />} />

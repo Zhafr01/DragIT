@@ -19,7 +19,7 @@ export default function Login() {
     setLoading(true);
     try {
       const user = await login(form.email, form.password);
-      const route = user.role === 'guru' ? '/admin' : '/dashboard';
+      const route = user.role === 'admin' ? '/admin' : '/dashboard';
       setLoading(false);
       setSuccess(true);
       setTimeout(() => navigate(route), 2800);
@@ -33,12 +33,12 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const creds = role === 'guru'
-        ? { email: 'guru@dragit.id', password: 'guru123' }
+      const creds = role === 'admin'
+        ? { email: 'admin@dragit.id', password: 'admin123' }
         : { email: 'andi@dragit.id', password: 'siswa123' };
       setForm(creds);
       const user = await login(creds.email, creds.password);
-      const route = user.role === 'guru' ? '/admin' : '/dashboard';
+      const route = user.role === 'admin' ? '/admin' : '/dashboard';
       setLoading(false);
       setSuccess(true);
       setTimeout(() => navigate(route), 2800);
@@ -144,8 +144,12 @@ export default function Login() {
       </div>
 
       {/* Right form */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:max-w-lg">
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="w-full max-w-md">
+      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 relative">
+        {/* Playful background particles (optional, but adds to the fun theme) */}
+        <div className="absolute top-10 right-10 text-4xl opacity-20 animate-float">🎮</div>
+        <div className="absolute bottom-10 left-10 text-4xl opacity-20 animate-float" style={{ animationDelay: '1s' }}>🚀</div>
+        
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-md card p-8 sm:p-10 bg-white dark:bg-slate-900 border-b-[8px] z-10">
           <div className="flex items-center mb-6">
             <span className="font-display font-black text-5xl md:text-6xl text-slate-800 dark:text-white tracking-tight">
               Drag<span className="text-primary-600">IT</span>
@@ -193,8 +197,8 @@ export default function Login() {
               <button onClick={() => demoLogin('siswa')} disabled={loading || success} className="btn-secondary text-sm py-2.5 flex items-center justify-center gap-2">
                 <span>👨‍💻</span> Demo Siswa
               </button>
-              <button onClick={() => demoLogin('guru')} disabled={loading || success} className="btn-secondary text-sm py-2.5 flex items-center justify-center gap-2">
-                <span>👨‍🏫</span> Demo Guru
+              <button onClick={() => demoLogin('admin')} disabled={loading || success} className="btn-secondary text-sm py-2.5 flex items-center justify-center gap-2">
+                <span>👨‍🏫</span> Demo Admin
               </button>
             </div>
           </div>

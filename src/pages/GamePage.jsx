@@ -45,7 +45,7 @@ function DragItem({ id, label, emoji, color, wrongFlash }) {
       {...attributes}
       animate={wrongFlash ? { x: [0, -10, 10, -8, 8, 0], backgroundColor: ['#fef2f2', '#fef2f2', '#fef2f2', '#fef2f2'] } : {}}
       transition={{ duration: 0.4 }}
-      className={`drag-item flex items-center gap-3 p-3 rounded-xl border-2 ${colorMap[color] || colorMap.blue} select-none cursor-grab active:cursor-grabbing transition-shadow hover:shadow-md ${wrongFlash ? 'ring-2 ring-red-400' : ''}`}
+      className={`drag-item flex items-center gap-3 p-3 rounded-2xl border-2 border-b-[6px] active:translate-y-1 active:border-b-[4px] ${colorMap[color] || colorMap.blue} select-none cursor-grab active:cursor-grabbing transition-shadow hover:shadow-md ${wrongFlash ? 'ring-2 ring-red-400' : ''}`}
     >
       <span className="text-2xl">{emoji}</span>
       <span className="font-semibold text-sm leading-tight">{label}</span>
@@ -107,9 +107,13 @@ function LevelSelector({ onSelect, progress }) {
   const gradients = ['from-blue-500 to-blue-700', 'from-violet-500 to-violet-700', 'from-amber-500 to-amber-700', 'from-rose-500 to-rose-700'];
   return (
     <div>
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <h1 className="font-display text-3xl font-black mb-1">Game Edukasi 🎮</h1>
-        <p className="text-slate-500">Pilih level dan uji pemahamanmu tentang komponen komputer!</p>
+      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-8 card p-6 md:p-8 bg-gradient-to-r from-purple-500 via-fuchsia-500 to-rose-500 text-white border-none shadow-[0_8px_0_theme(colors.rose.700)]">
+        <h1 className="font-display text-3xl md:text-4xl font-black mb-2 flex items-center gap-3">🎮 Game Edukasi</h1>
+        <p className="text-white/90 font-medium text-lg mb-6 max-w-xl">Asah kemampuanmu dengan simulasi drag & drop!</p>
+        <div className="flex items-center gap-6 text-sm md:text-base font-bold">
+          <span className="flex items-center gap-2"><Trophy className="w-5 h-5" /> 8 Level Tersedia</span>
+          <span className="flex items-center gap-2"><Star className="w-5 h-5" /> 6 Bintang Terkumpul</span>
+        </div>
       </motion.div>
       <div className="grid sm:grid-cols-2 gap-5">
         {questions.levels.map((level, i) => {
@@ -117,37 +121,60 @@ function LevelSelector({ onSelect, progress }) {
             .reduce((max, g) => Math.max(max, g.score), 0) || 0;
           const done = progress?.completedLevels?.includes(level.id);
           return (
-            <motion.button key={level.id} onClick={() => onSelect(level.id)}
+            <motion.div key={level.id}
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}
-              className="w-full text-left card p-5 hover:shadow-xl transition-all hover:-translate-y-1 group">
-              <div className="flex items-start justify-between mb-3">
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradients[i]} flex items-center justify-center text-white text-xl font-display font-black shadow-lg`}>
-                  {level.id}
-                </div>
-                <div className="flex flex-col items-end gap-1">
-                  {done && <span className="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full font-semibold">✓ Selesai</span>}
-                  <span className="text-xs text-slate-400">{level.xpReward} XP</span>
+              className="w-full text-left card-hover border-2 border-slate-200 dark:border-slate-800 border-b-[8px] bg-white dark:bg-slate-900 rounded-2xl overflow-hidden flex flex-col group">
+              
+              {/* Colored Top Header */}
+              <div className={`p-5 text-white bg-gradient-to-br ${gradients[i]}`}>
+                <p className="text-xs font-bold mb-1 opacity-80 uppercase tracking-widest">Level {level.id}</p>
+                <h3 className="font-display font-black text-xl mb-1 truncate">{level.title}</h3>
+                <p className="text-sm font-medium opacity-90 mb-4 line-clamp-1">{level.description}</p>
+                
+                {/* Stars Indicator */}
+                <div className="flex gap-1 text-yellow-300">
+                  <Star className="w-5 h-5 fill-current" />
+                  <Star className="w-5 h-5 fill-current" />
+                  <Star className="w-5 h-5 opacity-40" />
                 </div>
               </div>
-              <h3 className="font-bold text-lg mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{level.title}</h3>
-              <p className="text-slate-500 text-sm mb-4">{level.description}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 text-xs text-slate-400">
-                  <span>⏱ {level.timeLimit}s</span>
-                  {best > 0 && <span className="text-amber-500 font-semibold">🏆 Best: {best}</span>}
+
+              {/* White Bottom Body */}
+              <div className="p-5 flex-1 flex flex-col">
+                <ul className="space-y-3 mb-6 flex-1 text-sm text-slate-600 dark:text-slate-300 font-medium">
+                  <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                    <span className="flex items-center gap-2"><Timer className="w-4 h-4 text-slate-400" /> Waktu</span>
+                    <span className="font-bold text-slate-800 dark:text-slate-200">{level.timeLimit} detik</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                    <span className="flex items-center gap-2"><span className="text-slate-400 font-black">⚡</span> XP Reward</span>
+                    <span className="font-bold text-slate-800 dark:text-slate-200">+{level.xpReward} XP</span>
+                  </li>
+                  <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                    <span className="flex items-center gap-2"><Trophy className="w-4 h-4 text-slate-400" /> Best Score</span>
+                    <span className={`font-bold ${best > 0 ? 'text-emerald-500' : 'text-slate-800 dark:text-slate-200'}`}>{best || '-'}</span>
+                  </li>
+                </ul>
+
+                {/* Difficulty Badge */}
+                <div className="mb-4">
+                  <span className={`text-xs font-bold px-3 py-1.5 rounded-lg ${i === 0 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30' : i === 1 ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30'}`}>
+                    {i === 0 ? 'Mudah' : i === 1 ? 'Menengah' : 'Sulit'}
+                  </span>
                 </div>
-                <span className="text-primary-600 dark:text-primary-400 font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                  Mulai <ChevronRight className="w-4 h-4" />
-                </span>
+
+                <button onClick={() => onSelect(level.id)} className={`w-full py-3 rounded-xl border-b-4 active:border-b-0 active:translate-y-1 font-bold flex items-center justify-center gap-2 text-white bg-gradient-to-r ${gradients[i]} shadow-md`}>
+                  <RotateCcw className="w-4 h-4" /> {done ? 'Main Lagi' : 'Mulai Main'}
+                </button>
               </div>
-            </motion.button>
+            </motion.div>
           );
         })}
       </div>
       {/* Bonus: Motherboard Game */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }} className="mt-5">
         <Link to="/dashboard/game/motherboard"
-          className="w-full card p-5 hover:shadow-xl transition-all hover:-translate-y-1 group flex items-center gap-4 border-2 border-dashed border-emerald-400 dark:border-emerald-600">
+          className="w-full card-hover p-6 hover:shadow-xl transition-all hover:-translate-y-1 group flex items-center gap-4 border-2 border-b-[8px] border-dashed border-emerald-400 dark:border-emerald-600">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-2xl shadow-lg shrink-0">🖥️</div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-0.5">
@@ -164,7 +191,7 @@ function LevelSelector({ onSelect, progress }) {
 }
 
 /* ─── Review Section (shown after game) ─────── */
-function ReviewSection({ drops, question, level, wrongAttempts }) {
+function ReviewSection({ drops, question, level, wrongAttempts, wrongHistory }) {
   if (!question?.targets) return null;
   const wrongs = question.targets.filter(t => {
     const placed = drops[t.id];
@@ -185,17 +212,20 @@ function ReviewSection({ drops, question, level, wrongAttempts }) {
           const placed = drops[target.id];
           const correctItem = question.items.find(it => it.id === target.acceptsId);
           const attempts = wrongAttempts[target.id] || 0;
+          const errors = wrongHistory?.[target.id] || [];
+          const uniqueErrors = Array.from(new Set(errors)).join(', ');
           return (
             <div key={target.id} className="card p-4 border-l-4 border-red-400">
               <p className="font-semibold text-sm mb-2 text-slate-700 dark:text-slate-200">📍 {target.label}</p>
               <div className="flex flex-col gap-1 text-sm mb-3">
-                {placed ? (
-                  <span className="text-red-600 dark:text-red-400">❌ Jawabanmu: <b>{placed.label}</b></span>
-                ) : (
-                  <span className="text-slate-400">❌ Tidak dijawab</span>
-                )}
+                <span className="text-slate-500">❌ Belum sempat dijawab dengan benar</span>
                 <span className="text-emerald-600 dark:text-emerald-400">✅ Jawaban benar: <b>{correctItem?.label}</b></span>
-                {attempts > 0 && <span className="text-amber-500 text-xs">⚠️ Salah {attempts}x · -{attempts * WRONG_PENALTY} poin</span>}
+                {attempts > 0 && (
+                  <span className="text-amber-500 text-xs">
+                    ⚠️ Salah {attempts}x · -{attempts * WRONG_PENALTY} poin<br/>
+                    <span className="opacity-80">Sempat pasang: <b>{uniqueErrors}</b></span>
+                  </span>
+                )}
               </div>
               {target.explanation && (
                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-xs text-blue-700 dark:text-blue-300 flex gap-2">
@@ -212,7 +242,7 @@ function ReviewSection({ drops, question, level, wrongAttempts }) {
 }
 
 /* ─── Result Modal ─────────────────────── */
-function ResultModal({ score, total, time, xpEarned, onRetry, onNext, showReview, setShowReview, drops, question, level, wrongAttempts }) {
+function ResultModal({ score, total, time, xpEarned, onRetry, onNext, showReview, setShowReview, drops, question, level, wrongAttempts, wrongHistory }) {
   const pct = Math.round((score / Math.max(total * 10, 1)) * 100);
   const grade = pct >= 90 ? { label: 'Sangat Baik! 🌟', color: 'text-emerald-500' }
     : pct >= 75 ? { label: 'Baik! 👍', color: 'text-blue-500' }
@@ -257,7 +287,7 @@ function ResultModal({ score, total, time, xpEarned, onRetry, onNext, showReview
           <AlertCircle className="w-4 h-4" /> {showReview ? 'Sembunyikan' : 'Lihat'} Pembahasan Jawaban
         </button>
 
-        {showReview && <ReviewSection drops={drops} question={question} level={level} wrongAttempts={wrongAttempts} />}
+        {showReview && <ReviewSection drops={drops} question={question} level={level} wrongAttempts={wrongAttempts} wrongHistory={wrongHistory} />}
       </motion.div>
     </motion.div>
   );
@@ -272,6 +302,7 @@ export default function GamePage() {
   const [gameState, setGameState] = useState('idle');
   const [drops, setDrops] = useState({});
   const [wrongAttempts, setWrongAttempts] = useState({}); // targetId -> count
+  const [wrongHistory, setWrongHistory] = useState({}); // targetId -> array of item labels
   const [wrongFlashItem, setWrongFlashItem] = useState(null); // itemId that should flash/return
   const [timeLeft, setTimeLeft] = useState(0);
   const [timeTaken, setTimeTaken] = useState(0);
@@ -298,6 +329,7 @@ export default function GamePage() {
     const lv = questions.levels.find(l => l.id === levelId);
     setDrops({});
     setWrongAttempts({});
+    setWrongHistory({});
     setWrongFlashItem(null);
     setPenalty(0);
     setOrderChecked(false);
@@ -365,6 +397,10 @@ export default function GamePage() {
       // Wrong answer: flash item, record penalty, do NOT place in target
       setWrongFlashItem(active.id);
       setWrongAttempts(prev => ({ ...prev, [target.id]: (prev[target.id] || 0) + 1 }));
+      setWrongHistory(prev => ({
+        ...prev,
+        [target.id]: [...(prev[target.id] || []), dragged.label]
+      }));
       setPenalty(p => p + WRONG_PENALTY);
       setTimeout(() => setWrongFlashItem(null), 500);
     }
@@ -559,6 +595,7 @@ export default function GamePage() {
               question={question}
               level={level}
               wrongAttempts={wrongAttempts}
+              wrongHistory={wrongHistory}
               onRetry={() => startGame(selectedLevel)}
               onNext={() => { setSelectedLevel(null); setGameState('idle'); }}
             />

@@ -1,116 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ClipboardList, CheckCircle2, XCircle, RotateCcw, Lightbulb } from 'lucide-react';
+import { ClipboardList, CheckCircle2, XCircle, RotateCcw, Lightbulb, ChevronRight, BookOpen, Trophy, Timer, Star } from 'lucide-react';
 import Sidebar from '../components/common/Sidebar';
 import { useProgress } from '../context/ProgressContext';
+import evalData from '../data/evaluations.json';
 
-const evalQuestions = [
-  {
-    id: 1,
-    question: 'Komponen apa yang berfungsi sebagai otak utama komputer?',
-    options: ['RAM', 'Motherboard', 'Processor (CPU)', 'Harddisk'],
-    answer: 2,
-    explanation: 'CPU (Central Processing Unit) dijuluki "otak komputer" karena bertugas memproses SEMUA instruksi program — mulai dari logika, matematika, hingga koordinasi antar komponen. RAM bukan otak; ia hanya penyimpanan sementara.'
-  },
-  {
-    id: 2,
-    question: 'Apa singkatan dari RAM dalam komputer?',
-    options: ['Read Access Memory', 'Random Access Memory', 'Regular Application Memory', 'Rapid Action Memory'],
-    answer: 1,
-    explanation: 'RAM = Random Access Memory. "Random Access" berarti CPU bisa mengakses data di RAM secara acak (tidak harus berurutan), sangat cepat, sehingga cocok untuk menyimpan data sementara saat program berjalan.'
-  },
-  {
-    id: 3,
-    question: 'Komponen mana yang menyimpan data secara permanen meski komputer mati?',
-    options: ['RAM', 'CPU Cache', 'Harddisk/SSD', 'Register CPU'],
-    answer: 2,
-    explanation: 'HDD/SSD bersifat non-volatile — data tetap tersimpan walau listrik dimatikan. RAM, CPU cache, dan register CPU bersifat volatile (data hilang saat mati). Itulah kenapa OS dan file kamu tersimpan di HDD/SSD, bukan di RAM.'
-  },
-  {
-    id: 4,
-    question: 'Fungsi utama Power Supply (PSU) adalah...',
-    options: ['Mengolah grafis komputer', 'Mengubah arus AC menjadi DC', 'Menghubungkan semua komponen', 'Menyimpan data sementara'],
-    answer: 1,
-    explanation: 'PSU mengkonversi tegangan AC (220V dari PLN) menjadi tegangan DC yang dibutuhkan komponen: +12V untuk motor dan CPU, +5V untuk USB dan storage, +3.3V untuk RAM dan komponen digital.'
-  },
-  {
-    id: 5,
-    question: 'Slot apa yang digunakan untuk memasang VGA Card pada motherboard?',
-    options: ['Slot DIMM', 'Slot M.2', 'Slot PCIe x16', 'Socket LGA'],
-    answer: 2,
-    explanation: 'VGA Card dipasang di slot PCIe x16 (PCI Express) — slot terpanjang di motherboard yang menyediakan bandwidth tertinggi (hingga 64 GB/s) untuk transfer data dari CPU ke GPU. DIMM untuk RAM, M.2 untuk SSD, LGA untuk CPU.'
-  },
-  {
-    id: 6,
-    question: 'Heatsink berfungsi untuk...',
-    options: ['Mempercepat processor', 'Menyerap dan membuang panas dari CPU', 'Menambah kapasitas memori', 'Menghubungkan perangkat USB'],
-    answer: 1,
-    explanation: 'Heatsink adalah pendingin pasif (logam dengan sirip) yang dipasang di atas CPU untuk menyerap panas. Panas dialirkan dari permukaan CPU ke sirip heatsink, lalu dibuang oleh kipas ke udara sekitar.'
-  },
-  {
-    id: 7,
-    question: 'Perangkat output apa yang menghasilkan suara dari komputer?',
-    options: ['Monitor', 'Printer', 'Scanner', 'Speaker'],
-    answer: 3,
-    explanation: 'Speaker adalah perangkat output audio. Monitor (output visual), Printer (output cetak), Scanner (perangkat INPUT yang membaca dokumen fisik ke digital).'
-  },
-  {
-    id: 8,
-    question: 'Langkah pertama yang benar saat merakit komputer adalah...',
-    options: ['Memasang PSU ke casing', 'Menghubungkan kabel power', 'Memasang CPU ke socket motherboard', 'Memasang RAM ke slot DIMM'],
-    answer: 2,
-    explanation: 'CPU dipasang PERTAMA karena lebih mudah dilakukan saat motherboard belum masuk casing. Setelah CPU, pasang heatsink, lalu RAM — semuanya di meja sebelum motherboard dipasang ke casing.'
-  },
-  {
-    id: 9,
-    question: 'SSD lebih unggul dari HDD karena...',
-    options: ['Harganya lebih murah', 'Kapasitasnya lebih besar', 'Kecepatannya jauh lebih tinggi', 'Lebih berat dan tahan lama'],
-    answer: 2,
-    explanation: 'SSD menggunakan flash memory (seperti USB) tanpa komponen mekanik bergerak, sehingga kecepatannya 5–10x lebih tinggi dari HDD. HDD lebih murah per GB dan kapasitasnya lebih besar, tapi lambat karena piringan mekanisnya.'
-  },
-  {
-    id: 10,
-    question: 'Komponen mana yang berfungsi menghubungkan semua komponen komputer?',
-    options: ['RAM', 'CPU', 'Motherboard', 'VGA Card'],
-    answer: 2,
-    explanation: 'Motherboard adalah "papan induk" yang menyediakan slot, socket, dan jalur komunikasi (bus) untuk semua komponen. Tanpa motherboard, CPU tidak bisa mengakses RAM dan storage tidak bisa mengirim data ke CPU.'
-  },
-  {
-    id: 11,
-    question: 'Jika kamu menyalakan komputer dan layar tidak menampilkan apa-apa, padahal mesin hidup, kemungkinan perangkat apa yang bermasalah?',
-    options: ['VGA Card / RAM', 'Harddisk', 'Sound Card', 'Casing'],
-    answer: 0,
-    explanation: 'Tidak ada tampilan (No Display) atau blank screen paling sering disebabkan oleh RAM yang kotor/longgar atau VGA Card yang bermasalah. Keduanya terkait langsung dengan pengiriman sinyal visual saat komputer POST (Power-On Self-Test).'
-  },
-  {
-    id: 12,
-    question: 'Kabel yang menghubungkan monitor modern beresolusi tinggi (4K) dengan VGA Card biasanya disebut...',
-    options: ['Kabel USB', 'Kabel LAN', 'Kabel Power', 'Kabel HDMI / DisplayPort'],
-    answer: 3,
-    explanation: 'HDMI dan DisplayPort adalah standar kabel digital canggih saat ini yang mampu menghantar video 4K+FPS tinggi sekaligus dengan audio dari PC (VGA Card) ke Monitor.'
-  },
-  {
-    id: 13,
-    question: 'Untuk komputer spesifikasi gaming berat yang memakai VGA tingkat ekstrem dan Prosesor besar, besaran PSU apa yang paling direkomendasikan?',
-    options: ['300 Watt', '450 Watt', '750 Watt atau lebih', 'Bebas, Watt tidak penting'],
-    answer: 2,
-    explanation: 'Hardware kelas atas menyedot daya besar (VGA bisa >300W sendiri, CPU >150W), sehingga dibutuhkan Power Supply kapastias besar minimal 750 Watt agar suplai daya tidak drop saat bermain game.'
-  },
-  {
-    id: 14,
-    question: 'Saat meng-install ulang atau merakit dari 0, ke manakah sistem operasi Windows biasanya dipasang agar komputer bisa booting dengan cepat?',
-    options: ['Flashdisk penyimpan data', 'Ke dalam SSD utama', 'Ke dalam RAM', 'Ke dalam VGA Card'],
-    answer: 1,
-    explanation: 'Windows harus diinstal ke dalam penyimpanan permanen utama (sebaiknya SSD agar sangat kencang). Meng-install di SSD membuat proses boot-up jauh lebih cepat ketimbang di Harddisk kuno.'
-  },
-  {
-    id: 15,
-    question: 'Motherboard memiliki chip utama yang mengatur pembagian dan komunikasi lalu lintas data ke berbagai slot (seperti ke USB, SATA, audio). Namanya adalah?',
-    options: ['Chipset', 'BIOS', 'Processor Socket', 'Bluetooth'],
-    answer: 0,
-    explanation: 'Chipset adalah sekumpulan sirkuit pembantu processor yang mengendalikan lalu lintas I/O (Input/Output) perangkat sekunder di sekitar Motherboard.'
-  }
-];
+const gradients = ['from-emerald-500 to-emerald-600', 'from-amber-500 to-amber-600', 'from-orange-500 to-red-500', 'from-blue-500 to-indigo-600'];
 
 function getGrade(pct) {
   if (pct >= 90) return { label: 'Sangat Baik', color: 'text-emerald-500', emoji: '🌟' };
@@ -121,11 +16,19 @@ function getGrade(pct) {
 
 export default function EvaluasiPage() {
   const { addXP, recordGameResult } = useProgress();
-  const [mode, setMode] = useState('intro');
+  const [mode, setMode] = useState('list'); // 'list' | 'intro' | 'quiz' | 'result'
+  const [selectedEval, setSelectedEval] = useState(null);
   const [answers, setAnswers] = useState({});
   const [current, setCurrent] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [showAllReview, setShowAllReview] = useState(false);
+
+  const evaluations = evalData.evaluations || [];
+
+  const handleSelectEval = (ev) => {
+    setSelectedEval(ev);
+    setMode('intro');
+  };
 
   const startQuiz = () => {
     setAnswers({});
@@ -138,7 +41,7 @@ export default function EvaluasiPage() {
   const selectAnswer = (qIdx, optIdx) => {
     if (answers[qIdx] !== undefined) return;
     setAnswers(a => ({ ...a, [qIdx]: optIdx }));
-    if (qIdx < evalQuestions.length - 1) {
+    if (qIdx < selectedEval.questions.length - 1) {
       setTimeout(() => setCurrent(qIdx + 1), 700);
     } else {
       setTimeout(finishQuiz, 700);
@@ -146,61 +49,159 @@ export default function EvaluasiPage() {
   };
 
   const finishQuiz = () => {
-    const correct = evalQuestions.filter((q, i) => answers[i] === q.answer).length;
-    const score = correct * 10;
+    const correct = selectedEval.questions.filter((q, i) => answers[i] === q.answer).length;
+    const score = selectedEval.questions.length > 0 ? Math.round((correct / selectedEval.questions.length) * 100) : 0;
     const time = Math.round((Date.now() - startTime) / 1000);
     addXP(correct * 5);
-    recordGameResult('eval', score, time, evalQuestions.length);
+    recordGameResult('eval_set_' + selectedEval.id, score, time, selectedEval.questions.length);
     setMode('result');
   };
 
-  const correct = evalQuestions.filter((q, i) => answers[i] === q.answer).length;
-  const pct = Math.round((correct / evalQuestions.length) * 100);
+  // Safe checks
+  const currentQuestions = selectedEval?.questions || [];
+  const correctCount = selectedEval ? currentQuestions.filter((q, i) => answers[i] === q.answer).length : 0;
+  const pct = currentQuestions.length > 0 ? Math.round((correctCount / currentQuestions.length) * 100) : 0;
   const grade = getGrade(pct);
-  const q = evalQuestions[current];
-  const wrongAnswers = evalQuestions.filter((q, i) => answers[i] !== undefined && answers[i] !== q.answer);
+  const q = currentQuestions[current];
+  const wrongAnswers = currentQuestions.filter((q, i) => answers[i] !== undefined && answers[i] !== q.answer);
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex">
       <Sidebar />
       <main className="flex-1 p-6 md:p-8 w-0 overflow-y-auto min-h-screen">
           <AnimatePresence mode="wait">
+            
+            {/* ── List Evaluations ── */}
+            {mode === 'list' && (
+              <motion.div key="list" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-6xl">
+                
+                {/* Header Banner */}
+                <div className="mb-8 card p-6 md:p-8 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white border-none shadow-[0_8px_0_theme(colors.purple.700)]">
+                  <h1 className="font-display text-2xl md:text-3xl font-black mb-2">Uji pemahamanmu dengan berbagai kuis hardware komputer</h1>
+                  <div className="flex items-center gap-6 mt-6 text-sm font-bold">
+                    <span className="flex items-center gap-2"><div className="w-5 h-5 rounded-full border-[1.5px] border-white flex items-center justify-center opacity-80 text-[10px]">🎯</div> {evaluations.length} Evaluasi Tersedia</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5" /> 0 Selesai</span>
+                  </div>
+                </div>
+
+                {/* Stats row */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                  <div className="card-hover p-6 rounded-2xl flex flex-col justify-between border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 border-b-8">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500 text-white flex items-center justify-center mb-4 shadow-lg"><Trophy className="w-6 h-6" /></div>
+                    <h3 className="font-display text-4xl font-black text-slate-800 dark:text-slate-100 mb-1">0</h3>
+                    <p className="text-sm text-slate-500 font-medium">Total Percobaan</p>
+                  </div>
+                  <div className="card-hover p-6 rounded-2xl flex flex-col justify-between border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 border-b-8">
+                    <div className="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center mb-4 shadow-lg"><Star className="w-6 h-6 fill-current" /></div>
+                    <h3 className="font-display text-4xl font-black text-slate-800 dark:text-slate-100 mb-1">0</h3>
+                    <p className="text-sm text-slate-500 font-medium">Rata-rata Nilai</p>
+                  </div>
+                  <div className="card-hover p-6 rounded-2xl flex flex-col justify-between border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 border-b-8">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500 text-white flex items-center justify-center mb-4 shadow-lg"><CheckCircle2 className="w-6 h-6" /></div>
+                    <h3 className="font-display text-4xl font-black text-slate-800 dark:text-slate-100 mb-1">0</h3>
+                    <p className="text-sm text-slate-500 font-medium">Soal Dikerjakan</p>
+                  </div>
+                </div>
+
+                {/* Evaluation Cards Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {evaluations.map((ev, i) => (
+                    <div key={ev.id} onClick={() => handleSelectEval(ev)} className="w-full text-left card-hover border-2 border-slate-200 dark:border-slate-800 border-b-[8px] bg-white dark:bg-slate-900 rounded-2xl overflow-hidden flex flex-col group cursor-pointer transition-transform hover:-translate-y-1">
+                      {/* Colored Top Header */}
+                      <div className={`p-5 text-white bg-gradient-to-br ${gradients[i % gradients.length]}`}>
+                        <p className="text-xs font-bold mb-1 opacity-80 uppercase tracking-widest">{ev.category || (i === 0 ? 'Dasar' : 'Lanjutan')}</p>
+                        <h3 className="font-display font-black text-xl mb-1 truncate">{ev.title}</h3>
+                        <p className="text-sm font-medium opacity-90 mb-2 line-clamp-2">{ev.description}</p>
+                      </div>
+
+                      {/* White Bottom Body */}
+                      <div className="p-5 flex-1 flex flex-col">
+                        <ul className="space-y-3 mb-6 flex-1 text-sm text-slate-600 dark:text-slate-300 font-medium">
+                          <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                            <span className="flex items-center gap-2"><div className="w-4 h-4 rounded-full border-[1.5px] border-slate-400 flex items-center justify-center opacity-80 text-[8px]">🎯</div> Soal</span>
+                            <span className="font-bold text-slate-800 dark:text-slate-200">{ev.questions.length} pertanyaan</span>
+                          </li>
+                          <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                            <span className="flex items-center gap-2"><Timer className="w-4 h-4 text-slate-400" /> Waktu</span>
+                            <span className="font-bold text-slate-800 dark:text-slate-200">{ev.timeLimit || 10} menit</span>
+                          </li>
+                          <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                            <span className="flex items-center gap-2"><Trophy className="w-4 h-4 text-slate-400" /> Percobaan</span>
+                            <span className="font-bold text-slate-800 dark:text-slate-200">0x</span>
+                          </li>
+                          <li className="flex justify-between items-center pb-2 border-b border-slate-100 dark:border-slate-800">
+                            <span className="flex items-center gap-2"><Star className="w-4 h-4 text-slate-400" /> Best Score</span>
+                            <span className="font-bold text-slate-800 dark:text-slate-200">-</span>
+                          </li>
+                        </ul>
+
+                        {/* Difficulty Badge */}
+                        <div className="mb-4">
+                          <span className={`text-xs font-bold px-3 py-1.5 rounded-lg ${i === 0 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30' : i === 1 ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30' : 'bg-orange-100 text-orange-700 dark:bg-orange-900/30'}`}>
+                            {i === 0 ? 'Mudah' : i === 1 ? 'Sedang' : 'Sulit'}
+                          </span>
+                        </div>
+
+                        <button className={`w-full py-3 rounded-xl border-b-4 active:border-b-0 active:translate-y-1 font-bold flex items-center justify-center gap-2 text-white bg-gradient-to-r ${gradients[i % gradients.length]} shadow-md`}>
+                          🚀 Mulai Kuis
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  {evaluations.length === 0 && (
+                    <div className="col-span-3 card p-8 text-center text-slate-500 border-dashed">
+                      Belum ada soal evaluasi yang ditambahkan.
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            )}
+
             {/* ── Intro ── */}
-            {mode === 'intro' && (
-              <motion.div key="intro" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-                <h1 className="font-display text-3xl font-black mb-2">Evaluasi Belajar 📝</h1>
-                <p className="text-slate-500 mb-8">Uji pemahamanmu tentang komponen komputer</p>
+            {mode === 'intro' && selectedEval && (
+              <motion.div key="intro" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+                <button onClick={() => setMode('list')} className="text-sm text-slate-500 mb-4 hover:text-slate-800 flex items-center">
+                   ← Kembali ke daftar
+                </button>
+                <h1 className="font-display text-3xl font-black mb-2">{selectedEval.title} 📝</h1>
+                <p className="text-slate-500 mb-8">{selectedEval.description}</p>
                 <div className="max-w-md card p-8 text-center">
                   <div className="text-6xl mb-4">📋</div>
                   <h2 className="font-bold text-2xl mb-2">Soal Evaluasi</h2>
-                  <p className="text-slate-500 mb-6">{evalQuestions.length} soal pilihan ganda · setiap jawaban salah ditampilkan penjelasannya</p>
+                  <p className="text-slate-500 mb-6">{currentQuestions.length} soal pilihan ganda · setiap jawaban salah ditampilkan penjelasannya</p>
                   <div className="grid grid-cols-3 gap-3 mb-6">
-                    <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl"><p className="font-bold text-lg">{evalQuestions.length}</p><p className="text-xs text-slate-500">Soal</p></div>
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl"><p className="font-bold text-lg">{currentQuestions.length}</p><p className="text-xs text-slate-500">Soal</p></div>
                     <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-xl"><p className="font-bold text-lg">10</p><p className="text-xs text-slate-500">Poin/soal</p></div>
-                    <div className="bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-xl"><p className="font-bold text-lg">~5m</p><p className="text-xs text-slate-500">Estimasi</p></div>
+                    <div className="bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-xl"><p className="font-bold text-lg">~{Math.ceil(currentQuestions.length * 0.5)}m</p><p className="text-xs text-slate-500">Estimasi</p></div>
                   </div>
-                  <button onClick={startQuiz} className="btn-primary w-full flex items-center justify-center gap-2">
-                    <ClipboardList className="w-5 h-5" /> Mulai Evaluasi
-                  </button>
+                  {currentQuestions.length > 0 ? (
+                    <button onClick={startQuiz} className="btn-primary w-full flex items-center justify-center gap-2">
+                      <ClipboardList className="w-5 h-5" /> Mulai Evaluasi
+                    </button>
+                  ) : (
+                    <button disabled className="btn-secondary w-full opacity-50 cursor-not-allowed">
+                      Evaluasi Kosong
+                    </button>
+                  )}
                 </div>
               </motion.div>
             )}
 
             {/* ── Quiz ── */}
-            {mode === 'quiz' && (
+            {mode === 'quiz' && selectedEval && q && (
               <motion.div key="quiz" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-2xl">
                 <div className="flex items-center justify-between mb-2 text-sm text-slate-500">
-                  <span>Soal {current + 1} dari {evalQuestions.length}</span>
+                  <span>Soal {current + 1} dari {currentQuestions.length}</span>
                   <span><CheckCircle2 className="w-4 h-4 text-emerald-500 inline mr-1" />{Object.keys(answers).length} dijawab</span>
                 </div>
                 <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full mb-5 overflow-hidden">
                   <motion.div className="h-full bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"
-                    animate={{ width: `${((current + 1) / evalQuestions.length) * 100}%` }} transition={{ duration: 0.4 }} />
+                    animate={{ width: `${((current + 1) / currentQuestions.length) * 100}%` }} transition={{ duration: 0.4 }} />
                 </div>
 
                 <AnimatePresence mode="wait">
                   <motion.div key={current} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}
-                    className="card p-6">
+                    className="card p-8 border-b-[8px] border-primary-200 dark:border-slate-800">
                     <p className="font-bold text-lg mb-5">{current + 1}. {q.question}</p>
                     <div className="space-y-3">
                       {q.options.map((opt, i) => {
@@ -211,7 +212,7 @@ export default function EvaluasiPage() {
                         return (
                           <button key={i} onClick={() => selectAnswer(current, i)}
                             disabled={selected !== undefined}
-                            className={`w-full text-left p-4 rounded-xl border-2 font-medium text-sm transition-all
+                            className={`w-full text-left p-4 rounded-2xl border-2 border-b-[4px] active:translate-y-0.5 active:border-b-2 font-bold text-base transition-all
                               ${showResult
                                 ? isCorrect ? 'border-emerald-400 bg-emerald-50 dark:bg-emerald-900/20'
                                   : isSelected ? 'border-red-400 bg-red-50 dark:bg-red-900/20'
@@ -230,7 +231,6 @@ export default function EvaluasiPage() {
                       })}
                     </div>
 
-                    {/* Show explanation right after answering wrong */}
                     {answers[current] !== undefined && answers[current] !== q.answer && (
                       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                         className="mt-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 flex gap-3 text-sm text-blue-700 dark:text-blue-300">
@@ -249,27 +249,31 @@ export default function EvaluasiPage() {
             )}
 
             {/* ── Result ── */}
-            {mode === 'result' && (
+            {mode === 'result' && selectedEval && (
               <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-2xl">
                 <div className="card p-8 text-center mb-5">
                   <div className="text-6xl mb-3">{grade.emoji}</div>
                   <h2 className="font-display text-3xl font-black mb-1">{grade.label}</h2>
                   <p className={`text-6xl font-display font-black mb-2 ${grade.color}`}>{pct}%</p>
-                  <p className="text-slate-500">{correct} dari {evalQuestions.length} soal benar</p>
+                  <p className="text-slate-500">{correctCount} dari {currentQuestions.length} soal benar</p>
                   <div className="grid grid-cols-2 gap-4 my-5">
                     <div className="bg-emerald-50 dark:bg-emerald-900/20 rounded-xl p-4">
-                      <p className="text-2xl font-black text-emerald-600">{correct * 10}</p><p className="text-xs text-slate-500">Skor</p>
+                      <p className="text-2xl font-black text-emerald-600">{correctCount * 10}</p><p className="text-xs text-slate-500">Skor</p>
                     </div>
                     <div className="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-4">
-                      <p className="text-2xl font-black text-amber-600">+{correct * 5} ⚡</p><p className="text-xs text-slate-500">XP Didapat</p>
+                      <p className="text-2xl font-black text-amber-600">+{correctCount * 5} ⚡</p><p className="text-xs text-slate-500">XP Didapat</p>
                     </div>
                   </div>
-                  <button onClick={startQuiz} className="btn-primary flex items-center justify-center gap-2 w-full">
-                    <RotateCcw className="w-4 h-4" /> Coba Lagi
-                  </button>
+                  <div className="flex gap-4">
+                    <button onClick={startQuiz} className="btn-primary flex-1 flex items-center justify-center gap-2">
+                       <RotateCcw className="w-4 h-4" /> Coba Lagi
+                    </button>
+                    <button onClick={() => setMode('list')} className="btn-secondary flex-1">
+                      Kembali ke Daftar
+                    </button>
+                  </div>
                 </div>
 
-                {/* Wrong answers with explanation */}
                 {wrongAnswers.length > 0 && (
                   <div className="card p-5 mb-4">
                     <div className="flex items-center justify-between mb-4">
@@ -282,7 +286,7 @@ export default function EvaluasiPage() {
                       </button>
                     </div>
                     <div className="space-y-4">
-                      {evalQuestions.map((q, i) => {
+                      {currentQuestions.map((q, i) => {
                         const isWrong = answers[i] !== undefined && answers[i] !== q.answer;
                         if (!isWrong && !showAllReview) return null;
                         const isCorrect = answers[i] === q.answer;
@@ -307,7 +311,6 @@ export default function EvaluasiPage() {
                     </div>
                   </div>
                 )}
-
                 {wrongAnswers.length === 0 && (
                   <div className="card p-5 text-center text-emerald-600 dark:text-emerald-400 font-semibold">
                     🎉 Semua jawaban benar! Kamu luar biasa!

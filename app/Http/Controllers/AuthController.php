@@ -61,4 +61,26 @@ class AuthController extends Controller
             'user'    => $user,
         ]);
     }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($request->has('full_name')) {
+            $user->full_name = $request->full_name;
+        }
+        if ($request->has('kelas')) {
+            $user->kelas = $request->kelas;
+        }
+        if ($request->has('avatar')) {
+            $user->avatar = $request->avatar;
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profile updated successfully',
+            'user'    => $user
+        ]);
+    }
 }

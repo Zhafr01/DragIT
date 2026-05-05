@@ -10,14 +10,25 @@ export default function ProfilePage() {
   const { user, updateUser } = useAuth();
   const { progress, BADGES, getLevelProgress, getLeaderboard } = useProgress();
   const [editing, setEditing] = useState(false);
-  const [form, setForm] = useState({ name: user?.full_name || '', kelas: user?.kelas || '' });
+  const [form, setForm] = useState({ name: user?.full_name || '', kelas: user?.kelas || '', avatar: user?.avatar || '' });
   const lvlProg = getLevelProgress();
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setForm(prev => ({ ...prev, avatar: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const leaderboard = getLeaderboard().slice(0, 5);
   const myRank = getLeaderboard().findIndex(u => u.id === user?.id) + 1;
 
   const saveProfile = () => {
-    updateUser({ name: form.name, kelas: form.kelas });
+    updateUser({ full_name: form.name, kelas: form.kelas, avatar: form.avatar });
     setEditing(false);
   };
 
@@ -35,15 +46,31 @@ export default function ProfilePage() {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Profile card */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="lg:col-span-1">
-              <div className="card p-6 text-center mb-4">
-                <div className="text-7xl mb-3">{user?.avatar}</div>
+              <div className="card p-6 flex flex-col items-center justify-center text-center mb-4">
+                <div className="relative inline-block mb-4">
+                  {(editing ? form.avatar : user?.avatar)?.startsWith('data:image') || (editing ? form.avatar : user?.avatar)?.startsWith('http') ? (
+                    <img src={editing ? form.avatar : user?.avatar} alt="Profile" className="w-28 h-28 rounded-full object-cover border-4 border-white dark:border-slate-800 shadow-md" />
+                  ) : (
+                    <div className="text-7xl w-28 h-28 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center shadow-inner">
+                      {editing ? (form.avatar || '👤') : (user?.avatar || '👤')}
+                    </div>
+                  )}
+                  
+                  {editing && (
+                    <label className="absolute bottom-0 right-0 bg-primary-500 text-white p-2 rounded-full cursor-pointer hover:bg-primary-600 transition-colors shadow-lg">
+                      <Edit3 className="w-4 h-4" />
+                      <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" />
+                    </label>
+                  )}
+                </div>
+
                 {editing ? (
-                  <div className="space-y-3 mb-3">
-                    <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} className="input-field text-center text-sm" placeholder="Nama" />
-                    <input value={form.kelas} onChange={e => setForm({ ...form, kelas: e.target.value })} className="input-field text-center text-sm" placeholder="Kelas" />
+                  <div className="space-y-3 mb-3 w-full">
+                    <input value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} className="input-field text-center text-sm w-full" placeholder="Nama" />
+                    <input value={form.kelas} onChange={e => setForm({ ...form, kelas: e.target.value })} className="input-field text-center text-sm w-full" placeholder="Kelas" />
                     <div className="flex gap-2">
-                      <button onClick={saveProfile} className="btn-primary flex-1 text-sm py-2 flex items-center justify-center gap-1"><Save className="w-4 h-4" /> Simpan</button>
-                      <button onClick={() => setEditing(false)} className="btn-secondary py-2 px-3"><X className="w-4 h-4" /></button>
+                       <button onClick={saveProfile} className="btn-primary flex-1 text-sm py-2 flex items-center justify-center gap-1"><Save className="w-4 h-4" /> Simpan</button>
+                       <button onClick={() => setEditing(false)} className="btn-secondary py-2 px-3"><X className="w-4 h-4" /></button>
                     </div>
                   </div>
                 ) : (
@@ -54,7 +81,7 @@ export default function ProfilePage() {
                     <p className="text-xs text-slate-400 mb-4 flex items-center justify-center gap-1">
                       <Mail className="w-3.5 h-3.5" /> {user?.email}
                     </p>
-                    <button onClick={() => setEditing(true)} className="btn-secondary text-sm py-2 flex items-center gap-2 mx-auto">
+                    <button onClick={() => { setForm({ name: user?.full_name || '', kelas: user?.kelas || '', avatar: user?.avatar || '' }); setEditing(true); }} className="btn-secondary text-sm py-2 flex items-center gap-2 mx-auto">
                       <Edit3 className="w-4 h-4" /> Edit Profil
                     </button>
                   </>

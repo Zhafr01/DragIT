@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle2, XCircle, Lightbulb, BookOpen, Gamepad2, Volume2 } from 'lucide-react';
@@ -40,7 +40,7 @@ function ChapterQuiz({ quiz, onComplete, isDone }) {
 
   if (allAnswered && showReview) {
     return (
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="card p-6 md:col-span-5 bg-white dark:bg-slate-900 border-2 border-primary-200 dark:border-primary-800">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="card p-8 md:col-span-5 bg-white dark:bg-slate-900 border-2 border-b-[8px] border-primary-200 dark:border-slate-800">
         <h2 className="font-display text-2xl font-black mb-4">Hasil Kuis Bab</h2>
         <p className="text-lg mb-6 text-slate-600 dark:text-slate-300">
           Benar <span className="font-bold text-emerald-500">{score}</span> dari {quiz.length} soal.
@@ -74,7 +74,7 @@ function ChapterQuiz({ quiz, onComplete, isDone }) {
   }
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="card p-6 md:col-span-5 border-2 border-amber-200 dark:border-amber-800/50 bg-amber-50/30 dark:bg-amber-900/10">
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="card p-8 md:col-span-5 border-2 border-b-[8px] border-amber-300 dark:border-amber-700 bg-amber-50/30 dark:bg-amber-900/10">
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-display text-xl font-black flex items-center gap-2">
           <span>🤖</span> Kuis Evaluasi Bab
@@ -100,7 +100,7 @@ function ChapterQuiz({ quiz, onComplete, isDone }) {
 
           return (
             <button key={i} onClick={() => handleAnswer(i)} disabled={showResult}
-              className={`w-full text-left p-4 rounded-xl border-2 font-medium text-sm transition-all ${btnClass}`}>
+              className={`w-full text-left p-4 rounded-2xl border-2 border-b-[4px] active:translate-y-0.5 active:border-b-2 font-bold text-base transition-all ${btnClass}`}>
               <div className="flex items-center gap-3">
                 <span className="w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-bold border-current shrink-0">
                   {String.fromCharCode(65 + i)}
@@ -135,17 +135,76 @@ export default function ChapterPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { progress, completeChapter, addXP } = useProgress();
-  const [topicIndex, setTopicIndex] = useState(0);
   const [speaking, setSpeaking] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const chapter = materials.chapters.find(c => c.slug === slug);
+  const totalSlides = chapter ? chapter.topics.reduce((acc, t) => acc + (t.slides ? t.slides.length : 0), 0) : 0;
+  const totalSteps = totalSlides + 1; // + 1 for the Quiz
+  const isDone = chapter ? progress?.completedChapters?.includes(Number(chapter.id)) || progress?.completedChapters?.includes(chapter.id.toString()) : false;
+
+  const [flatIndex, setFlatIndex] = useState(() => {
+    try {
+      const savedProgress = JSON.parse(localStorage.getItem('chapterProgress') || '{}');
+      const savedIdx = savedProgress[slug] || 0;
+      return Math.min(savedIdx, totalSteps - 1);
+    } catch {
+      return 0;
+    }
+  });
+
+  // Track local reading progress and save it for Resume
+  useEffect(() => {
+    if (slug) {
+      try {
+        const savedProgress = JSON.parse(localStorage.getItem('chapterProgress') || '{}');
+        const currentSaved = savedProgress[slug] || 0;
+        // Hanya update jika index baru lebih tinggi dari yang tersimpan (supaya progress gak mundur)
+        if (flatIndex > currentSaved) {
+            savedProgress[slug] = flatIndex;
+            localStorage.setItem('chapterProgress', JSON.stringify(savedProgress));
+        }
+        // Force completion to max index if marked as complete by API
+        if (isDone && currentSaved < totalSteps) {
+            savedProgress[slug] = totalSteps;
+            localStorage.setItem('chapterProgress', JSON.stringify(savedProgress));
+        }
+      } catch (e) {}
+    }
+  }, [slug, flatIndex, isDone, totalSteps]);
+
+  // Clean TTS garbage
+  useEffect(() => {
+    return () => {
+       if ('speechSynthesis' in window) {
+           window.speechSynthesis.cancel();
+       }
+    }
+  }, [flatIndex]);
+
   if (!chapter) return <div className="flex items-center justify-center min-h-screen"><p>Bab tidak ditemukan.</p></div>;
 
-  const isQuizMode = topicIndex === chapter.topics.length;
+  const isQuizMode = flatIndex === totalSlides;
   const isLast = isQuizMode;
-  const topic = isQuizMode ? { title: 'Kuis Evaluasi Bab', content: '', keyPoints: [] } : chapter.topics[topicIndex];
-  const isDone = progress?.completedChapters?.includes(chapter.id.toString());
+
+  let topicIndex = 0;
+  let slideIndex = 0;
+  let runningCount = 0;
+
+  if (!isQuizMode && chapter) {
+    for (let i = 0; i < chapter.topics.length; i++) {
+        const numSlides = chapter.topics[i].slides.length;
+        if (flatIndex < runningCount + numSlides) {
+            topicIndex = i;
+            slideIndex = flatIndex - runningCount;
+            break;
+        }
+        runningCount += numSlides;
+    }
+  }
+
+  const currentTopic = !isQuizMode ? chapter.topics[topicIndex] : null;
+  const slide = !isQuizMode ? currentTopic.slides[slideIndex] : { title: 'Kuis Evaluasi Bab', content: '', keyPoints: [] };
 
   const handleNext = () => {
     if (isQuizMode) {
@@ -158,24 +217,57 @@ export default function ChapterPage() {
         navigate('/dashboard/materi');
       }
     } else {
-      setTopicIndex(i => i + 1);
+      setFlatIndex(i => i + 1);
     }
   };
 
   const speak = (text) => {
-    if ('speechSynthesis' in window) {
-      setSpeaking(true);
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'id-ID';
-      utter.onend = () => setSpeaking(false);
-      window.speechSynthesis.speak(utter);
+    if (!('speechSynthesis' in window)) {
+        alert("Maaf, browsermu tidak mendukung fitur Suara (TTS).");
+        return;
     }
+
+    // Bersihkan antrean suara lama agar tidak tabrakan
+    window.speechSynthesis.cancel();
+    setSpeaking(true);
+
+    // Bug Chrome/Firefox: Teks panjang (>200 karakter) akan macet/bisu di tengah jalan.
+    // Solusi: Kita pecah teks berdasar tanda baca (titik, tanda seru, tanya) menjadi kalimat-kalimat pendek.
+    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+    
+    // Ambil jenis suara (di Chrome Linux/Windows biasa butuh dipancing dulu)
+    let voices = window.speechSynthesis.getVoices();
+    let idVoice = voices.find(v => v.lang.includes('id') || v.lang.includes('ID'));
+
+    sentences.forEach((sentence, index) => {
+      const utter = new SpeechSynthesisUtterance(sentence.trim());
+      utter.lang = 'id-ID';
+      utter.rate = 0.95; 
+      
+      if (idVoice) utter.voice = idVoice;
+
+      if (index === sentences.length - 1) {
+          // Hanya kembalikan state tombol di akhir kalimat terakhir
+          utter.onend = () => setSpeaking(false);
+      }
+
+      utter.onerror = (e) => {
+          console.error("SpeechSynthesis error:", e);
+          setSpeaking(false);
+      };
+      
+      // Masukkan ke dalam antrean browser
+      window.speechSynthesis.speak(utter);
+    });
+    
+    // Bypass Garbage Collection 
+    window._ttsArray = sentences;
   };
 
   const gradient = colorMap[chapter.color] || colorMap.blue;
 
   // Get emoji based on topic
-  const topicEmoji = Object.entries(componentEmojis).find(([k]) => topic.title.includes(k.split(' ')[0]))?.[1] || '💻';
+  const topicEmoji = Object.entries(componentEmojis).find(([k]) => slide.title?.includes(k.split(' ')[0]))?.[1] || '💻';
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex">
@@ -193,21 +285,23 @@ export default function ChapterPage() {
           <div className="max-w-4xl">
             {/* Chapter header */}
             <motion.div key={topicIndex} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}
-              className={`card p-6 mb-6 bg-gradient-to-br ${gradient} border-0 text-white`}>
+              className={`card p-8 mb-8 bg-gradient-to-br ${gradient} border-primary-800 border-b-[8px] shadow-[0_4px_0_theme(colors.primary.800)] dark:border-slate-900 text-white`}>
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-semibold bg-white/20 px-3 py-1 rounded-full">Bab {chapter.id} • Topik {topicIndex + 1}/{chapter.topics.length}</span>
+                    <span className="text-xs font-semibold bg-white/20 px-3 py-1 rounded-full">
+                      Bab {chapter.id} • {!isQuizMode ? `${currentTopic?.title} (${slideIndex + 1}/${currentTopic?.slides.length})` : 'Kuis Evaluasi'}
+                    </span>
                   </div>
-                  <h1 className="font-display text-2xl md:text-3xl font-black">{topic.title}</h1>
+                  <h1 className="font-display text-2xl md:text-3xl font-black">{slide.title}</h1>
                 </div>
-                <span className="text-5xl">{topicEmoji}</span>
+                <span className="text-5xl">{!isQuizMode ? topicEmoji : '🤖'}</span>
               </div>
 
               <div className="flex gap-2 mt-4">
-                {[...chapter.topics, { quiz: true }].map((_, i) => (
-                  <button key={i} onClick={() => setTopicIndex(i)}
-                    className={`h-1.5 rounded-full transition-all ${i === topicIndex ? 'bg-white w-8' : 'bg-white/40 w-4'}`} />
+                {!isQuizMode && currentTopic.slides.map((_, i) => (
+                  <button key={i} onClick={() => setFlatIndex(runningCount + i)}
+                    className={`h-1.5 rounded-full transition-all ${i === slideIndex ? 'bg-white w-8' : 'bg-white/40 w-4'}`} />
                 ))}
               </div>
             </motion.div>
@@ -215,24 +309,24 @@ export default function ChapterPage() {
             {!isQuizMode ? (
               <div className="grid md:grid-cols-5 gap-6">
                 {/* Content */}
-                <motion.div key={`content-${topicIndex}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                <motion.div key={`content-${flatIndex}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }} className="md:col-span-3 card p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h2 className="font-bold text-lg">📖 Penjelasan</h2>
-                    <button onClick={() => speak(topic.content)} disabled={speaking}
+                    <button onClick={() => speak(slide.content)} disabled={speaking}
                       className={`flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg transition-all ${speaking ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600' : 'hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500'}`}>
                       <Volume2 className="w-4 h-4" /> {speaking ? 'Memutar...' : 'Dengarkan'}
                     </button>
                   </div>
-                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-base">{topic.content}</p>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-base">{slide.content}</p>
                 </motion.div>
   
                 {/* Key points */}
-                <motion.div key={`keys-${topicIndex}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                <motion.div key={`keys-${flatIndex}`} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }} className="md:col-span-2 card p-6">
                   <h2 className="font-bold text-lg mb-4">✅ Poin Penting</h2>
                   <ul className="space-y-2.5">
-                    {topic.keyPoints.map((point, i) => (
+                    {slide.keyPoints.map((point, i) => (
                       <motion.li key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3 + i * 0.07 }}
                         className="flex items-start gap-2.5 text-sm text-slate-600 dark:text-slate-300">
@@ -249,14 +343,13 @@ export default function ChapterPage() {
 
             {/* Navigation buttons */}
             <div className="flex items-center justify-between mt-6">
-              <button onClick={() => setTopicIndex(i => Math.max(0, i - 1))} disabled={topicIndex === 0}
+              <button onClick={() => setFlatIndex(i => Math.max(0, i - 1))} disabled={flatIndex === 0}
                 className="btn-secondary flex items-center gap-2 disabled:opacity-30">
                 <ChevronLeft className="w-4 h-4" /> Sebelumnya
               </button>
 
               {isLast ? (
                 <div className="flex gap-3">
-                  {/* Dihapus tombol Tandai Selesai yang dobel di nav bar */}
                   {isDone && (
                     <span className="flex items-center gap-2 text-success-600 font-semibold px-2">
                        <CheckCircle2 className="w-5 h-5" />
@@ -271,7 +364,7 @@ export default function ChapterPage() {
                 </div>
               ) : (
                 <button onClick={handleNext} className="btn-primary flex items-center gap-2">
-                  Selanjutnya <ChevronRight className="w-4 h-4" />
+                   {slideIndex === currentTopic?.slides.length - 1 ? 'Lanjut Topik Baru' : 'Selanjutnya'} <ChevronRight className="w-4 h-4" />
                 </button>
               )}
             </div>

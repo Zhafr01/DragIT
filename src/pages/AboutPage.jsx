@@ -4,9 +4,9 @@ import { Heart, Code2, BookOpen, Gamepad2, GraduationCap, Zap, Monitor } from 'l
 import Sidebar from '../components/common/Sidebar';
 
 const team = [
-  { name: 'Nadia', role: 'UI/UX Designer', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80', desc: 'Merancang desain antarmuka, ilustrasi komponen, dan sistem gamifikasi belajar.' },
-  { name: 'Zhafier', role: 'Lead Developer', image: '/Zhafier.png', desc: 'Mengelola pengembangan aplikasi dan menulis sistem Drag & Drop platform.' },
-  { name: 'Rizki', role: 'Kurikulum & Materi', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80', desc: 'Menyusun seluruh materi pembelajaran dan soal kuis khusus untuk anak SMK TKJ.' },
+  { name: 'Reva Aliya Putrio Purwanto', role: 'UI/UX Designer', coverImage: '/avatars/reva_cover.png', image: '/Reva.png', desc: 'Merancang desain antarmuka, ilustrasi komponen, dan sistem gamifikasi belajar.' },
+  { name: 'Muhammad Zhafier Ardine Yudhistira', role: 'Lead Developer', coverImage: '/avatars/zhafier_cover.jpeg', image: '/Zhafier.png', desc: 'Mengelola pengembangan aplikasi dan menulis sistem Drag & Drop platform.' },
+  { name: 'Yopin Winda Holimatus Syadiya', role: 'Kurikulum & Materi', coverImage: '/avatars/yopin_cover.jpeg', image: '/Yopin.png', desc: 'Menyusun seluruh materi pembelajaran dan soal kuis khusus untuk anak SMK TKJ.' },
 ];
 
 const features = [
@@ -49,8 +49,12 @@ function TeamCard({ member, index }) {
           </span>
         </div>
         {/* Avatar */}
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-400 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-500/30">
-          <span className="text-white text-3xl font-black">{member.name[0]}</span>
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-400 to-primary-700 flex items-center justify-center shadow-lg shadow-primary-500/30 overflow-hidden">
+          <img
+            src={member.coverImage}
+            alt={member.name}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="text-center">
           <p className="font-bold text-base text-slate-800 dark:text-slate-100">{member.name}</p>

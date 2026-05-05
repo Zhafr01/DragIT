@@ -17,8 +17,8 @@ export default function Navbar() {
   const handleLogout = () => { logout(); navigate('/'); };
 
   const navLinks = user
-    ? user.role === 'guru'
-      ? [{ to: '/admin', label: 'Dashboard Guru', icon: LayoutDashboard }]
+    ? user.role === 'admin'
+      ? [{ to: '/admin', label: 'Dashboard Admin', icon: LayoutDashboard }]
       : [
           { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
           { to: '/dashboard/materi', label: 'Materi', icon: BookOpen },
@@ -69,7 +69,11 @@ export default function Navbar() {
             {user ? (
               <div className="relative">
                 <button onClick={() => setProfileOpen(!profileOpen)} className="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
-                  <span className="text-xl">{user.avatar}</span>
+                  {user.avatar?.startsWith('data:image') || user.avatar?.startsWith('http') ? (
+                    <img src={user.avatar} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
+                  ) : (
+                    <span className="text-xl">{user.avatar || '👤'}</span>
+                  )}
                   <span className="hidden md:block text-sm font-medium text-slate-700 dark:text-slate-200">{(user.full_name || '').split(' ')[0]}</span>
                 </button>
                 <AnimatePresence>

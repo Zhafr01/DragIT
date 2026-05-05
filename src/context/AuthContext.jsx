@@ -76,10 +76,28 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('dragit_user');
   };
 
-  const updateUser = (updates) => {
+  const updateUser = async (updates) => {
     const updated = { ...user, ...updates };
+
+    // Update in local state first for immediate UI reflection
     setUser(updated);
     localStorage.setItem('dragit_user', JSON.stringify(updated));
+
+    // Send to backend if we have a user ID
+    if (user && user.id) {
+      try {
+        await fetch(`${API_URL}/auth/update-profile/${user.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(updates)
+        });
+      } catch (err) {
+        console.error('Failed to update user profile on the server', err);
+      }
+    }
   };
 
   return (

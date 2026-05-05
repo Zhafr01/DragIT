@@ -1,9 +1,111 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ZoomIn, ZoomOut, Maximize2, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import mermaid from 'mermaid';
+import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
 import Sidebar from '../components/common/Sidebar';
+
+/* ─── Zoomable Diagram Wrapper ─── */
+function ZoomControls() {
+  const { zoomIn, zoomOut, resetTransform } = useControls();
+  return (
+    <div className="flex items-center gap-2 absolute top-3 right-3 z-20">
+      <button onClick={() => zoomIn()} className="p-1.5 rounded-lg bg-white border-2 border-b-4 border-slate-200 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 transition-all shadow-sm text-slate-600 hover:text-primary-600" title="Zoom In"><ZoomIn className="w-4 h-4"/></button>
+      <button onClick={() => zoomOut()} className="p-1.5 rounded-lg bg-white border-2 border-b-4 border-slate-200 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 transition-all shadow-sm text-slate-600 hover:text-primary-600" title="Zoom Out"><ZoomOut className="w-4 h-4"/></button>
+      <button onClick={() => resetTransform()} className="p-1.5 rounded-lg bg-white border-2 border-b-4 border-slate-200 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 transition-all shadow-sm text-slate-600 hover:text-primary-600" title="Reset"><Maximize2 className="w-4 h-4"/></button>
+    </div>
+  );
+}
+
+async function downloadViaMermaid(diagramText, filename) {
+  try {
+    const id = `mermaid-dl-${Date.now()}`;
+    const { svg } = await mermaid.render(id, diagramText);
+
+    // Remove external font imports that cause CORS issues in canvas
+    const cleanSvg = svg
+      .replace(/<style>[^<]*@import[^<]*<\/style>/g, '')
+      .replace(/font-family:[^;'"]*[;'"]/g, "font-family: Arial, sans-serif;")
+      .replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" style="background:white;" ');
+
+    // Encode as base64 data URI (avoids CORS blob URL restrictions)
+    const encoded = btoa(unescape(encodeURIComponent(cleanSvg)));
+    const dataUri = `data:image/svg+xml;base64,${encoded}`;
+
+    const img = new Image();
+    img.onload = () => {
+      const scale = 2;
+      const canvas = document.createElement('canvas');
+      canvas.width = (img.naturalWidth || 1200) * scale;
+      canvas.height = (img.naturalHeight || 800) * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.scale(scale, scale);
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob((pngBlob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(pngBlob);
+        a.download = `${filename}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }, 'image/png');
+    };
+    img.onerror = (e) => {
+      console.error('img error', e);
+      // Fallback: just download the SVG
+      const blob = new Blob([cleanSvg], { type: 'image/svg+xml' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${filename}.svg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    };
+    img.src = dataUri;
+  } catch (e) {
+    console.error('Download failed:', e);
+    alert('Gagal men-download. Coba refresh halaman lalu klik lagi.');
+  }
+}
+
+function ZoomableChart({ children, minHeight = 400, title = 'diagram', diagramText }) {
+  return (
+    <div className="relative bg-white rounded-xl border-2 border-b-4 border-slate-200 shadow-sm overflow-hidden mb-10" style={{ minHeight }}>
+      <p className="absolute top-3 left-3 z-20 text-[10px] text-slate-400 font-bold uppercase tracking-widest select-none">
+        🖱️ Scroll/Pinch = Zoom &nbsp;·&nbsp; Drag = Pan
+      </p>
+      {/* Download button */}
+      <button
+        onClick={() => downloadViaMermaid(diagramText, title)}
+        className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-500 text-white text-xs font-black border-b-4 border-primary-700 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 transition-all shadow-md"
+        title="Download as PNG"
+      >
+        <Download className="w-3.5 h-3.5" /> Download PNG
+      </button>
+      <TransformWrapper
+        initialScale={1}
+        minScale={0.3}
+        maxScale={5}
+        centerOnInit
+        wheel={{ step: 0.1 }}
+      >
+        <ZoomControls />
+        <TransformComponent
+          wrapperStyle={{ width: '100%', height: '100%', minHeight }}
+          contentStyle={{ padding: '48px 24px 24px 24px' }}
+        >
+          <div>
+            {children}
+          </div>
+        </TransformComponent>
+      </TransformWrapper>
+    </div>
+  );
+}
 
 export default function DesignDiagrams() {
   const navigate = useNavigate();
@@ -16,31 +118,46 @@ export default function DesignDiagrams() {
   const erdDiagram = `
 erDiagram
     USERS {
-        bigint id PK
+        string id PK
         string full_name
         string email UK
         string password
-        enum role "siswa / guru"
+        string role "siswa / admin"
         string avatar
         string kelas
     }
     PROGRESS {
-        bigint id PK
-        bigint user_id FK
+        string user_id PK, FK
         int xp
-        int level
-        int current_chapter
+        int current_level
         json completed_chapters
-        json completed_levels
+        json completed_games
+        json badges_earned
     }
     GAME_HISTORY {
-        bigint id PK
-        bigint user_id FK
-        string level_id
+        string id PK
+        string user_id FK
+        string game_type
         int score
         int time_taken
-        int total_items
     }
+    MATERIALS {
+        string id PK
+        string slug UK
+        string title
+        string description
+        string headerImage
+        json topics
+        json quiz
+    }
+    EVALUATIONS {
+        string id PK
+        string question
+        json options
+        string correct_answer
+        string explanation
+    }
+    
     USERS ||--|| PROGRESS : "memiliki (1:1)"
     USERS ||--o{ GAME_HISTORY : "memiliki (1:N)"
   `;
@@ -48,58 +165,72 @@ erDiagram
   const dfdContext = `
 flowchart TD
     Siswa((Siswa))
-    Guru((Guru))
+    Admin((Admin))
     System[Sistem Pembelajaran DragIT]
 
-    Siswa -- "Data Login/Register \\n Jawaban Kuis \\n Aksi Game" --> System
-    System -- "Materi \\n UI Game \\n XP, Badge & Level" --> Siswa
+    Siswa -- "Data Login/Register \\n Jawaban Kuis/Evaluasi \\n Aksi Rakit PC (Game)" --> System
+    System -- "Materi Hardware \\n UI Game Interaktif \\n XP, Badge & Sertifikat" --> Siswa
 
-    System -- "Laporan Progress" --> Guru
-    Guru -- "Pengelolaan Data" --> System
+    System -- "Laporan Progress Siswa \\n Rekap Nilai Evaluasi" --> Admin
+    Admin -- "Tambah/Edit Materi \\n Kelola Soal Evaluasi \\n Profil & Akun Siswa" --> System
   `;
 
   const dfdLevel1 = `
-flowchart LR
+flowchart TD
     Siswa((Siswa))
-    Guru((Guru))
+    Admin((Admin))
 
     subgraph "Sistem DragIT"
         P1((1. Autentikasi))
-        P2((2. Manajemen \\n Progress))
-        P3((3. Modul \\n Pembelajaran))
-        P4((4. Modul \\n Evaluasi & Game))
-        P5((5. Dasbor \\n Guru))
+        P2((2. Manajemen \\n Progress & Nilai))
+        P3((3. Modul \\n Pembelajaran \\n Hardware))
+        P4((4. Modul \\n Game Edukasi))
+        P5((5. Dasbor \\n Admin))
+        P6((6. Evaluasi \\n Akhir))
         
         DB1[(DB: Users)]
         DB2[(DB: Progress)]
         DB3[(DB: GameHistory)]
+        DB4[(DB: Materials)]
+        DB5[(DB: Evaluations)]
     end
 
-    Siswa --> P1
-    Guru --> P1
+    %% Siswa Flows
+    Siswa -->|Login/Reg| P1
     P1 <--> DB1
 
-    Siswa --> P3
-    P3 --> DB2
+    Siswa -->|Baca/Akses| P3
+    P3 <--> DB4
+    P3 -->|Update| DB2
     
-    Siswa --> P4
-    P4 --> DB2
-    P4 --> DB3
+    Siswa -->|Main| P4
+    P4 -->|Update Skor| DB3
+    P4 -->|Update XP| DB2
+    
+    Siswa -->|Kerjakan| P6
+    P6 <--> DB5
+    P6 -->|Catat Hasil| DB2
 
-    DB2 -.-> P2
-    P2 -.-> Siswa
+    DB2 -.->|Feedback XP/Level| Siswa
 
-    DB1 --> P5
-    DB2 --> P5
-    DB3 --> P5
-    P5 --> Guru
+    %% Admin Flows
+    Admin -->|Login| P1
+    Admin -->|Kelola Konten| P5
+    P5 <--> DB4
+    P5 <--> DB5
+    P5 <--> DB1
+    
+    %% Reports
+    DB2 --> P2
+    DB3 --> P2
+    P2 -->|Laporan Siswa| Admin
   `;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex">
       <Sidebar />
       <main className="flex-1 p-6 md:p-10 w-0 overflow-y-auto min-h-screen">
-        <div className="max-w-4xl mx-auto pb-10">
+        <div className="max-w-7xl mx-auto pb-10">
           <button onClick={() => navigate(-1)} className="mb-6 flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Kembali
           </button>
@@ -111,19 +242,19 @@ flowchart LR
             </p>
 
             <h2 className="font-bold text-xl mb-4 border-b pb-2">1. Entity Relationship Diagram (ERD)</h2>
-            <div className="bg-white rounded-xl border border-slate-200 p-6 flex justify-center overflow-x-auto mb-10">
+            <ZoomableChart minHeight={500} title="DragIT-ERD" diagramText={erdDiagram}>
               <pre className="mermaid">{erdDiagram}</pre>
-            </div>
+            </ZoomableChart>
 
-            <h2 className="font-bold text-xl mb-4 border-b pb-2">2. DFD Level 0 (Context Diagram)</h2>
-            <div className="bg-white rounded-xl border border-slate-200 p-6 flex justify-center overflow-x-auto mb-10">
+            <h2 className="font-bold text-xl mb-4 border-b pb-2 mt-10">2. DFD Level 0 (Context Diagram)</h2>
+            <ZoomableChart minHeight={450} title="DragIT-DFD-Level0" diagramText={dfdContext}>
               <pre className="mermaid">{dfdContext}</pre>
-            </div>
+            </ZoomableChart>
 
-            <h2 className="font-bold text-xl mb-4 border-b pb-2">3. DFD Level 1</h2>
-            <div className="bg-white rounded-xl border border-slate-200 p-6 flex justify-center overflow-x-auto">
+            <h2 className="font-bold text-xl mb-4 border-b pb-2 mt-10">3. DFD Level 1</h2>
+            <ZoomableChart minHeight={600} title="DragIT-DFD-Level1" diagramText={dfdLevel1}>
               <pre className="mermaid">{dfdLevel1}</pre>
-            </div>
+            </ZoomableChart>
           </motion.div>
         </div>
       </main>

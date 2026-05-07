@@ -2,213 +2,160 @@
     "evaluations": [
         {
             "id": 1,
-            "title": "Evaluasi Dasar Komputer",
-            "description": "Evaluasi tingkat dasar mengenai komponen-komponen vital di dalam komputer.",
+            "title": "Evaluasi 1 – Pertemuan 1 & 2",
+            "description": "Evaluasi mencakup materi Perangkat Keras (Input, Output & Proses) dan Media Penyimpanan & Perangkat Lunak.",
             "questions": [
                 {
-                    "question": "Komponen apa yang berfungsi sebagai otak utama komputer?",
-                    "options": [
-                        "RAM",
-                        "Motherboard",
-                        "Processor (CPU)",
-                        "Harddisk"
-                    ],
+                    "question": "Perangkat input yang digunakan untuk memasukkan huruf, angka, karakter khusus, dan perintah shortcut adalah...",
+                    "options": ["Mouse", "Scanner", "Keyboard", "Touchpad"],
                     "answer": 2,
-                    "explanation": "CPU (Central Processing Unit) dijuluki \"otak komputer\" karena bertugas memproses SEMUA instruksi program \u2014 mulai dari logika, matematika, hingga koordinasi antar komponen. RAM bukan otak; ia hanya penyimpanan sementara."
+                    "explanation": "Keyboard berfungsi memasukkan huruf, angka, karakter khusus, dan perintah shortcut seperti simpan, buka, hapus, dan copy."
                 },
                 {
-                    "question": "Apa singkatan dari RAM dalam komputer?",
-                    "options": [
-                        "Read Access Memory",
-                        "Random Access Memory",
-                        "Regular Application Memory",
-                        "Rapid Action Memory"
-                    ],
-                    "answer": 1,
-                    "explanation": "RAM = Random Access Memory. \"Random Access\" berarti CPU bisa mengakses data di RAM secara acak (tidak harus berurutan), sangat cepat, sehingga cocok untuk menyimpan data sementara saat program berjalan."
-                },
-                {
-                    "question": "Komponen mana yang menyimpan data secara permanen meski komputer mati?",
-                    "options": [
-                        "RAM",
-                        "CPU Cache",
-                        "Harddisk\/SSD",
-                        "Register CPU"
-                    ],
+                    "question": "Jenis keyboard yang paling umum digunakan adalah...",
+                    "options": ["DVORAK", "KLOCKENBERG", "QWERTY", "AZERTY"],
                     "answer": 2,
-                    "explanation": "HDD\/SSD bersifat non-volatile \u2014 data tetap tersimpan walau listrik dimatikan. RAM, CPU cache, dan register CPU bersifat volatile (data hilang saat mati). Itulah kenapa OS dan file kamu tersimpan di HDD\/SSD, bukan di RAM."
+                    "explanation": "Keyboard QWERTY adalah jenis yang paling umum digunakan dan memiliki 4 bagian: Typewriter key, Numeric key, Function key, dan Special function key."
                 },
                 {
-                    "question": "Fungsi utama Power Supply (PSU) adalah...",
-                    "options": [
-                        "Mengolah grafis komputer",
-                        "Mengubah arus AC menjadi DC",
-                        "Menghubungkan semua komponen",
-                        "Menyimpan data sementara"
-                    ],
+                    "question": "Perangkat yang berfungsi memindahkan pointer/kursor di layar dan tertanam pada laptop adalah...",
+                    "options": ["Mouse", "Touchpad", "Scanner", "Joystick"],
                     "answer": 1,
-                    "explanation": "PSU mengkonversi tegangan AC (220V dari PLN) menjadi tegangan DC yang dibutuhkan komponen: +12V untuk motor dan CPU, +5V untuk USB dan storage, +3.3V untuk RAM dan komponen digital."
+                    "explanation": "Touchpad memiliki fungsi sama dengan mouse yaitu memindahkan pointer/kursor, namun tertanam pada laptop dan tidak memerlukan perangkat eksternal."
                 },
                 {
-                    "question": "Slot apa yang digunakan untuk memasang VGA Card pada motherboard?",
-                    "options": [
-                        "Slot DIMM",
-                        "Slot M.2",
-                        "Slot PCIe x16",
-                        "Socket LGA"
-                    ],
+                    "question": "Ketajaman hasil cetak printer diukur dengan satuan...",
+                    "options": ["Hz", "RPM", "dpi", "GHz"],
                     "answer": 2,
-                    "explanation": "VGA Card dipasang di slot PCIe x16 (PCI Express) \u2014 slot terpanjang di motherboard yang menyediakan bandwidth tertinggi (hingga 64 GB\/s) untuk transfer data dari CPU ke GPU. DIMM untuk RAM, M.2 untuk SSD, LGA untuk CPU."
+                    "explanation": "Ketajaman printer diukur dengan dpi (dot per inch). Semakin tinggi dpi, semakin tajam hasil cetakan."
                 },
                 {
-                    "question": "Heatsink berfungsi untuk...",
-                    "options": [
-                        "Mempercepat processor",
-                        "Menyerap dan membuang panas dari CPU",
-                        "Menambah kapasitas memori",
-                        "Menghubungkan perangkat USB"
-                    ],
-                    "answer": 1,
-                    "explanation": "Heatsink adalah pendingin pasif (logam dengan sirip) yang dipasang di atas CPU untuk menyerap panas. Panas dialirkan dari permukaan CPU ke sirip heatsink, lalu dibuang oleh kipas ke udara sekitar."
+                    "question": "Jenis printer yang menggunakan tinta serbuk adalah...",
+                    "options": ["Dot Matrix", "Inkjet", "Laser Printer", "Thermal"],
+                    "answer": 2,
+                    "explanation": "Laser Printer menggunakan tinta serbuk (toner). Dot Matrix menggunakan tinta pita, sedangkan Inkjet menggunakan tinta cair."
                 },
                 {
-                    "question": "Perangkat output apa yang menghasilkan suara dari komputer?",
-                    "options": [
-                        "Monitor",
-                        "Printer",
-                        "Scanner",
-                        "Speaker"
-                    ],
+                    "question": "Komponen yang disebut sebagai 'saraf pusat' atau 'papan utama' yang menghubungkan semua komponen sistem adalah...",
+                    "options": ["CPU", "RAM", "VGA Card", "Motherboard"],
                     "answer": 3,
-                    "explanation": "Speaker adalah perangkat output audio. Monitor (output visual), Printer (output cetak), Scanner (perangkat INPUT yang membaca dokumen fisik ke digital)."
+                    "explanation": "Motherboard adalah papan utama yang menghubungkan dan mengendalikan semua komponen sistem komputer."
                 },
                 {
-                    "question": "Langkah pertama yang benar saat merakit komputer adalah...",
+                    "question": "Harddisk tipe SATA dibandingkan PATA memiliki keunggulan...",
                     "options": [
-                        "Memasang PSU ke casing",
-                        "Menghubungkan kabel power",
-                        "Memasang CPU ke socket motherboard",
-                        "Memasang RAM ke slot DIMM"
-                    ],
-                    "answer": 2,
-                    "explanation": "CPU dipasang PERTAMA karena lebih mudah dilakukan saat motherboard belum masuk casing. Setelah CPU, pasang heatsink, lalu RAM \u2014 semuanya di meja sebelum motherboard dipasang ke casing."
-                },
-                {
-                    "question": "SSD lebih unggul dari HDD karena...",
-                    "options": [
-                        "Harganya lebih murah",
-                        "Kapasitasnya lebih besar",
-                        "Kecepatannya jauh lebih tinggi",
-                        "Lebih berat dan tahan lama"
-                    ],
-                    "answer": 2,
-                    "explanation": "SSD menggunakan flash memory (seperti USB) tanpa komponen mekanik bergerak, sehingga kecepatannya 5\u201310x lebih tinggi dari HDD. HDD lebih murah per GB dan kapasitasnya lebih besar, tapi lambat karena piringan mekanisnya."
-                },
-                {
-                    "question": "Komponen mana yang berfungsi menghubungkan semua komponen komputer?",
-                    "options": [
-                        "RAM",
-                        "CPU",
-                        "Motherboard",
-                        "VGA Card"
-                    ],
-                    "answer": 2,
-                    "explanation": "Motherboard adalah \"papan induk\" yang menyediakan slot, socket, dan jalur komunikasi (bus) untuk semua komponen. Tanpa motherboard, CPU tidak bisa mengakses RAM dan storage tidak bisa mengirim data ke CPU."
-                },
-                {
-                    "question": "Jika kamu menyalakan komputer dan layar tidak menampilkan apa-apa, padahal mesin hidup, kemungkinan perangkat apa yang bermasalah?",
-                    "options": [
-                        "VGA Card \/ RAM",
-                        "Harddisk",
-                        "Sound Card",
-                        "Casing"
-                    ],
-                    "answer": 0,
-                    "explanation": "Tidak ada tampilan (No Display) atau blank screen paling sering disebabkan oleh RAM yang kotor\/longgar atau VGA Card yang bermasalah. Keduanya terkait langsung dengan pengiriman sinyal visual saat komputer POST (Power-On Self-Test)."
-                },
-                {
-                    "question": "Kabel yang menghubungkan monitor modern beresolusi tinggi (4K) dengan VGA Card biasanya disebut...",
-                    "options": [
-                        "Kabel USB",
-                        "Kabel LAN",
-                        "Kabel Power",
-                        "Kabel HDMI \/ DisplayPort"
-                    ],
-                    "answer": 3,
-                    "explanation": "HDMI dan DisplayPort adalah standar kabel digital canggih saat ini yang mampu menghantar video 4K+FPS tinggi sekaligus dengan audio dari PC (VGA Card) ke Monitor."
-                },
-                {
-                    "question": "Untuk komputer spesifikasi gaming berat yang memakai VGA tingkat ekstrem dan Prosesor besar, besaran PSU apa yang paling direkomendasikan?",
-                    "options": [
-                        "300 Watt",
-                        "450 Watt",
-                        "750 Watt atau lebih",
-                        "Bebas, Watt tidak penting"
-                    ],
-                    "answer": 2,
-                    "explanation": "Hardware kelas atas menyedot daya besar (VGA bisa >300W sendiri, CPU >150W), sehingga dibutuhkan Power Supply kapastias besar minimal 750 Watt agar suplai daya tidak drop saat bermain game."
-                },
-                {
-                    "question": "Saat meng-install ulang atau merakit dari 0, ke manakah sistem operasi Windows biasanya dipasang agar komputer bisa booting dengan cepat?",
-                    "options": [
-                        "Flashdisk penyimpan data",
-                        "Ke dalam SSD utama",
-                        "Ke dalam RAM",
-                        "Ke dalam VGA Card"
+                        "Menggunakan kabel 80 kawat yang lebih tebal",
+                        "Lebih kecil, tipis, dan fleksibel",
+                        "Lebih lambat namun lebih murah",
+                        "Menggunakan konektor 40-pin yang sama"
                     ],
                     "answer": 1,
-                    "explanation": "Windows harus diinstal ke dalam penyimpanan permanen utama (sebaiknya SSD agar sangat kencang). Meng-install di SSD membuat proses boot-up jauh lebih cepat ketimbang di Harddisk kuno."
+                    "explanation": "SATA lebih kecil dan tipis dari PATA sehingga lebih fleksibel, menggunakan konektor dan adaptor daya yang berbeda dari PATA."
                 },
                 {
-                    "question": "Motherboard memiliki chip utama yang mengatur pembagian dan komunikasi lalu lintas data ke berbagai slot (seperti ke USB, SATA, audio). Namanya adalah?",
-                    "options": [
-                        "Chipset",
-                        "BIOS",
-                        "Processor Socket",
-                        "Bluetooth"
-                    ],
-                    "answer": 0,
-                    "explanation": "Chipset adalah sekumpulan sirkuit pembantu processor yang mengendalikan lalu lintas I\/O (Input\/Output) perangkat sekunder di sekitar Motherboard."
+                    "question": "Sistem operasi yang dikembangkan oleh Apple Inc. dan menggunakan kernel BSD adalah...",
+                    "options": ["Windows", "Linux", "macOS", "Android"],
+                    "answer": 2,
+                    "explanation": "macOS dikembangkan oleh Apple Inc., menggunakan kernel BSD, memiliki antarmuka grafis yang sangat baik, dan tertanam pada laptop Apple (MacBook)."
+                },
+                {
+                    "question": "Browser yang dikembangkan oleh Google dan berjalan di semua sistem operasi adalah...",
+                    "options": ["Microsoft Edge", "Safari", "Mozilla Firefox", "Google Chrome"],
+                    "answer": 3,
+                    "explanation": "Google Chrome dikembangkan oleh Google, berjalan di semua sistem operasi (Windows, Linux, macOS), serta dikenal fleksibel dan stabil."
+                },
+                {
+                    "question": "USB Flash Memory menggunakan jenis memori...",
+                    "options": ["SRAM", "DRAM", "NAND", "ROM"],
+                    "answer": 2,
+                    "explanation": "USB Flash Memory menggunakan memori kilat tipe NAND dengan kapasitas 8 GB hingga 2 TB dan rata-rata umur data sekitar 5 tahun."
                 }
             ]
         },
         {
             "id": 2,
-            "title": "Kuis Perakitan & Jaringan Dasar",
-            "description": "Menguji pemahamanmu tentang proses perakitan PC dan pengkabelan dasar jaringan yang penting untuk Teknisi Komputer.",
+            "title": "Evaluasi 2 – Pertemuan 3 & 4",
+            "description": "Evaluasi mencakup materi Pengguna & Mekanisme Kerja Internal CPU serta Interaksi Manusia-Komputer & Instalasi OS.",
             "questions": [
                 {
-                    "question": "Mengapa kita dituntut memakai gelang antistatik (ESD strap) saat merakit PC?",
-                    "options": [
-                        "Agar perakitan lebih bergaya",
-                        "Mempercepat pemasangan komponen",
-                        "Mencegah korsleting akibat listrik statis dari tubuh manusia",
-                        "Mencegah komputer terlalu panas"
-                    ],
+                    "question": "Pengguna (Brainware) yang bertugas mengelola sistem operasi dan aplikasi dalam jaringan perusahaan/organisasi disebut...",
+                    "options": ["Programmer", "Operator", "Administrator", "Netter"],
                     "answer": 2,
-                    "explanation": "Tubuh manusia bisa menyimpan listrik statis yang tanpa disadari dapat merusak komponen sensitif (seperti RAM dan Motherboard). Gelang ESD menetralisir listrik tersebut ke ground."
+                    "explanation": "Administrator bertugas mengelola sistem operasi dan aplikasi dalam jaringan perusahaan atau organisasi."
                 },
                 {
-                    "question": "Kabel Straight-Through (T568A ke T568A atau B ke B) digunakan untuk...",
-                    "options": [
-                        "Menghubungkan Router ke Router",
-                        "Menghubungkan dua PC yang sama",
-                        "Menghubungkan alat yang berbeda (seperti PC ke Switch)",
-                        "Mencolokkan listrik ke monitor"
-                    ],
-                    "answer": 2,
-                    "explanation": "Kabel Straight digunakan untuk menghubungkan dua perangkat yang BERBEDA (seperti PC dan Switch). Untuk dua perangkat yang SAMA (PC ke PC), dibutuhkan sistem Cross-Over."
+                    "question": "Pengguna yang mengembangkan perangkat lunak atau aplikasi disebut...",
+                    "options": ["Administrator", "Programmer", "Operator", "Teknisi Hardware"],
+                    "answer": 1,
+                    "explanation": "Programmer adalah pengguna yang bertugas mengembangkan perangkat lunak atau aplikasi komputer."
                 },
                 {
-                    "question": "Ketika memasukkan Processor ke Motherboard, kita harus memperhatikan...",
+                    "question": "Komponen CPU yang melakukan operasi aritmatika dan logika adalah...",
+                    "options": ["Register", "Unit Kontrol", "ALU", "Program Counter"],
+                    "answer": 2,
+                    "explanation": "ALU (Arithmetic & Logic Unit) bertugas melakukan operasi aritmatika dan logika seperti =, !=, <, <=, >, >=."
+                },
+                {
+                    "question": "Pada siklus kerja CPU, tahap FETCH berarti...",
                     "options": [
-                        "Arah kipas casing",
-                        "Kecocokan segitiga emas\/panah di sudut pin CPU dengan di Motherboard",
-                        "Warna slot PCIe",
-                        "Panjang kabel SATA"
+                        "CPU menjalankan instruksi yang telah ditafsirkan",
+                        "CPU menganalisa dan menafsirkan instruksi",
+                        "CPU mengambil instruksi dari memori utama berdasarkan alamat di Program Counter",
+                        "CPU mengirim hasil ke perangkat output"
+                    ],
+                    "answer": 2,
+                    "explanation": "FETCH adalah tahap di mana CPU mengambil instruksi dari memori utama berdasarkan alamat di Program Counter (PC), lalu dimasukkan ke Instruction Register."
+                },
+                {
+                    "question": "Urutan siklus kerja CPU yang benar adalah...",
+                    "options": [
+                        "Execute → Fetch → Decode",
+                        "Decode → Fetch → Execute",
+                        "Fetch → Decode → Execute",
+                        "Fetch → Execute → Decode"
+                    ],
+                    "answer": 2,
+                    "explanation": "Siklus CPU berjalan dalam urutan FETCH (ambil instruksi) → DECODE (tafsirkan) → EXECUTE (jalankan), dan berulang terus-menerus setiap sepersekian detik."
+                },
+                {
+                    "question": "IMK (Interaksi Manusia-Komputer) tidak hanya terjadi pada komputer, tetapi juga pada...",
+                    "options": [
+                        "Buku dan majalah",
+                        "Smartphone, Smart TV, dan game console",
+                        "Kalkulator biasa",
+                        "Mesin tik manual"
                     ],
                     "answer": 1,
-                    "explanation": "Setiap CPU punya indikator segitiga kecil di salah satu ujungnya yang harus disejajarkan dengan segitiga cetakan di atas Socket Motherboard agar posisinya presisi dan pin tidak bengkok."
+                    "explanation": "IMK terjadi pada berbagai perangkat digital termasuk smartphone, Smart TV, dan game console, bukan hanya komputer."
+                },
+                {
+                    "question": "Antarmuka yang memungkinkan pengguna memberi instruksi melalui teks/terminal disebut...",
+                    "options": ["GUI", "API", "CLI", "URL"],
+                    "answer": 2,
+                    "explanation": "CLI (Command Line Interface) adalah antarmuka di mana pengguna memberi instruksi melalui teks/terminal dengan aturan nama perintah tertentu. Semua OS memiliki CLI."
+                },
+                {
+                    "question": "Aplikasi yang digunakan untuk membuat USB bootable dari file ISO adalah...",
+                    "options": ["VLC Media Player", "Rufus", "WinRAR", "Format Factory"],
+                    "answer": 1,
+                    "explanation": "Rufus adalah aplikasi untuk membuat USB/DVD bootable dari file ISO sistem operasi. Dapat diunduh di www.rufus.ie."
+                },
+                {
+                    "question": "Saat instalasi Windows, contoh pembagian partisi yang tepat untuk Hard disk 500 GB adalah...",
+                    "options": [
+                        "Drive C: 500 GB untuk semua data",
+                        "Drive C: 150 GB untuk OS dan Drive D: 350 GB untuk data",
+                        "Drive C: 50 GB untuk OS dan Drive D: 450 GB untuk data",
+                        "Tidak perlu membagi partisi"
+                    ],
+                    "answer": 1,
+                    "explanation": "Contoh yang direkomendasikan: Hard disk 500 GB dibagi menjadi Drive C (150 GB untuk OS) dan Drive D (350 GB untuk penyimpanan data)."
+                },
+                {
+                    "question": "Pengguna yang mencari informasi melalui internet menggunakan search engine disebut...",
+                    "options": ["Programmer", "Administrator", "Netter", "Operator"],
+                    "answer": 2,
+                    "explanation": "Netter adalah pengguna yang mencari informasi melalui internet menggunakan search engine seperti Google, Bing, dan lainnya."
                 }
             ]
         }

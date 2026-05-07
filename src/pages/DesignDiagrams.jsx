@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ZoomIn, ZoomOut, Maximize2, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import mermaid from 'mermaid';
 import { TransformWrapper, TransformComponent, useControls } from 'react-zoom-pan-pinch';
+import { toPng } from 'html-to-image';
 import Sidebar from '../components/common/Sidebar';
 
 /* ─── Zoomable Diagram Wrapper ─── */
@@ -18,61 +19,24 @@ function ZoomControls() {
   );
 }
 
-async function downloadViaMermaid(diagramText, filename) {
-  try {
-    const id = `mermaid-dl-${Date.now()}`;
-    const { svg } = await mermaid.render(id, diagramText);
+function ZoomableChart({ children, minHeight = 400, title = 'diagram' }) {
+  const chartRef = useRef(null);
 
-    // Remove external font imports that cause CORS issues in canvas
-    const cleanSvg = svg
-      .replace(/<style>[^<]*@import[^<]*<\/style>/g, '')
-      .replace(/font-family:[^;'"]*[;'"]/g, "font-family: Arial, sans-serif;")
-      .replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" style="background:white;" ');
+  const handleDownload = async () => {
+    if (!chartRef.current) return;
+    try {
+      // Menambahkan style sementara agar background putih saat didownload
+      const dataUrl = await toPng(chartRef.current, { backgroundColor: '#ffffff', pixelRatio: 2 });
+      const link = document.createElement('a');
+      link.download = `${title}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('Failed to download image', err);
+      alert('Gagal men-download gambar. Coba refresh halaman.');
+    }
+  };
 
-    // Encode as base64 data URI (avoids CORS blob URL restrictions)
-    const encoded = btoa(unescape(encodeURIComponent(cleanSvg)));
-    const dataUri = `data:image/svg+xml;base64,${encoded}`;
-
-    const img = new Image();
-    img.onload = () => {
-      const scale = 2;
-      const canvas = document.createElement('canvas');
-      canvas.width = (img.naturalWidth || 1200) * scale;
-      canvas.height = (img.naturalHeight || 800) * scale;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.scale(scale, scale);
-      ctx.drawImage(img, 0, 0);
-
-      canvas.toBlob((pngBlob) => {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(pngBlob);
-        a.download = `${filename}.png`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }, 'image/png');
-    };
-    img.onerror = (e) => {
-      console.error('img error', e);
-      // Fallback: just download the SVG
-      const blob = new Blob([cleanSvg], { type: 'image/svg+xml' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `${filename}.svg`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    };
-    img.src = dataUri;
-  } catch (e) {
-    console.error('Download failed:', e);
-    alert('Gagal men-download. Coba refresh halaman lalu klik lagi.');
-  }
-}
-
-function ZoomableChart({ children, minHeight = 400, title = 'diagram', diagramText }) {
   return (
     <div className="relative bg-white rounded-xl border-2 border-b-4 border-slate-200 shadow-sm overflow-hidden mb-10" style={{ minHeight }}>
       <p className="absolute top-3 left-3 z-20 text-[10px] text-slate-400 font-bold uppercase tracking-widest select-none">
@@ -80,7 +44,7 @@ function ZoomableChart({ children, minHeight = 400, title = 'diagram', diagramTe
       </p>
       {/* Download button */}
       <button
-        onClick={() => downloadViaMermaid(diagramText, title)}
+        onClick={handleDownload}
         className="absolute bottom-3 right-3 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary-500 text-white text-xs font-black border-b-4 border-primary-700 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 transition-all shadow-md"
         title="Download as PNG"
       >
@@ -98,7 +62,7 @@ function ZoomableChart({ children, minHeight = 400, title = 'diagram', diagramTe
           wrapperStyle={{ width: '100%', height: '100%', minHeight }}
           contentStyle={{ padding: '48px 24px 24px 24px' }}
         >
-          <div>
+          <div ref={chartRef} className="p-4 bg-white inline-block">
             {children}
           </div>
         </TransformComponent>
@@ -226,6 +190,61 @@ flowchart TD
     P2 -->|Laporan Siswa| Admin
   `;
 
+  const useCaseDiagram = `
+flowchart LR
+    Siswa(["👤 Siswa"])
+    Admin(["👤 Admin"])
+
+    subgraph "Sistem Pembelajaran DragIT"
+        direction TB
+        UC1([Login dan Registrasi])
+        UC2([Akses Materi Hardware])
+        UC3([Bermain Game Rakit PC])
+        UC4([Mengerjakan Evaluasi])
+        UC5([Lihat Profil dan Leaderboard])
+        
+        UC6([Kelola Data Pengguna])
+        UC7([Kelola Materi dan Evaluasi])
+        UC8([Pantau Laporan Nilai Siswa])
+    end
+
+    Siswa --- UC1
+    Siswa --- UC2
+    Siswa --- UC3
+    Siswa --- UC4
+    Siswa --- UC5
+
+    Admin --- UC1
+    Admin --- UC6
+    Admin --- UC7
+    Admin --- UC8
+  `;
+
+  const flowchartDiagram = `
+flowchart TD
+    Start([Mulai]) --> Login{Sudah Punya Akun?}
+    Login -- Belum --> Register[Daftar Akun Baru]
+    Register --> Login
+    Login -- Sudah --> Auth[Proses Login]
+    Auth --> Dashboard[Masuk Dashboard]
+    
+    Dashboard --> Pilihan{Pilih Menu}
+    
+    Pilihan -- Pilih Materi --> BacaMateri[Membaca Materi Hardware]
+    BacaMateri --> SelesaiMateri[Sistem Update Progress dan XP]
+    SelesaiMateri --> Pilihan
+    
+    Pilihan -- Pilih Game --> MainGame[Bermain Game Edukasi Rakit PC]
+    MainGame --> SelesaiGame[Sistem Update Skor dan XP]
+    SelesaiGame --> Pilihan
+    
+    Pilihan -- Pilih Evaluasi --> Ujian[Kerjakan Soal Evaluasi]
+    Ujian --> SelesaiUjian[Sistem Hitung dan Simpan Nilai]
+    SelesaiUjian --> Pilihan
+    
+    Pilihan -- Keluar --> Logout([Logout / Selesai])
+  `;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex">
       <Sidebar />
@@ -254,6 +273,16 @@ flowchart TD
             <h2 className="font-bold text-xl mb-4 border-b pb-2 mt-10">3. DFD Level 1</h2>
             <ZoomableChart minHeight={600} title="DragIT-DFD-Level1" diagramText={dfdLevel1}>
               <pre className="mermaid">{dfdLevel1}</pre>
+            </ZoomableChart>
+
+            <h2 className="font-bold text-xl mb-4 border-b pb-2 mt-10">4. Use Case Diagram</h2>
+            <ZoomableChart minHeight={450} title="DragIT-UseCase" diagramText={useCaseDiagram}>
+              <pre className="mermaid">{useCaseDiagram}</pre>
+            </ZoomableChart>
+
+            <h2 className="font-bold text-xl mb-4 border-b pb-2 mt-10">5. Flowchart Sistem</h2>
+            <ZoomableChart minHeight={600} title="DragIT-Flowchart" diagramText={flowchartDiagram}>
+              <pre className="mermaid">{flowchartDiagram}</pre>
             </ZoomableChart>
           </motion.div>
         </div>

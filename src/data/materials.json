@@ -2,51 +2,67 @@
     "chapters": [
         {
             "id": 1,
-            "title": "Pertemuan 1: Pengenalan Dasar Komputer",
-            "slug": "pengenalan-dasar",
+            "title": "Pertemuan 1: Perangkat Keras Input, Output & Proses",
+            "slug": "perangkat-keras",
             "icon": "Monitor",
             "color": "blue",
-            "description": "Pelajari pengertian dasar sistem komputer, perbedaan hardware dan software, serta jenis-jenis perangkat keras utama sebagai fondasi pemahamanmu.",
+            "description": "Mengenal jenis-jenis perangkat input, output, dan proses beserta fungsinya sebagai fondasi memahami sistem komputer.",
             "topics": [
                 {
-                    "title": "Pengantar Komputer Dasar",
+                    "title": "Perangkat Input",
                     "slides": [
                         {
-                            "title": "Apa itu Komputer?",
-                            "content": "Komputer berasal dari kata 'to compute' yang artinya menghitung. Namun sekarang, komputer adalah mesin canggih yang bisa menerima instruksi (Input), memprosesnya secara matematis dan logis (Process), menyimpannya (Storage), lalu menampilkan hasil yang bisa dipahami manusia (Output). Komputer pada dasarnya tidak pintar, ia hanya mesin patuh yang melakukan perhitungan dengan kecepatan jutaan kali per detik sesuai instruksi manusia.",
+                            "title": "Apa itu Perangkat Input?",
+                            "content": "Perangkat input adalah perangkat yang digunakan untuk memasukkan data dan memberikan perintah kepada komputer untuk diproses lebih lanjut.",
                             "image": "computer-intro",
                             "keyPoints": [
-                                "Komputer adalah mesin pemroses informasi elektronik.",
-                                "Hanya menjalankan instruksi khusus dari manusia.",
-                                "Bekerja sangat cepat berkat sirkuit elektronik.",
-                                "Tujuan utamanya: mengubah Data Mentah menjadi Informasi yang Berguna."
+                                "Keyboard: memasukkan huruf, angka, karakter khusus, dan perintah shortcut.",
+                                "Jenis keyboard: QWERTY, DVORAK, KLOCKENBERG.",
+                                "Keyboard QWERTY memiliki 4 bagian: Typewriter key, Numeric key, Function key, Special function key."
                             ]
                         },
                         {
-                            "title": "Hardware (Perangkat Keras) vs Software (Perangkat Lunak)",
-                            "content": "Komputer terdiri dari dua bagian tak terpisahkan: Hardware dan Software. Hardware adalah wujud fisiknya—apa pun yang bisa kamu sentuh, congkel, atau pegang (misalnya Mouse, Monitor, dan CPU). Sedangkan Software adalah 'jiwa' atau instruksinya. Tanpa Software (seperti Windows, Game, atau Aplikasi Browser), Hardware hanyalah bongkahan besi dan plastik yang tidak bisa berbuat apa-apa.",
+                            "title": "Mouse & Touchpad",
+                            "content": "Mouse berfungsi memindahkan pointer/kursor di layar. Fitur: klik kiri, klik kanan, scroll, dan drag and drop. Lebih praktis untuk navigasi dibanding keyboard. Touchpad memiliki fungsi sama dengan mouse namun tertanam pada laptop.",
                             "image": "hardware-software",
                             "keyPoints": [
-                                "Hardware: Bagian fisik komputer (Bisa disentuh).",
-                                "Software: Program/Aplikasi komputer (Tidak bisa disentuh).",
-                                "Hardware butuh Software agar bisa digunakan.",
-                                "Keduanya bekerja sama layaknya tubuh dan pikiran manusia."
+                                "Mouse: memindahkan kursor, klik kiri/kanan, scroll.",
+                                "Touchpad: fungsi sama seperti mouse, tertanam pada laptop.",
+                                "Scanner: menduplikasi/menyalin gambar atau teks ke memori komputer.",
+                                "SCAN IR: membaca Lembar Jawaban Komputer (LJK)."
                             ]
                         }
                     ]
                 },
                 {
-                    "title": "Kategori Perangkat Keras",
+                    "title": "Perangkat Output",
                     "slides": [
                         {
-                            "title": "Empat Keluarga Besar Hardware",
-                            "content": "Agar lebih mudah dimengerti, para insinyur membandingkan komputer seperti manusia yang sedang bekerja. Seluruh komponen fisik dibagi menjadi empat tugas: kelompok Input bertugas sebagai indera perasa (contoh: Keyboard, Mouse, Mikrofon). Kelompok Process bertugas sebagai otak (CPU, RAM). Kelompok Output bertugas sebagai mulut/tangan yang menyampaikan hasil (Monitor, Speaker). Dan kelompok Storage sebagai ingatan jangka panjang (SSD/Harddisk).",
+                            "title": "Perangkat Output (Keluaran)",
+                            "content": "Perangkat output adalah perangkat keras yang digunakan untuk mengomunikasikan dan menyajikan hasil pengolahan data kepada pengguna.",
                             "image": "hardware-categories",
                             "keyPoints": [
-                                "Perangkat Input: Memasukkan data ke dalam PC.",
-                                "Perangkat Process: Mengolah dan menghitung data.",
-                                "Perangkat Output: Menampilkan hasil olahan agar terlihat manusia.",
-                                "Perangkat Storage: Menyimpan file, dokumen, dan sistem secara permanen."
+                                "Monitor: menampilkan hasil display; spesifikasi: pixel, refresh rate, resolusi, screen size.",
+                                "Printer: mencetak teks/gambar; diukur dengan dpi (dot per inch).",
+                                "Jenis Printer: Dot Matrix (tinta pita), Inkjet (tinta cair), Laser (tinta serbuk).",
+                                "Proyektor: menampilkan layar monitor ke screen/dinding via VGA atau HDMI.",
+                                "Speaker/Headset: menghasilkan suara dari komputer."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Perangkat Proses",
+                    "slides": [
+                        {
+                            "title": "CPU, RAM, VGA & Motherboard",
+                            "content": "CPU disebut 'otak' komputer; mengolah data sesuai instruksi yang diterima. Terdiri dari Unit Kontrol dan ALU. Merek populer: Intel dan AMD. RAM adalah tempat menyimpan sistem operasi, program, dan data yang sedang berjalan. Bersifat volatile: data hilang saat komputer dimatikan.",
+                            "image": "processor",
+                            "keyPoints": [
+                                "CPU: mengolah data; terdiri dari Unit Kontrol dan ALU.",
+                                "RAM: penyimpanan sementara (volatile); lebih besar = lebih banyak proses.",
+                                "VGA Card: menerjemahkan output display komputer ke monitor.",
+                                "Motherboard: 'saraf pusat' yang menghubungkan semua komponen sistem."
                             ]
                         }
                     ]
@@ -54,98 +70,89 @@
             ],
             "quiz": [
                 {
-                    "question": "Pre-test: Manakah dari alat berikut ini yang fungsi utamanya difokuskan untuk tugas 'Output' (menampilkan hasil)?",
-                    "options": [
-                        "Keyboard dan Mouse",
-                        "Harddisk dan SSD",
-                        "Monitor dan Printer",
-                        "CPU dan RAM"
-                    ],
+                    "question": "Perangkat input yang berfungsi menduplikasi/menyalin gambar atau teks ke memori komputer adalah...",
+                    "options": ["Keyboard", "Mouse", "Scanner", "Touchpad"],
                     "answer": 2,
-                    "explanation": "Monitor bertugas menampilkan gambar (Visual), dan Printer bertugas mencetak teks ke kertas (Fisik). Keduanya mengeluarkan hasil dari dalam komputer ke dunia luar."
+                    "explanation": "Scanner berfungsi menduplikasi/menyalin gambar atau teks ke memori komputer, mirip mesin fotokopi namun hasilnya dapat ditampilkan di monitor."
                 },
                 {
-                    "question": "Pre-test: Apa perbedaan mendasar antara Hardware dan Software?",
-                    "options": [
-                        "Hardware harganya murah, Software mahal",
-                        "Hardware adalah komponen fisik yang bisa disentuh, sedangkan Software adalah instruksi/aplikasi yang tidak bisa disentuh",
-                        "Hardware digunakan untuk main game, Software untuk mengetik",
-                        "Hardware ada di dalam kotak PC, Software ada di luar"
-                    ],
-                    "answer": 1,
-                    "explanation": "Software berfungsi sebagai instruksi yang berjalan di atas Hardware. Ia tidak berwujud materi."
+                    "question": "Ketajaman hasil cetak printer diukur dengan satuan...",
+                    "options": ["Hz", "GHz", "dpi", "RPM"],
+                    "answer": 2,
+                    "explanation": "Ketajaman printer diukur dengan dpi (dot per inch): semakin tinggi dpi, semakin tajam hasil cetakan."
+                },
+                {
+                    "question": "Komponen yang disebut sebagai 'saraf pusat' atau 'papan utama' komputer adalah...",
+                    "options": ["CPU", "RAM", "VGA Card", "Motherboard"],
+                    "answer": 3,
+                    "explanation": "Motherboard adalah papan utama yang menghubungkan dan mengendalikan semua komponen sistem komputer."
                 }
             ]
         },
         {
             "id": 2,
-            "title": "Pertemuan 2: Membedah Komponen Utama",
-            "slug": "komponen-utama",
-            "icon": "Cpu",
+            "title": "Pertemuan 2: Media Penyimpanan & Perangkat Lunak",
+            "slug": "penyimpanan-software",
+            "icon": "HardDrive",
             "color": "violet",
-            "description": "Fokus membedah si Otak (CPU), si Meja Kerja (RAM), si Papan Induk (Motherboard), dan si Lemari Arsip (Storage).",
+            "description": "Mempelajari komponen media penyimpanan (HDD, SSD, Optical Drive, USB Flash) serta perangkat lunak seperti sistem operasi dan browser.",
             "topics": [
                 {
-                    "title": "Otak & Papan Induk",
+                    "title": "Media Penyimpanan",
                     "slides": [
                         {
-                            "title": "Motherboard: Sang Papan Induk",
-                            "content": "Analogi Motherboard adalah seperti sebuah kota dengan banyak jalan raya raya. Ia adalah papan sirkuit hijau persegi yang paling besar di dalam komputer. Tanpa Motherboard, CPU tidak bisa 'mengobrol' dengan RAM atau kartu grafis. Motherboard menjadi jembatan yang menyalurkan listrik dan jalur data agar setiap komponen saling terhubung secara harmonis.",
-                            "image": "motherboard",
-                            "keyPoints": [
-                                "Komponen utama tempat menancapkan semua perangkat lain.",
-                                "Bertindak sebagai pusat lalu lintas data.",
-                                "Menentukan jenis prosesor dan RAM apa yang bisa kamu pakai."
-                            ]
-                        },
-                        {
-                            "title": "Processor (CPU): Otak Pintar Komputer",
-                            "content": "Central Processing Unit (CPU) adalah direktur operasi. Semua perintah dari memutar musik hingga kalkulasi game 3D dilakukan di sini. Ukurannya sangat kecil, namun ia memproses miliaran perintah logika dalam satu detik. Karena CPU bekerja amat sangat keras, ia biasanya sangat panas dan perlu diletakkan alat pendingin berbahan besi/tembaga di atasnya (Heatsink).",
-                            "image": "processor",
-                            "keyPoints": [
-                                "Pusat operasi logika utama komputer.",
-                                "Kecepatan bekerja diukur dalam hitungan Gigahertz (GHz).",
-                                "Cepat panas, sehingga membutuhkan kipas (Cooling Fan)."
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "Meja Kerja & Lemari Arsip",
-                    "slides": [
-                        {
-                            "title": "RAM (Random Access Memory): Si Meja Kerja",
-                            "content": "Bayangkan RAM adalah meja kerjamu. Saat kamu membuka aplikasi berat (seperti game atau Chrome), semua bahan ditaruh di meja ini agar gampang diraih oleh Otak (CPU). Semakin luas meja kerjamu (kapasitas RAM yang besar), semakin banyak aplikasi yang bisa kamu buka secara bersamaan tanpa lag. Namun ingat, RAM ini 'Pikun'. Sekali komputer dimatikan listriknya, semua file yang ada di RAM akan musnah.",
-                            "image": "ram",
-                            "keyPoints": [
-                                "Penyimpanan jangka pendek yang super ngebut.",
-                                "Sifatnya Volatile (data hilang ketika listrik mati).",
-                                "Mengurangi keharusan CPU mengambil data langsung ke Harddisk yang lambat."
-                            ]
-                        },
-                        {
-                            "title": "Storage (HDD & SSD): Si Lemari Arsip",
-                            "content": "Kalau RAM itu meja kerja, maka Storage (Penyimpanan) adalah Lemari Arsip raksasa milikmu. Semua Foto, Game, dan Sistem Windows-mu disimpan permanen di sini meskpun PC mati. Saat ini ada dua tipe terkenal: Harddisk Drive (HDD) yang menggunakan piringan cakram mutar (lambat tapi murah) dan Solid State Drive (SSD) yang berbentuk chip memori (super cepat dan tahan banting).",
+                            "title": "HDD: PATA dan SATA",
+                            "content": "PATA menggunakan kabel 40 atau 80 kawat dengan konektor 40-pin; teknologi lebih tua dan cenderung lebih lambat; kini banyak digantikan SATA. SATA lebih kecil dan tipis dari PATA sehingga lebih fleksibel; menggunakan konektor dan adaptor daya berbeda; kecepatan putar umumnya 7.200 RPM.",
                             "image": "storage",
                             "keyPoints": [
-                                "Penyimpanan jangka panjang (Non-Volatile/Data tidak hilang).",
-                                "HDD: Mekanik, lambat, suara bising, namun murah.",
-                                "SSD: Digital, tidak berisik, mahal, kecepatannya 10x lipat HDD."
+                                "PATA: kabel 40/80 kawat, konektor 40-pin, teknologi lebih lama.",
+                                "SATA: lebih kecil, tipis, fleksibel; kecepatan 7.200 RPM.",
+                                "SATA kini menggantikan PATA di kebanyakan komputer modern."
+                            ]
+                        },
+                        {
+                            "title": "SSD, Optical Drive & USB Flash",
+                            "content": "SSD tidak memiliki komponen bergerak; menggunakan semikonduktor; lebih cepat, lebih tahan kerusakan, namun harganya lebih mahal. Rekomendasi: gunakan SSD untuk OS, HDD untuk penyimpanan data kapasitas besar. Optical Drive membaca/menulis CD, DVD, Blu-ray menggunakan sinar laser. USB Flash Memory berkapasitas 8 GB - 2 TB; rata-rata umur data 5 tahun.",
+                            "image": "ram",
+                            "keyPoints": [
+                                "SSD: tanpa komponen bergerak, lebih cepat dan tahan banting.",
+                                "Optical Drive: membaca/menulis CD, DVD, Blu-ray.",
+                                "USB Flash: memori kilat NAND, kapasitas 8 GB - 2 TB.",
+                                "USB Flash lebih cepat, lebih kecil, kapasitas lebih besar dari CD-ROM."
                             ]
                         }
                     ]
                 },
                 {
-                    "title": "Energi Kelistrikan",
+                    "title": "Sistem Operasi",
                     "slides": [
                         {
-                            "title": "Power Supply Unit (PSU): Jantung Kelistrikan",
-                            "content": "Semua komponen canggih di atas tidak ada gunanya tanpa listrik. PSU berfungsi menyedot listrik tegangan tinggi dari colokan tembok PLN (AC) menjadi tegangan rendah yang aman (DC) untuk ditarik menuju Motherboard, CPU, dan Harddisk. Memilih PSU abal-abal sama saja memberikan racun ke dalam tubuh komputermu, bisa meledak atau korslet!",
-                            "image": "psu",
+                            "title": "Apa itu Sistem Operasi?",
+                            "content": "Sistem operasi adalah perangkat lunak yang mengelola perangkat keras, sumber daya perangkat lunak, dan menyediakan layanan umum untuk program komputer.",
+                            "image": "visual-3d",
                             "keyPoints": [
-                                "Menyuplai daya aman ke semua part PC.",
-                                "Mengubah listrik tegangan AC menjadi DC.",
-                                "Sangat vital untuk stabilitas nyala PC."
+                                "Windows: berbayar, paling banyak digunakan di Indonesia; versi populer: Windows 10, Windows 11.",
+                                "Linux: open source dan gratis; distribusi populer: Ubuntu, Debian, Linux Mint, Fedora.",
+                                "macOS: dikembangkan Apple Inc.; kernel BSD; antarmuka grafis yang baik dan cepat.",
+                                "macOS tertanam pada laptop Apple (MacBook)."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Browser & Aplikasi Persuratan",
+                    "slides": [
+                        {
+                            "title": "Browser & Email",
+                            "content": "Browser adalah perangkat lunak untuk mengakses internet. Aplikasi persuratan (email) digunakan untuk mengirim dan menerima pesan elektronik.",
+                            "image": "desktop-drag",
+                            "keyPoints": [
+                                "Microsoft Edge: dikembangkan Microsoft; tersedia di smartphone.",
+                                "Google Chrome: dikembangkan Google; berjalan di semua OS.",
+                                "Safari: dikembangkan Apple (2003); berbasis WebKit.",
+                                "Mozilla Firefox: platform bebas; dikembangkan Yayasan Mozilla.",
+                                "Gmail: email gratis Google; 1,5 miliar pengguna (2019).",
+                                "Yahoo! Mail: penyedia email terbesar; pesaing Gmail."
                             ]
                         }
                     ]
@@ -153,73 +160,88 @@
             ],
             "quiz": [
                 {
-                    "question": "Mengapa kita tetap butuh 'Storage' seperti Harddisk/SSD jika kita sudah punya RAM?",
-                    "options": [
-                        "Karena RAM harganya terlalu murah",
-                        "Karena RAM dirancang khusus untuk menyimpan foto saja",
-                        "Karena RAM 'Pikun' (Volatile) dan membuang datanya saat PC padam listrik",
-                        "Karena CPU lebih menyukai Harddisk"
-                    ],
+                    "question": "Sistem operasi yang bersifat open source dan gratis adalah...",
+                    "options": ["Windows", "macOS", "Linux", "MS-DOS"],
                     "answer": 2,
-                    "explanation": "Storage diperlukan karena sifatnya permanen, berbeda dengan RAM yang berfungsi sebagai ruang kerja kilat namun tidak bisa menyimpan jika kehilangan daya listrik."
+                    "explanation": "Linux bersifat open source dan gratis; dapat dikembangkan dan didistribusikan bebas tanpa lisensi. Distribusi populer: Ubuntu, Debian, Linux Mint."
                 },
                 {
-                    "question": "Tugas utama dari alat penghasil daya listrik (PSU) adalah...",
+                    "question": "Manakah pernyataan yang BENAR tentang SSD dibanding HDD?",
                     "options": [
-                        "Memberikan grafis game resolusi tinggi",
-                        "Menyalurkan udara dingin untuk Processor",
-                        "Merubah colokan listrik rumah menjadi arus listrik tegangan rendah yang aman bagi komponen elektronik",
-                        "Menyimpan password pengguna"
+                        "SSD lebih murah dari HDD",
+                        "SSD memiliki komponen bergerak",
+                        "SSD lebih cepat dan lebih tahan kerusakan",
+                        "SSD menggunakan piringan cakram"
                     ],
                     "answer": 2,
-                    "explanation": "PSU berfungsi seperti jantung yang memompa aliran energi, mengubah AC dari stopkontak menjadi standar aman DC yang cocok dengan Motherboard."
+                    "explanation": "SSD tidak memiliki komponen bergerak; menggunakan semikonduktor sehingga lebih cepat dan lebih tahan kerusakan, namun harganya lebih mahal dari HDD."
+                },
+                {
+                    "question": "Browser yang dikembangkan oleh Apple dan berbasis WebKit adalah...",
+                    "options": ["Google Chrome", "Mozilla Firefox", "Microsoft Edge", "Safari"],
+                    "answer": 3,
+                    "explanation": "Safari dikembangkan Apple pada tahun 2003, berbasis WebKit, dan tersedia untuk macOS, iOS, dan iPadOS."
                 }
             ]
         },
         {
             "id": 3,
-            "title": "Pertemuan 3: Visualisasi & Simulasi Digital",
-            "slug": "visualisasi-interaktif",
-            "icon": "Gamepad2",
+            "title": "Pertemuan 3: Pengguna & Mekanisme Kerja Internal CPU",
+            "slug": "pengguna-cpu",
+            "icon": "Cpu",
             "color": "emerald",
-            "description": "Bagaimana memanfaatkan simulasi Web/Game interaktif untuk mengintip wujud asli hardware dari segala arah.",
+            "description": "Memahami peran pengguna (brainware) dalam sistem komputer dan mekanisme kerja internal CPU melalui siklus Fetch-Decode-Execute.",
             "topics": [
                 {
-                    "title": "Mengulik Dunia 3D",
+                    "title": "Pengguna (Brainware)",
                     "slides": [
                         {
-                            "title": "Mengapa Perlu Simulasi 3D?",
-                            "content": "Komponen komputer nyata sangat rapuh, gampang terbakar statis (ESD), dan sangat mahal. Melalui visualisasi 3D DragIT, kamu bisa mengamati detail bentuk setiap logam kecil pada Processor atau Slot emas pada RAM layaknya kamu memegang barang aslinya di tanganmu, tapi 100% aman.",
-                            "image": "visual-3d",
+                            "title": "Apa itu Brainware?",
+                            "content": "Pengguna (Brainware) adalah manusia yang berinteraksi dengan komputer. Pengguna berperan sebagai perangkat intelektual yang mengoperasikan hardware dan software.",
+                            "image": "ipos-cycle",
                             "keyPoints": [
-                                "Alternatif bebas dari khawatir merusak barang asli.",
-                                "Dapat memberikan kebebasan merusak dan belajar.",
-                                "Kemampuan melihat celah kaki (PIN) secara dekat."
+                                "Administrator: mengelola sistem operasi dan aplikasi dalam jaringan.",
+                                "Programmer: mengembangkan perangkat lunak atau aplikasi.",
+                                "Operator: menggunakan dan merawat perangkat lunak.",
+                                "Teknisi Hardware: memilih dan menggunakan hardware sesuai kebutuhan.",
+                                "Teknisi Software: mengembangkan/memperbarui software."
                             ]
                         },
                         {
-                            "title": "Navigasi Dunia Objek Digital",
-                            "content": "Saat memasuki ruang eksperimen digital, kamu akan diberikan fitur Zoom (membesarkan sudut pandang), Pan (menggeser kamera), dan Rotate (memutar balikan komponen). Cobalah putar balik Motherboard untuk melihat bentuk solder di belakangnya. Tidak ada yang tersembunyi, semua bagian direplika layaknya fisik asli.",
-                            "image": "desktop-drag",
+                            "title": "Jenis Pengguna Lainnya",
+                            "content": "Selain teknisi, terdapat berbagai jenis pengguna lain dalam ekosistem komputer yang memiliki peran berbeda-beda.",
+                            "image": "learn-by-doing",
                             "keyPoints": [
-                                "Zoom: Untuk melihat detail halus/soket kecil.",
-                                "Rotate: Memutar arah barang agar tahu letak colokan belakang.",
-                                "Drag (Tarik): Menguji presisi pemasangan posisi."
+                                "EDP Department: mengelola data komersial dengan sistem elektronik otomatis.",
+                                "Netter: pengguna yang mencari informasi melalui internet menggunakan search engine.",
+                                "Network System: menangani dan menjembatani jaringan antar divisi dalam perusahaan."
                             ]
                         }
                     ]
                 },
                 {
-                    "title": "Informasi Instan",
+                    "title": "Mekanisme Kerja CPU",
                     "slides": [
                         {
-                            "title": "Pop-up Pengetahuan Instan",
-                            "content": "Di masa lalu, membaca buku sambil merakit itu gampang bikin kehilangan fokus. Di simulasi interaktif, saat kamu meng-klik satu slot, sebuah deskripsi otomatis akan muncul (Tooltip). Hal ini memastikan kamu secara tidak sadar menyerap informasi berulang dengan santai dan tidak terasa seperti diajari di kelas.",
-                            "image": "tooltip-info",
+                            "title": "Komponen Internal CPU",
+                            "content": "CPU (Central Processing Unit) adalah komponen terpenting dalam menjalankan tugas sistem komputer. CPU berfungsi mengolah data sesuai instruksi yang diterimanya.",
+                            "image": "motherboard",
                             "keyPoints": [
-                                "Fitur informasi yang muncul saat benda disentuh (Hover/Click).",
-                                "Pembelajaran yang melekat melalui tindakan bawah sadar (Muscle Memory).",
-                                "Respon instan mempercepat pemahaman materi."
+                                "ALU (Arithmetic & Logic Unit): operasi aritmatika dan logika (=, !=, <, <=, >, >=).",
+                                "Unit Kontrol: mengambil instruksi dari memori, mengirim ke ALU, mengembalikan hasil.",
+                                "Register: penyimpanan sangat kecil dan cepat untuk instruksi yang sedang diproses.",
+                                "CPU Interconnections: menghubungkan komponen CPU melalui sistem bus."
+                            ]
+                        },
+                        {
+                            "title": "Siklus Fetch-Decode-Execute",
+                            "content": "CPU bekerja melalui siklus yang berulang terus-menerus: FETCH (ambil instruksi), DECODE (tafsirkan), dan EXECUTE (jalankan). Siklus ini berlangsung pada setiap sepersekian detik selama komputer beroperasi.",
+                            "image": "assembly-order",
+                            "keyPoints": [
+                                "FETCH: CPU mengambil instruksi dari memori berdasarkan alamat di Program Counter (PC).",
+                                "DECODE: CPU menganalisa dan menafsirkan instruksi untuk menentukan operasi.",
+                                "EXECUTE: CPU menjalankan instruksi; hasilnya dikembalikan ke memori atau perangkat output.",
+                                "Siklus ini berulang terus-menerus setiap sepersekian detik."
                             ]
                         }
                     ]
@@ -227,148 +249,88 @@
             ],
             "quiz": [
                 {
-                    "question": "Keunggulan utama mengamati hardware via Simulasi 3 dimensi dibandingkan sekadar melihat foto 2 Dimensi di buku adalah...?",
-                    "options": [
-                        "Kita bisa membuat alat tersebut menjadi nyata jika diprint 3D",
-                        "Memberikan kebebasan manipulasi sudut pandang memutar hingga 360 derajat untuk mendalami cekungan/slot",
-                        "Bisa dijalankan di HP Jadul tanpa layarnya menyala",
-                        "Game ukurannya lebih hemat"
-                    ],
+                    "question": "Pengguna yang bertugas mengembangkan perangkat lunak atau aplikasi disebut...",
+                    "options": ["Administrator", "Programmer", "Operator", "Netter"],
                     "answer": 1,
-                    "explanation": "Manfaat sejati 3D adalah pemahaman kedalaman ruang (spatial awareness), kamu jadi tahu pin colokan ada banyak dan tersembunyi."
+                    "explanation": "Programmer adalah pengguna yang mengembangkan perangkat lunak atau aplikasi komputer."
+                },
+                {
+                    "question": "Komponen CPU yang melakukan operasi aritmatika dan logika adalah...",
+                    "options": ["Register", "Unit Kontrol", "ALU", "Program Counter"],
+                    "answer": 2,
+                    "explanation": "ALU (Arithmetic & Logic Unit) bertugas melakukan operasi aritmatika dan logika seperti =, !=, <, <=, >, >=."
+                },
+                {
+                    "question": "Urutan siklus kerja CPU yang benar adalah...",
+                    "options": [
+                        "Execute - Fetch - Decode",
+                        "Decode - Execute - Fetch",
+                        "Fetch - Decode - Execute",
+                        "Fetch - Execute - Decode"
+                    ],
+                    "answer": 2,
+                    "explanation": "Siklus CPU berjalan dalam urutan FETCH (ambil instruksi) → DECODE (tafsirkan) → EXECUTE (jalankan), dan berulang terus-menerus."
                 }
             ]
         },
         {
             "id": 4,
-            "title": "Pertemuan 4: Eksplorasi Mandiri & Bebas",
-            "slug": "eksplorasi-mandiri",
-            "icon": "Wrench",
+            "title": "Pertemuan 4: Interaksi Manusia-Komputer & Instalasi OS",
+            "slug": "imk-instalasi",
+            "icon": "Settings",
             "color": "amber",
-            "description": "Simulasi di mana siswa mencoba, menabrakkan ide, dan membangun pengetahuan melalui kesalahan (Trial & Error).",
+            "description": "Memahami konsep Interaksi Manusia-Komputer (IMK) melalui GUI dan CLI, serta langkah-langkah instalasi sistem operasi Windows.",
             "topics": [
                 {
-                    "title": "Metode Pembelajaran Mandiri",
+                    "title": "Interaksi Manusia-Komputer (IMK)",
                     "slides": [
                         {
-                            "title": "Teori Belajar Trial & Error",
-                            "content": "Belajar komputer bukan berarti dilarang berbuat salah. Justru sebaliknya! Kamu sangat disarankan untuk bereksperimen. Cobalah masukan batang RAM ke slot VGA, dan perhatikan mengapa sistem menolak dan mengatakan itu gagal. Dari sana kamu akan belajar bahwa desain ujung besi tiap parts diciptakan berbeda (Unik) dan memiliki bentuk selaras seperti puzzle.",
-                            "image": "common-mistakes",
+                            "title": "Apa itu IMK?",
+                            "content": "IMK adalah serangkaian proses, komunikasi, atau kegiatan yang dilakukan pengguna untuk berinteraksi dengan komputer secara interaktif guna menyelesaikan tugas. IMK tidak hanya terjadi pada komputer, tetapi juga pada smartphone, Smart TV, dan game console.",
+                            "image": "tooltip-info",
                             "keyPoints": [
-                                "Salah itu hal yang wajar dalam merakit virtual.",
-                                "Setiap socket perangkat dibuat dengan bentuk asimetris unik (Keying).",
-                                "Sistem menolak pemasangan agar kamu tahu letak benar yang tepat."
+                                "GUI (Graphical User Interface): antarmuka grafis interaktif; pengguna mendapat umpan balik visual.",
+                                "Contoh GUI: desktop Windows 10 dengan taskbar, ikon, dan menu.",
+                                "CLI (Command Line Interface): pengguna memberi instruksi melalui teks/terminal.",
+                                "Semua OS (Windows, Linux, macOS) memiliki CLI."
                             ]
                         },
                         {
-                            "title": "Belajar Tanpa Takut",
-                            "content": "Pendekatan pembelajaran Konstruktivisme menyatakan bahwa siswa membangun pengetahuannya berdasarkan pengalamannya sendiri. Ketika kamu menemukan sendiri cara membedakan port HDMI dan USB, pengalaman itu akan tinggal di memorimu lebih lama dibandingkan hanya mendengarkan guru berceramah.",
-                            "image": "learn-by-doing",
+                            "title": "Perangkat Input IMK",
+                            "content": "Selain GUI dan CLI, interaksi manusia-komputer juga didukung oleh berbagai perangkat input seperti microphone dan webcam.",
+                            "image": "desktop-drag",
                             "keyPoints": [
-                                "Pengetahuan terbaik dibangun sendiri oleh siswa.",
-                                "Eksplorasi tanpa tekanan dari guru atau ketakutan.",
-                                "Bebas dari risiko kerugian material dan kesetrum listrik."
+                                "Microphone + Speech Recognition: komputer mengenali dan merespons perintah suara.",
+                                "Webcam: mengambil gambar atau rekaman video.",
+                                "GUI memberikan solusi terkait masalah umpan balik dan memudahkan interaksi pengguna."
                             ]
                         }
                     ]
                 },
                 {
-                    "title": "Penerapan Logika Merakit",
+                    "title": "Instalasi Sistem Operasi",
                     "slides": [
                         {
-                            "title": "Urutan Perakitan Logis Secara Virtual",
-                            "content": "Meskipun dibilang bebas, merakit itu sebenarnya ada tahapannya yang logis. Biasanya kamu pasang CPU ke lubang Motherboard TERCAPAT terlebih dulu sebelum ditaruh ke dalam Box Casing PC yang gelap. Mengapa? Agar ruang gerak tanganmu luas! Di game DragIT, kamu akan ditantang mencari urutan peletakan apa yang paling efektif.",
-                            "image": "assembly-order",
-                            "keyPoints": [
-                                "Pemasangan peranti mikrocip (CPU & RAM) lebih optimal dilakukan di luar Casing.",
-                                "Memilih komponen dalam urutan yang tepat melatih kemampuan Logistikmu.",
-                                "Tujuan akhir: PC menyala dengan sukses."
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "quiz": [
-                {
-                    "question": "Metode Konstruktivisme 'Trial & Error' pada DragIT menyarankan peserta didiknya untuk... ?",
-                    "options": [
-                        "Menghindari sentuhan komponen apapun agar tidak error",
-                        "Mencoba mencari kecocokan antar komponen dengan bereksperimen meletakannya walau salah pada percobaan pertama",
-                        "Menyogok game agar nilainya tinggi terus",
-                        "Selalu melihat buku panduan step 1 sampai langkah 100 sebelum memegang mouse"
-                    ],
-                    "answer": 1,
-                    "explanation": "Trial and error membiarkan otak anak membuat keterkaitan sendiri terhadap wujud benda mana yang sekiranya serasi dengan benda lain."
-                }
-            ]
-        },
-        {
-            "id": 5,
-            "title": "Pertemuan 5: Analisis Ekosistem Sistem",
-            "slug": "analisis-sistem",
-            "icon": "CircuitBoard",
-            "color": "rose",
-            "description": "Menyatukan teka-teki pecahan dari bab sebelumnya untuk memahami PC The Big Picture secara keseluruhan.",
-            "topics": [
-                {
-                    "title": "The Big Picture (Keseluruhan Sistem)",
-                    "slides": [
-                        {
-                            "title": "Semuanya Saling Terikat (Interdependensi)",
-                            "content": "Tidak ada jagoan tunggal dalam PC. Meskipun rakitanmu punya Intel Core i9 Prosesor Ratusan Juta rupiah, tapi jika tidak ada RAM sekecil apapun maka Layar komputermu tidak akan pernah hidup (terjebak Bootloop). Hal inilah yang disebut sebagai satu Rantai Ekosistem. Hilang satu pilar, bangunan runtuh.",
-                            "image": "ipos-cycle",
-                            "keyPoints": [
-                                "Komputer bekerja menggunakan pola Sistem Tertutup berantai.",
-                                "Sistem Pengecekan otomatis BIOS (Basic Input Output System) mendeteksi absensi/ketidakhadiran hardware vital.",
-                                "Keselarasan (Bottleneck) harus dihindari: Prosesor kuat + RAM sangat pelan = Komputer tetap pelan."
-                            ]
-                        },
-                        {
-                            "title": "Proses Komputasi (Dari Tombol ditekan)",
-                            "content": "Mari kita bayangkan aliran detiknya: 1) Tombol Power Ditekan. 2) Listrik mengaliri Motherboard via Kabel PSU. 3) BIOS bangun. Dia absen siapa saja yang hadir. 4) BIOS melirik SSD: 'Hei Windows layani aku'. 5) Windows dikirim dari lambatnya Harddisk lari menempati RAM kilat. 6) Otak (CPU) membaca RAM secara ganas tiada henti. 7) Gambar terkirim menyala memukau dari VGA ke Monitormu. Semuanya terjadi dalam kurang dari 10 Detik!",
-                            "image": "motherboard-function",
-                            "keyPoints": [
-                                "Terdapat perputaran serah terima tugas (Hand-off).",
-                                "Storage hanyalah gudang diam. Windows digendong dari Storage dan diperintah bernapas di atas RAM.",
-                                "Analisa cara kerja yang utuh akan membuatmu membedakan hardware yang rusak jika ada error!"
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "quiz": [
-                {
-                    "question": "Jika kamu menyalakan PC kemudian kipas menyala, tetapi monitor tetap hitam pekat dan keluar bunyi tit-tit panjang merdu dari motherboard, masalah paling umum terjadi di rantai apa?",
-                    "options": [
-                        "Kursor mouse hilang",
-                        "Harddisk tidak menyimpan data foto liburan semalam",
-                        "Komponen RAM/Memory utama mungkin tidak menancap dengan rapat sehingga aliran data putus sebelum bisa memproses layar",
-                        "Listrik sama sekali terputus dari PSU PLN"
-                    ],
-                    "answer": 2,
-                    "explanation": "Bunyi 'beep' eror biasanya didesain motherboard saat awal absen BIOS gagal menemukan kehadiran memori 'RAM' utama/VGA."
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "title": "Pertemuan 6: Evaluasi & Refleksi",
-            "slug": "evaluasi",
-            "icon": "BookOpen",
-            "color": "blue",
-            "description": "Tahap terakhir: menguatkan ingatan, merefleksikan proses belajar mandiri, dan menempuh Post-Test.",
-            "topics": [
-                {
-                    "title": "Ringkasan Pengalaman Belajar",
-                    "slides": [
-                        {
-                            "title": "Refleksi Pengalaman Penuh",
-                            "content": "Sekarang kamu sudah bukan lagi seorang pemula. Saat melihat PC atau Laptopmu, pikiranmu sudah menebus plastiknya. Saat lemot membuka Game? Kamu tahu penyebabnya mungkin RAM. Saat baterai macet? PSU-nya. Pengetahuan terbaik tidak didapat dengan menghadap buku dan menghafalkan singkatan, ia didapat dari prosesmu yang tabrakan (Trial&Error) di dalam simulasi game ini. Selamat datang di dunia arsitektur komputer (IT) yang luar biasa!",
+                            "title": "Persiapan Instalasi Windows",
+                            "content": "Sebelum menginstal sistem operasi Windows, diperlukan persiapan media instalasi dan pengaturan BIOS agar komputer dapat booting dari media yang tepat.",
                             "image": "assembly",
                             "keyPoints": [
-                                "Skill menganalisa kini tertanam padamu berkat pengalaman belajar visual.",
-                                "Setiap PC desktop dirancang menggunakan konsep arsitektur modular (Bongkar Pasang).",
-                                "Jangan berhenti menjadi Penjelajah, teknologi komputer selalu berevolusi setiap 6 bulan."
+                                "Siapkan file ISO sistem operasi.",
+                                "Buat USB/DVD bootable menggunakan aplikasi Rufus (www.rufus.ie).",
+                                "Di Rufus: pilih device USB, klik SELECT untuk memilih file ISO, klik START.",
+                                "Atur BIOS agar booting dari USB/DVD sebelum Hard Drive, lalu restart."
+                            ]
+                        },
+                        {
+                            "title": "Proses Instalasi Windows",
+                            "content": "Setelah media bootable siap dan BIOS dikonfigurasi, proses instalasi Windows dapat dimulai dengan mengikuti langkah-langkah yang tersedia.",
+                            "image": "motherboard-function",
+                            "keyPoints": [
+                                "Konfigurasi awal: pilih bahasa, format jam & mata uang, keyboard; klik Next.",
+                                "Klik 'Install now', masukkan product key (25 karakter).",
+                                "Pilih tipe instalasi: Upgrade atau Custom (atur partisi manual).",
+                                "Contoh partisi: Hard disk 500 GB → Drive C (150 GB untuk OS) + Drive D (350 GB data).",
+                                "Buat username, password, dan password hint setelah instalasi selesai."
                             ]
                         }
                     ]
@@ -376,37 +338,22 @@
             ],
             "quiz": [
                 {
-                    "question": "Post-Test: Perangkat utama apa yang berfungsi memastikan aliran listrik AC eksternal dikonversi dan menyebar aman bagi mesin PC?",
-                    "options": [
-                        "Power Supply Unit (PSU)",
-                        "Stabilizer Baterai LIPO",
-                        "Heatsink Fan",
-                        "VGA Konektor Display"
-                    ],
-                    "answer": 0,
-                    "explanation": "PSU (Power Supply Unit) bertanggung jawab untuk keamanan asupan daya keseluruhan mesin."
+                    "question": "Antarmuka yang memungkinkan pengguna berinteraksi dengan komputer melalui grafis (ikon, menu, taskbar) disebut...",
+                    "options": ["CLI", "GUI", "API", "URL"],
+                    "answer": 1,
+                    "explanation": "GUI (Graphical User Interface) adalah antarmuka grafis interaktif di mana pengguna mendapat umpan balik visual seperti perubahan warna, ukuran, dan visibilitas elemen."
                 },
                 {
-                    "question": "Post-Test: Komputer mengalami Lag ketika kita membuka 30 Tab Google Chrome sekaligus dan sambil menjalankan Youtube Music di belakang. Komponen manakah yang sebaiknya kita tingkatkan/ganti baru kapasitasnya?",
-                    "options": [
-                        "Memilih Casing yang ada lampu RGB terangnya",
-                        "Upgrade SSD supaya gamenya memuat lebih cepat",
-                        "Upgrade Kapasitas RAM (Dari 4GB jadi 16GB) agar meja kerjanya lebih luas memegang tab",
-                        "Mengganti Motherboard"
-                    ],
-                    "answer": 2,
-                    "explanation": "Membuka sangat banyak aplikasi bersamaan secara sadis memakan memori antrean meja kerja = Yakni Fungsi dari RAM."
+                    "question": "Aplikasi yang digunakan untuk membuat USB bootable dari file ISO adalah...",
+                    "options": ["VLC", "Rufus", "WinRAR", "CCleaner"],
+                    "answer": 1,
+                    "explanation": "Rufus adalah aplikasi yang digunakan untuk membuat USB/DVD bootable dari file ISO sistem operasi. Dapat diunduh di www.rufus.ie."
                 },
                 {
-                    "question": "Post-Test: Berdasarkan hasil analisamu, komponen Motherboard dideskripsikan terbaik sebagai?",
-                    "options": [
-                        "Pemberi tenaga super kelistrikan setara genset",
-                        "Satu-satunya cip memori grafis untuk melihat gambar bergerak",
-                        "Sirkuit yang berperan merajut seluruh kabel persendian dan menjembatani komunikasi data/aliran tiap komponen berbeda.",
-                        "Mesin hitung matematis di atas 10 miliar tugas."
-                    ],
-                    "answer": 2,
-                    "explanation": "Motherboard memiliki peran strategis menghubungkan seluruh device independen bagai jalan tol kota utama."
+                    "question": "Berapa karakter yang dibutuhkan untuk product key Windows?",
+                    "options": ["10 karakter", "16 karakter", "20 karakter", "25 karakter"],
+                    "answer": 3,
+                    "explanation": "Product key Windows terdiri dari 25 karakter yang dibutuhkan saat proses instalasi."
                 }
             ]
         }

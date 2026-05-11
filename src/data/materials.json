@@ -23,12 +23,12 @@
                         },
                         {
                             "title": "Mouse & Touchpad",
-                            "content": "Mouse berfungsi memindahkan pointer/kursor di layar. Fitur: klik kiri, klik kanan, scroll, dan drag and drop. Lebih praktis untuk navigasi dibanding keyboard. Touchpad memiliki fungsi sama dengan mouse namun tertanam pada laptop.",
+                            "content": "Mouse berfungsi memindahkan pointer\/kursor di layar. Fitur: klik kiri, klik kanan, scroll, dan drag and drop. Lebih praktis untuk navigasi dibanding keyboard. Touchpad memiliki fungsi sama dengan mouse namun tertanam pada laptop.",
                             "image": "hardware-software",
                             "keyPoints": [
-                                "Mouse: memindahkan kursor, klik kiri/kanan, scroll.",
+                                "Mouse: memindahkan kursor, klik kiri\/kanan, scroll.",
                                 "Touchpad: fungsi sama seperti mouse, tertanam pada laptop.",
-                                "Scanner: menduplikasi/menyalin gambar atau teks ke memori komputer.",
+                                "Scanner: menduplikasi\/menyalin gambar atau teks ke memori komputer.",
                                 "SCAN IR: membaca Lembar Jawaban Komputer (LJK)."
                             ]
                         }
@@ -43,10 +43,10 @@
                             "image": "hardware-categories",
                             "keyPoints": [
                                 "Monitor: menampilkan hasil display; spesifikasi: pixel, refresh rate, resolusi, screen size.",
-                                "Printer: mencetak teks/gambar; diukur dengan dpi (dot per inch).",
+                                "Printer: mencetak teks\/gambar; diukur dengan dpi (dot per inch).",
                                 "Jenis Printer: Dot Matrix (tinta pita), Inkjet (tinta cair), Laser (tinta serbuk).",
-                                "Proyektor: menampilkan layar monitor ke screen/dinding via VGA atau HDMI.",
-                                "Speaker/Headset: menghasilkan suara dari komputer."
+                                "Proyektor: menampilkan layar monitor ke screen\/dinding via VGA atau HDMI.",
+                                "Speaker\/Headset: menghasilkan suara dari komputer."
                             ]
                         }
                     ]
@@ -70,20 +70,35 @@
             ],
             "quiz": [
                 {
-                    "question": "Perangkat input yang berfungsi menduplikasi/menyalin gambar atau teks ke memori komputer adalah...",
-                    "options": ["Keyboard", "Mouse", "Scanner", "Touchpad"],
+                    "question": "Perangkat input yang berfungsi menduplikasi\/menyalin gambar atau teks ke memori komputer adalah...",
+                    "options": [
+                        "Keyboard",
+                        "Mouse",
+                        "Scanner",
+                        "Touchpad"
+                    ],
                     "answer": 2,
-                    "explanation": "Scanner berfungsi menduplikasi/menyalin gambar atau teks ke memori komputer, mirip mesin fotokopi namun hasilnya dapat ditampilkan di monitor."
+                    "explanation": "Scanner berfungsi menduplikasi\/menyalin gambar atau teks ke memori komputer, mirip mesin fotokopi namun hasilnya dapat ditampilkan di monitor."
                 },
                 {
                     "question": "Ketajaman hasil cetak printer diukur dengan satuan...",
-                    "options": ["Hz", "GHz", "dpi", "RPM"],
+                    "options": [
+                        "Hz",
+                        "GHz",
+                        "dpi",
+                        "RPM"
+                    ],
                     "answer": 2,
                     "explanation": "Ketajaman printer diukur dengan dpi (dot per inch): semakin tinggi dpi, semakin tajam hasil cetakan."
                 },
                 {
                     "question": "Komponen yang disebut sebagai 'saraf pusat' atau 'papan utama' komputer adalah...",
-                    "options": ["CPU", "RAM", "VGA Card", "Motherboard"],
+                    "options": [
+                        "CPU",
+                        "RAM",
+                        "VGA Card",
+                        "Motherboard"
+                    ],
                     "answer": 3,
                     "explanation": "Motherboard adalah papan utama yang menghubungkan dan mengendalikan semua komponen sistem komputer."
                 }
@@ -105,18 +120,18 @@
                             "content": "PATA menggunakan kabel 40 atau 80 kawat dengan konektor 40-pin; teknologi lebih tua dan cenderung lebih lambat; kini banyak digantikan SATA. SATA lebih kecil dan tipis dari PATA sehingga lebih fleksibel; menggunakan konektor dan adaptor daya berbeda; kecepatan putar umumnya 7.200 RPM.",
                             "image": "storage",
                             "keyPoints": [
-                                "PATA: kabel 40/80 kawat, konektor 40-pin, teknologi lebih lama.",
+                                "PATA: kabel 40\/80 kawat, konektor 40-pin, teknologi lebih lama.",
                                 "SATA: lebih kecil, tipis, fleksibel; kecepatan 7.200 RPM.",
                                 "SATA kini menggantikan PATA di kebanyakan komputer modern."
                             ]
                         },
                         {
                             "title": "SSD, Optical Drive & USB Flash",
-                            "content": "SSD tidak memiliki komponen bergerak; menggunakan semikonduktor; lebih cepat, lebih tahan kerusakan, namun harganya lebih mahal. Rekomendasi: gunakan SSD untuk OS, HDD untuk penyimpanan data kapasitas besar. Optical Drive membaca/menulis CD, DVD, Blu-ray menggunakan sinar laser. USB Flash Memory berkapasitas 8 GB - 2 TB; rata-rata umur data 5 tahun.",
+                            "content": "SSD tidak memiliki komponen bergerak; menggunakan semikonduktor; lebih cepat, lebih tahan kerusakan, namun harganya lebih mahal. Rekomendasi: gunakan SSD untuk OS, HDD untuk penyimpanan data kapasitas besar. Optical Drive membaca\/menulis CD, DVD, Blu-ray menggunakan sinar laser. USB Flash Memory berkapasitas 8 GB - 2 TB; rata-rata umur data 5 tahun.",
                             "image": "ram",
                             "keyPoints": [
                                 "SSD: tanpa komponen bergerak, lebih cepat dan tahan banting.",
-                                "Optical Drive: membaca/menulis CD, DVD, Blu-ray.",
+                                "Optical Drive: membaca\/menulis CD, DVD, Blu-ray.",
                                 "USB Flash: memori kilat NAND, kapasitas 8 GB - 2 TB.",
                                 "USB Flash lebih cepat, lebih kecil, kapasitas lebih besar dari CD-ROM."
                             ]
@@ -161,7 +176,12 @@
             "quiz": [
                 {
                     "question": "Sistem operasi yang bersifat open source dan gratis adalah...",
-                    "options": ["Windows", "macOS", "Linux", "MS-DOS"],
+                    "options": [
+                        "Windows",
+                        "macOS",
+                        "Linux",
+                        "MS-DOS"
+                    ],
                     "answer": 2,
                     "explanation": "Linux bersifat open source dan gratis; dapat dikembangkan dan didistribusikan bebas tanpa lisensi. Distribusi populer: Ubuntu, Debian, Linux Mint."
                 },
@@ -178,7 +198,12 @@
                 },
                 {
                     "question": "Browser yang dikembangkan oleh Apple dan berbasis WebKit adalah...",
-                    "options": ["Google Chrome", "Mozilla Firefox", "Microsoft Edge", "Safari"],
+                    "options": [
+                        "Google Chrome",
+                        "Mozilla Firefox",
+                        "Microsoft Edge",
+                        "Safari"
+                    ],
                     "answer": 3,
                     "explanation": "Safari dikembangkan Apple pada tahun 2003, berbasis WebKit, dan tersedia untuk macOS, iOS, dan iPadOS."
                 }
@@ -204,7 +229,7 @@
                                 "Programmer: mengembangkan perangkat lunak atau aplikasi.",
                                 "Operator: menggunakan dan merawat perangkat lunak.",
                                 "Teknisi Hardware: memilih dan menggunakan hardware sesuai kebutuhan.",
-                                "Teknisi Software: mengembangkan/memperbarui software."
+                                "Teknisi Software: mengembangkan\/memperbarui software."
                             ]
                         },
                         {
@@ -250,13 +275,23 @@
             "quiz": [
                 {
                     "question": "Pengguna yang bertugas mengembangkan perangkat lunak atau aplikasi disebut...",
-                    "options": ["Administrator", "Programmer", "Operator", "Netter"],
+                    "options": [
+                        "Administrator",
+                        "Programmer",
+                        "Operator",
+                        "Netter"
+                    ],
                     "answer": 1,
                     "explanation": "Programmer adalah pengguna yang mengembangkan perangkat lunak atau aplikasi komputer."
                 },
                 {
                     "question": "Komponen CPU yang melakukan operasi aritmatika dan logika adalah...",
-                    "options": ["Register", "Unit Kontrol", "ALU", "Program Counter"],
+                    "options": [
+                        "Register",
+                        "Unit Kontrol",
+                        "ALU",
+                        "Program Counter"
+                    ],
                     "answer": 2,
                     "explanation": "ALU (Arithmetic & Logic Unit) bertugas melakukan operasi aritmatika dan logika seperti =, !=, <, <=, >, >=."
                 },
@@ -269,91 +304,7 @@
                         "Fetch - Execute - Decode"
                     ],
                     "answer": 2,
-                    "explanation": "Siklus CPU berjalan dalam urutan FETCH (ambil instruksi) → DECODE (tafsirkan) → EXECUTE (jalankan), dan berulang terus-menerus."
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "title": "Pertemuan 4: Interaksi Manusia-Komputer & Instalasi OS",
-            "slug": "imk-instalasi",
-            "icon": "Settings",
-            "color": "amber",
-            "description": "Memahami konsep Interaksi Manusia-Komputer (IMK) melalui GUI dan CLI, serta langkah-langkah instalasi sistem operasi Windows.",
-            "topics": [
-                {
-                    "title": "Interaksi Manusia-Komputer (IMK)",
-                    "slides": [
-                        {
-                            "title": "Apa itu IMK?",
-                            "content": "IMK adalah serangkaian proses, komunikasi, atau kegiatan yang dilakukan pengguna untuk berinteraksi dengan komputer secara interaktif guna menyelesaikan tugas. IMK tidak hanya terjadi pada komputer, tetapi juga pada smartphone, Smart TV, dan game console.",
-                            "image": "tooltip-info",
-                            "keyPoints": [
-                                "GUI (Graphical User Interface): antarmuka grafis interaktif; pengguna mendapat umpan balik visual.",
-                                "Contoh GUI: desktop Windows 10 dengan taskbar, ikon, dan menu.",
-                                "CLI (Command Line Interface): pengguna memberi instruksi melalui teks/terminal.",
-                                "Semua OS (Windows, Linux, macOS) memiliki CLI."
-                            ]
-                        },
-                        {
-                            "title": "Perangkat Input IMK",
-                            "content": "Selain GUI dan CLI, interaksi manusia-komputer juga didukung oleh berbagai perangkat input seperti microphone dan webcam.",
-                            "image": "desktop-drag",
-                            "keyPoints": [
-                                "Microphone + Speech Recognition: komputer mengenali dan merespons perintah suara.",
-                                "Webcam: mengambil gambar atau rekaman video.",
-                                "GUI memberikan solusi terkait masalah umpan balik dan memudahkan interaksi pengguna."
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "title": "Instalasi Sistem Operasi",
-                    "slides": [
-                        {
-                            "title": "Persiapan Instalasi Windows",
-                            "content": "Sebelum menginstal sistem operasi Windows, diperlukan persiapan media instalasi dan pengaturan BIOS agar komputer dapat booting dari media yang tepat.",
-                            "image": "assembly",
-                            "keyPoints": [
-                                "Siapkan file ISO sistem operasi.",
-                                "Buat USB/DVD bootable menggunakan aplikasi Rufus (www.rufus.ie).",
-                                "Di Rufus: pilih device USB, klik SELECT untuk memilih file ISO, klik START.",
-                                "Atur BIOS agar booting dari USB/DVD sebelum Hard Drive, lalu restart."
-                            ]
-                        },
-                        {
-                            "title": "Proses Instalasi Windows",
-                            "content": "Setelah media bootable siap dan BIOS dikonfigurasi, proses instalasi Windows dapat dimulai dengan mengikuti langkah-langkah yang tersedia.",
-                            "image": "motherboard-function",
-                            "keyPoints": [
-                                "Konfigurasi awal: pilih bahasa, format jam & mata uang, keyboard; klik Next.",
-                                "Klik 'Install now', masukkan product key (25 karakter).",
-                                "Pilih tipe instalasi: Upgrade atau Custom (atur partisi manual).",
-                                "Contoh partisi: Hard disk 500 GB → Drive C (150 GB untuk OS) + Drive D (350 GB data).",
-                                "Buat username, password, dan password hint setelah instalasi selesai."
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "quiz": [
-                {
-                    "question": "Antarmuka yang memungkinkan pengguna berinteraksi dengan komputer melalui grafis (ikon, menu, taskbar) disebut...",
-                    "options": ["CLI", "GUI", "API", "URL"],
-                    "answer": 1,
-                    "explanation": "GUI (Graphical User Interface) adalah antarmuka grafis interaktif di mana pengguna mendapat umpan balik visual seperti perubahan warna, ukuran, dan visibilitas elemen."
-                },
-                {
-                    "question": "Aplikasi yang digunakan untuk membuat USB bootable dari file ISO adalah...",
-                    "options": ["VLC", "Rufus", "WinRAR", "CCleaner"],
-                    "answer": 1,
-                    "explanation": "Rufus adalah aplikasi yang digunakan untuk membuat USB/DVD bootable dari file ISO sistem operasi. Dapat diunduh di www.rufus.ie."
-                },
-                {
-                    "question": "Berapa karakter yang dibutuhkan untuk product key Windows?",
-                    "options": ["10 karakter", "16 karakter", "20 karakter", "25 karakter"],
-                    "answer": 3,
-                    "explanation": "Product key Windows terdiri dari 25 karakter yang dibutuhkan saat proses instalasi."
+                    "explanation": "Siklus CPU berjalan dalam urutan FETCH (ambil instruksi) \u2192 DECODE (tafsirkan) \u2192 EXECUTE (jalankan), dan berulang terus-menerus."
                 }
             ]
         }

@@ -4,7 +4,7 @@ import { Heart, Code2, BookOpen, Gamepad2, GraduationCap, Zap, Monitor } from 'l
 import Sidebar from '../components/common/Sidebar';
 
 const team = [
-  { name: 'Reva Aliya Putrio Purwanto', role: 'UI/UX Designer', coverImage: '/avatars/reva_cover.png', image: '/Reva.png', desc: 'Merancang desain antarmuka, ilustrasi komponen, dan sistem gamifikasi belajar.' },
+  { name: 'Reva Aliya Putri Purwanto', role: 'UI/UX Designer', coverImage: '/avatars/reva_cover.png', image: '/Reva.png', desc: 'Merancang desain antarmuka, ilustrasi komponen, dan sistem gamifikasi belajar.' },
   { name: 'Muhammad Zhafier Ardine Yudhistira', role: 'Lead Developer', coverImage: '/avatars/zhafier_cover.jpeg', image: '/Zhafier.png', desc: 'Mengelola pengembangan aplikasi dan menulis sistem Drag & Drop platform.' },
   { name: 'Yopin Winda Holimatus Syadiya', role: 'Kurikulum & Materi', coverImage: '/avatars/yopin_cover.jpeg', image: '/Yopin.png', desc: 'Menyusun seluruh materi pembelajaran dan soal kuis khusus untuk anak SMK TKJ.' },
 ];

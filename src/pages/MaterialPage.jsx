@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronRight, BookOpen, CheckCircle2, Lock, Monitor, Cpu, Keyboard, CircuitBoard, Wrench, HardDrive } from 'lucide-react';
 import Sidebar from '../components/common/Sidebar';
 import { useProgress } from '../context/ProgressContext';
-import materials from '../data/materials.json';
+import { useData } from '../context/DataContext';
 
 const colorMap = {
   blue: { bg: 'bg-blue-100 dark:bg-blue-900/30', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-200 dark:border-blue-700', badge: 'bg-blue-600' },
@@ -20,6 +20,9 @@ const Icons = {
 
 export default function MaterialPage() {
   const { progress } = useProgress();
+  const { materials, loadingData } = useData();
+
+  if (loadingData) return <div className="min-h-screen flex items-center justify-center">Memuat data...</div>;
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex">

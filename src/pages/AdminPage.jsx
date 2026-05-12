@@ -8,9 +8,8 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import { useData } from '../context/DataContext';
 import { Sun, Moon } from 'lucide-react';
-import initialMaterials from '../data/materials.json';
-import initialEvaluations from '../data/evaluations.json';
 
 function AdminSidebar({ active, setActive }) {
   const { logout } = useAuth();
@@ -57,6 +56,7 @@ function AdminSidebar({ active, setActive }) {
 }
 
 function DashboardTab({ data, loading }) {
+  const { materials } = useData();
   if (loading) return <div className="text-slate-500 animate-pulse">Memuat data...</div>;
   if (!data) return null;
   
@@ -67,7 +67,7 @@ function DashboardTab({ data, loading }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
         {[
           { label: 'Total Siswa', value: students.length, icon: '🧑‍🎓', bg: 'bg-blue-100', text: 'text-blue-600', border: 'border-blue-300' },
-          { label: 'Total Bab', value: initialMaterials.chapters.length, icon: '📚', bg: 'bg-violet-100', text: 'text-violet-600', border: 'border-violet-300' },
+          { label: 'Total Bab', value: materials.chapters?.length || 0, icon: '📚', bg: 'bg-violet-100', text: 'text-violet-600', border: 'border-violet-300' },
           { label: 'Level Game', value: 4, icon: '🎮', bg: 'bg-emerald-100', text: 'text-emerald-600', border: 'border-emerald-300' },
           { label: 'XP Siswa', value: totalXP, icon: '⚡', bg: 'bg-amber-100', text: 'text-amber-600', border: 'border-amber-300' },
         ].map((s) => (
@@ -82,7 +82,7 @@ function DashboardTab({ data, loading }) {
       <div className="card p-6 border-2 border-slate-200 dark:border-slate-700 border-b-8">
         <h3 className="font-display font-black text-3xl mb-6 flex items-center gap-3"><TrendingUp className="w-8 h-8 text-primary-500" /> Overview Materi</h3>
         <div className="flex flex-col gap-5">
-          {initialMaterials.chapters.map((ch) => (
+          {materials.chapters?.map((ch) => (
             <div key={ch.id} className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 border-b-8 hover:-translate-y-1 hover:shadow-lg transition-all">
               <div className="flex items-center gap-5">
                 <span className="w-14 h-14 bg-primary-100 dark:bg-primary-900/50 text-primary-500 rounded-2xl flex items-center justify-center font-black text-2xl border-4 border-primary-200 dark:border-primary-800 shadow-inner">{ch.id}</span>
@@ -101,7 +101,8 @@ function DashboardTab({ data, loading }) {
 }
 
 function MateriTab() {
-  const [chapters, setChapters] = useState(initialMaterials.chapters);
+  const { materials, setMaterials } = useData();
+  const [chapters, setChapters] = useState(materials.chapters || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingChapter, setEditingChapter] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -185,12 +186,13 @@ function MateriTab() {
   const handleSaveToAPI = async (newChapters) => {
     try {
       setIsSaving(true);
-      await fetch('http://localhost:8000/api/admin/materials', {
+      await fetch('https://dragit.page.gd/api/admin/materials', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ chapters: newChapters })
       });
       setChapters(newChapters);
+      setMaterials({ chapters: newChapters });
       setIsModalOpen(false);
     } catch (error) {
       console.error('Failed to save materials', error);
@@ -481,7 +483,8 @@ function MateriTab() {
 }
 
 function EvaluasiTab() {
-  const [evals, setEvals] = useState(initialEvaluations.evaluations || []);
+  const { evaluations, setEvaluations } = useData();
+  const [evals, setEvals] = useState(evaluations.evaluations || []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingEval, setEditingEval] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -490,12 +493,13 @@ function EvaluasiTab() {
   const handleSaveToAPI = async (newEvals) => {
     try {
       setIsSaving(true);
-      await fetch('http://localhost:8000/api/admin/evaluations', {
+      await fetch('https://dragit.page.gd/api/admin/evaluations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ evaluations: newEvals })
       });
       setEvals(newEvals);
+      setEvaluations({ evaluations: newEvals });
       setIsModalOpen(false);
     } catch (error) {
       console.error('Failed to save evaluations', error);
@@ -783,7 +787,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/admin/dashboard', {
+    fetch('https://dragit.page.gd/api/admin/dashboard', {
       headers: { 'Accept': 'application/json' }
     })
       .then(res => res.json())

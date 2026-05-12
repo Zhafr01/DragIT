@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ClipboardList, CheckCircle2, XCircle, RotateCcw, Lightbulb, ChevronRight, BookOpen, Trophy, Timer, Star } from 'lucide-react';
 import Sidebar from '../components/common/Sidebar';
 import { useProgress } from '../context/ProgressContext';
-import evalData from '../data/evaluations.json';
+import { useData } from '../context/DataContext';
 
 const gradients = ['from-emerald-500 to-emerald-600', 'from-amber-500 to-amber-600', 'from-orange-500 to-red-500', 'from-blue-500 to-indigo-600'];
 
@@ -16,12 +16,15 @@ function getGrade(pct) {
 
 export default function EvaluasiPage() {
   const { addXP, recordGameResult } = useProgress();
+  const { evaluations: evalData, loadingData } = useData();
   const [mode, setMode] = useState('list'); // 'list' | 'intro' | 'quiz' | 'result'
   const [selectedEval, setSelectedEval] = useState(null);
   const [answers, setAnswers] = useState({});
   const [current, setCurrent] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [showAllReview, setShowAllReview] = useState(false);
+
+  if (loadingData) return <div className="min-h-screen flex items-center justify-center">Memuat data...</div>;
 
   const evaluations = evalData.evaluations || [];
 

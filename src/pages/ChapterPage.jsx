@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle2, XCircle, Lightbulb, BookOpen, Gamepad2, Volume2 } from 'lucide-react';
 import Sidebar from '../components/common/Sidebar';
 import { useProgress } from '../context/ProgressContext';
-import materials from '../data/materials.json';
+import { useData } from '../context/DataContext';
 
 const componentEmojis = {
   'Motherboard': '🖥️', 'Processor (CPU)': '🧠', 'RAM (Random Access Memory)': '🔋',
@@ -135,8 +135,11 @@ export default function ChapterPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { progress, completeChapter, addXP } = useProgress();
+  const { materials, loadingData } = useData();
   const [speaking, setSpeaking] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (loadingData) return <div className="min-h-screen flex items-center justify-center">Memuat data...</div>;
 
   const chapter = materials.chapters.find(c => c.slug === slug);
   const totalSlides = chapter ? chapter.topics.reduce((acc, t) => acc + (t.slides ? t.slides.length : 0), 0) : 0;

@@ -5,8 +5,7 @@ import { BookOpen, Gamepad2, Trophy, Zap, ChevronRight, Flame, Clock, Target } f
 import Sidebar from '../components/common/Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { useProgress } from '../context/ProgressContext';
-import materials from '../data/materials.json';
-import questions from '../data/questions.json';
+import { useData } from '../context/DataContext';
 
 function StatCard({ icon: Icon, value, label, color, delay }) {
   const colorMap = {
@@ -32,7 +31,10 @@ function StatCard({ icon: Icon, value, label, color, delay }) {
 export default function Dashboard() {
   const { user } = useAuth();
   const { progress, getLevelProgress, BADGES } = useProgress();
+  const { materials, questions, loadingData } = useData();
   const lvlProg = getLevelProgress();
+
+  if (loadingData) return <div className="min-h-screen flex items-center justify-center">Memuat data...</div>;
 
   const completedChapters = progress?.completedChapters?.length || 0;
   const completedLevels = progress?.completedLevels?.length || 0;

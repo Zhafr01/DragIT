@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['siswa', 'guru'])->default('siswa');
+            $table->enum('role', ['siswa', 'guru', 'admin'])->default('siswa');
             $table->string('avatar')->nullable();
             $table->string('kelas')->nullable();
             $table->rememberToken();

@@ -19,4 +19,4 @@ COPY . /app
 
 RUN composer install --no-dev --optimize-autoloader
 
-CMD php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+CMD echo "DB_URL=${DB_URL:-${DATABASE_URL}}" >> .env && echo "DATABASE_URL=${DATABASE_URL:-${DB_URL}}" >> .env && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}

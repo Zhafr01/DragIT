@@ -12,9 +12,9 @@ export const DataProvider = ({ children }) => {
     setLoadingData(true);
     try {
       const [matRes, evRes, qRes] = await Promise.all([
-        fetch('https://dragit.page.gd/api/materials'),
-        fetch('https://dragit.page.gd/api/evaluations'),
-        fetch('https://dragit.page.gd/api/questions')
+        fetch('https://dragit-dogl.onrender.com/api/materials'),
+        fetch('https://dragit-dogl.onrender.com/api/evaluations'),
+        fetch('https://dragit-dogl.onrender.com/api/questions')
       ]);
 
       const matData = await matRes.json();

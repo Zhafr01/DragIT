@@ -186,7 +186,7 @@ function MateriTab() {
   const handleSaveToAPI = async (newChapters) => {
     try {
       setIsSaving(true);
-      await fetch('https://dragit.page.gd/api/admin/materials', {
+      await fetch('https://dragit-dogl.onrender.com/api/admin/materials', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ chapters: newChapters })
@@ -493,7 +493,7 @@ function EvaluasiTab() {
   const handleSaveToAPI = async (newEvals) => {
     try {
       setIsSaving(true);
-      await fetch('https://dragit.page.gd/api/admin/evaluations', {
+      await fetch('https://dragit-dogl.onrender.com/api/admin/evaluations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ evaluations: newEvals })
@@ -787,7 +787,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://dragit.page.gd/api/admin/dashboard', {
+    fetch('https://dragit-dogl.onrender.com/api/admin/dashboard', {
       headers: { 'Accept': 'application/json' }
     })
       .then(res => res.json())

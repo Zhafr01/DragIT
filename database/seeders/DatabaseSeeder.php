@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
                 'role' => 'admin',
             ]
         );
+
+        $this->call(AppDataSeeder::class);
     }
 }

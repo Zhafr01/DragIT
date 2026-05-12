@@ -3,46 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use App\Models\AppContent;
 
 class MaterialController extends Controller
 {
+    public function getMaterials()
+    {
+        $content = AppContent::where('key', 'materials')->first();
+        return response()->json([
+            'chapters' => $content ? $content->value : []
+        ]);
+    }
+
+    public function getEvaluations()
+    {
+        $content = AppContent::where('key', 'evaluations')->first();
+        return response()->json([
+            'evaluations' => $content ? $content->value : []
+        ]);
+    }
+
+    public function getQuestions()
+    {
+        $content = AppContent::where('key', 'questions')->first();
+        return response()->json([
+            'levels' => $content ? $content->value : []
+        ]);
+    }
+
     public function updateMaterials(Request $request)
     {
         $request->validate([
             'chapters' => 'required|array',
         ]);
 
-        $filePath = base_path('src/data/materials.json');
-        
-        $data = [
-            'chapters' => $request->chapters,
-        ];
-
-        // Ensure directory exists if needed (it should already)
-        File::ensureDirectoryExists(dirname($filePath));
-
-        // Write the JSON back to the file
-        File::put($filePath, json_encode($data, JSON_PRETTY_PRINT));
+        AppContent::updateOrCreate(
+            ['key' => 'materials'],
+            ['value' => $request->chapters]
+        );
 
         return response()->json([
             'message' => 'Materi berhasil disimpan!',
         ]);
     }
+
     public function updateEvaluations(Request $request)
     {
         $request->validate([
             'evaluations' => 'required|array',
         ]);
 
-        $filePath = base_path('src/data/evaluations.json');
-        
-        $data = [
-            'evaluations' => $request->evaluations,
-        ];
-
-        File::ensureDirectoryExists(dirname($filePath));
-        File::put($filePath, json_encode($data, JSON_PRETTY_PRINT));
+        AppContent::updateOrCreate(
+            ['key' => 'evaluations'],
+            ['value' => $request->evaluations]
+        );
 
         return response()->json([
             'message' => 'Evaluasi berhasil disimpan!',

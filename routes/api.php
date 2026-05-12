@@ -20,6 +20,11 @@ Route::post('/progress/{userId}/xp',                   [ProgressController::clas
 Route::post('/progress/{userId}/game-result',           [ProgressController::class, 'recordGameResult']);
 Route::post('/progress/{userId}/complete-chapter',      [ProgressController::class, 'completeChapter']);
 
+// Public Data
+Route::get('/materials', [MaterialController::class, 'getMaterials']);
+Route::get('/evaluations', [MaterialController::class, 'getEvaluations']);
+Route::get('/questions', [MaterialController::class, 'getQuestions']);
+
 // Admin
 Route::get('/admin/dashboard', [AdminController::class, 'getDashboard']);
 Route::post('/admin/materials', [MaterialController::class, 'updateMaterials']);

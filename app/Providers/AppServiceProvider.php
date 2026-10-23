@@ -15,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // Redirect storage to /tmp on Vercel (read-only filesystem)
+        if (isset($_ENV['VERCEL']) || getenv('VERCEL')) {
+            $this->app->useStoragePath('/tmp/storage');
+        }
     }
 
     /**
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->configureDefaults();
+        $this->configureDatabase();
     }
 
     /**
@@ -47,4 +51,28 @@ class AppServiceProvider extends ServiceProvider
             : null,
         );
     }
+
+    /**
+     * Parse Vercel Postgres DATABASE_URL if set.
+     */
+    protected function configureDatabase(): void
+    {
+        // Vercel Postgres provides POSTGRES_URL — parse it into config
+        $databaseUrl = env('POSTGRES_URL') ?? env('DATABASE_URL');
+
+        if ($databaseUrl && config('database.default') === 'pgsql') {
+            $parsed = parse_url($databaseUrl);
+            if ($parsed) {
+                config([
+                    'database.connections.pgsql.host'     => $parsed['host'] ?? '127.0.0.1',
+                    'database.connections.pgsql.port'     => $parsed['port'] ?? 5432,
+                    'database.connections.pgsql.database' => ltrim($parsed['path'] ?? '/laravel', '/'),
+                    'database.connections.pgsql.username' => $parsed['user'] ?? 'postgres',
+                    'database.connections.pgsql.password' => $parsed['pass'] ?? '',
+                    'database.connections.pgsql.sslmode'  => 'require',
+                ]);
+            }
+        }
+    }
 }
+

@@ -3,7 +3,7 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "installCommand": "npm ci",
+  "installCommand": "npm ci --legacy-peer-deps",
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.1",
@@ -44,10 +44,5 @@
     "APP_SERVICES_CACHE": "/tmp/services.php",
     "VIEW_COMPILED_PATH": "/tmp",
     "VERCEL": "1"
-  },
-  "build": {
-    "env": {
-      "NPM_FLAGS": "--legacy-peer-deps"
-    }
   }
 }

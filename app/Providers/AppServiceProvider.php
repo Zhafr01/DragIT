@@ -5,6 +5,7 @@ namespace App\Providers;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 
@@ -21,11 +22,20 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
+    protected function forceHttps(): void
+    {
+        // Force HTTPS on Vercel to prevent mixed content errors
+        if (isset($_ENV['VERCEL']) || getenv('VERCEL')) {
+            URL::forceScheme('https');
+        }
+    }
+
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
+        $this->forceHttps();
         $this->configureDefaults();
         $this->configureDatabase();
     }

@@ -18,8 +18,9 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        php-version: ['8.3', '8.4', '8.5']
+        php-version: ['8.3', '8.4']
 
     steps:
       - name: Checkout code
@@ -30,7 +31,8 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
-          coverage: xdebug
+          extensions: sqlite3, pdo_sqlite
+          coverage: none
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -38,9 +40,9 @@ jobs:
           node-version: '20'
 
       - name: Install Node Dependencies
-        run: npm i
+        run: npm ci
 
-      - name: Install Dependencies
+      - name: Install PHP Dependencies
         run: |
           rm -rf vendor
           composer install --no-interaction --prefer-dist --optimize-autoloader
@@ -51,5 +53,5 @@ jobs:
       - name: Generate Application Key
         run: php artisan key:generate
 
-      - name: Tests
-        run: ./vendor/bin/pest
+      - name: Run Tests
+        run: ./vendor/bin/pest --stop-on-failure

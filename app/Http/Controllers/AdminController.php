@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Progress;
 use App\Models\GameHistory;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -15,7 +13,7 @@ class AdminController extends Controller
         $students = User::where('role', 'siswa')
             ->with(['progress', 'gameHistory'])
             ->get()
-            ->map(fn($u) => [
+            ->map(fn ($u) => [
                 'id' => $u->id,
                 'name' => $u->full_name,
                 'email' => $u->email,
@@ -32,7 +30,7 @@ class AdminController extends Controller
             ->orderBy('created_at', 'desc')
             ->take(20)
             ->get()
-            ->map(fn($g) => [
+            ->map(fn ($g) => [
                 'id' => $g->id,
                 'levelId' => $g->level_id,
                 'score' => $g->score,
@@ -43,7 +41,7 @@ class AdminController extends Controller
                     'id' => $g->user->id ?? 0,
                     'name' => $g->user->full_name ?? 'Unknown',
                     'avatar' => $g->user->avatar ?? '👤',
-                ]
+                ],
             ]);
 
         return response()->json([

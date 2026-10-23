@@ -2,32 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\AppContent;
+use Illuminate\Http\Request;
 
 class MaterialController extends Controller
 {
     public function getMaterials()
     {
         $content = AppContent::where('key', 'materials')->first();
+
         return response()->json([
-            'chapters' => $content ? $content->value : []
+            'chapters' => $content ? $content->value : [],
         ]);
     }
 
     public function getEvaluations()
     {
         $content = AppContent::where('key', 'evaluations')->first();
+
         return response()->json([
-            'evaluations' => $content ? $content->value : []
+            'evaluations' => $content ? $content->value : [],
         ]);
     }
 
     public function getQuestions()
     {
         $content = AppContent::where('key', 'questions')->first();
+
         return response()->json([
-            'levels' => $content ? $content->value : []
+            'levels' => $content ? $content->value : [],
         ]);
     }
 

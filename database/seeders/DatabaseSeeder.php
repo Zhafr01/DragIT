@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
             ['email' => 'admin@dragit.com'],
             [
                 'full_name' => 'Administrator',
-                'password'  => bcrypt('admin123'),
-                'role'      => 'admin',
-                'kelas'     => null,
+                'password' => bcrypt('admin123'),
+                'role' => 'admin',
+                'kelas' => null,
             ]
         );
 
@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
             ['email' => 'siswa@dragit.com'],
             [
                 'full_name' => 'Siswa Demo',
-                'password'  => bcrypt('siswa123'),
-                'role'      => 'siswa',
-                'kelas'     => '7A',
+                'password' => bcrypt('siswa123'),
+                'role' => 'siswa',
+                'kelas' => '7A',
             ]
         );
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Progress;
 use App\Models\GameHistory;
+use App\Models\Progress;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,7 +12,7 @@ class ProgressController extends Controller
     // GET /api/progress/{userId}
     public function show($userId)
     {
-        if (!is_numeric($userId)) {
+        if (! is_numeric($userId)) {
             return response()->json(['error' => 'Invalid User ID format'], 400);
         }
 
@@ -24,40 +24,42 @@ class ProgressController extends Controller
         $history = GameHistory::where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->get()
-            ->map(fn($h) => [
-                'levelId'    => $h->level_id,
-                'score'      => $h->score,
-                'timeTaken'  => $h->time_taken,
+            ->map(fn ($h) => [
+                'levelId' => $h->level_id,
+                'score' => $h->score,
+                'timeTaken' => $h->time_taken,
                 'totalItems' => $h->total_items,
-                'timestamp'  => $h->created_at,
+                'timestamp' => $h->created_at,
             ]);
 
         return response()->json([
-            'xp'                 => $progress->xp,
-            'level'              => $progress->level,
-            'currentChapter'     => $progress->current_chapter,
-            'completedChapters'  => $progress->completed_chapters ?? [],
-            'completedLevels'    => $progress->completed_levels ?? [],
-            'gameHistory'        => $history,
+            'xp' => $progress->xp,
+            'level' => $progress->level,
+            'currentChapter' => $progress->current_chapter,
+            'completedChapters' => $progress->completed_chapters ?? [],
+            'completedLevels' => $progress->completed_levels ?? [],
+            'gameHistory' => $history,
         ]);
     }
 
     // POST /api/progress/{userId}/xp
     public function addXp(Request $request, $userId)
     {
-        if (!is_numeric($userId)) return response()->json(['error' => 'Invalid ID'], 400);
+        if (! is_numeric($userId)) {
+            return response()->json(['error' => 'Invalid ID'], 400);
+        }
 
         $request->validate(['amount' => 'required|integer|min:1']);
 
         $progress = Progress::firstOrCreate(['user_id' => $userId]);
-        $newXp    = $progress->xp + $request->amount;
+        $newXp = $progress->xp + $request->amount;
         $newLevel = (int) floor($newXp / 100) + 1;
 
         $progress->update(['xp' => $newXp, 'level' => $newLevel]);
 
         return response()->json([
-            'message'  => 'XP berhasil ditambahkan',
-            'newXp'    => $newXp,
+            'message' => 'XP berhasil ditambahkan',
+            'newXp' => $newXp,
             'newLevel' => $newLevel,
         ]);
     }
@@ -65,20 +67,22 @@ class ProgressController extends Controller
     // POST /api/progress/{userId}/game-result
     public function recordGameResult(Request $request, $userId)
     {
-        if (!is_numeric($userId)) return response()->json(['error' => 'Invalid ID'], 400);
+        if (! is_numeric($userId)) {
+            return response()->json(['error' => 'Invalid ID'], 400);
+        }
 
         $request->validate([
-            'levelId'    => 'required|string',
-            'score'      => 'required|integer',
-            'timeTaken'  => 'required|integer',
+            'levelId' => 'required|string',
+            'score' => 'required|integer',
+            'timeTaken' => 'required|integer',
             'totalItems' => 'required|integer',
         ]);
 
         GameHistory::create([
-            'user_id'     => $userId,
-            'level_id'    => $request->levelId,
-            'score'       => $request->score,
-            'time_taken'  => $request->timeTaken,
+            'user_id' => $userId,
+            'level_id' => $request->levelId,
+            'score' => $request->score,
+            'time_taken' => $request->timeTaken,
             'total_items' => $request->totalItems,
         ]);
 
@@ -99,7 +103,9 @@ class ProgressController extends Controller
     // POST /api/progress/{userId}/complete-chapter
     public function completeChapter(Request $request, $userId)
     {
-        if (!is_numeric($userId)) return response()->json(['error' => 'Invalid ID'], 400);
+        if (! is_numeric($userId)) {
+            return response()->json(['error' => 'Invalid ID'], 400);
+        }
 
         $request->validate(['chapterId' => 'required|integer']);
 
@@ -112,7 +118,7 @@ class ProgressController extends Controller
         }
 
         return response()->json([
-            'message'  => 'Chapter selesai dicatat',
+            'message' => 'Chapter selesai dicatat',
             'chapters' => $chapters,
         ]);
     }
@@ -123,15 +129,15 @@ class ProgressController extends Controller
         $rows = User::where('role', 'siswa')
             ->with('progress')
             ->get()
-            ->sortByDesc(fn($u) => $u->progress->xp ?? 0)
+            ->sortByDesc(fn ($u) => $u->progress->xp ?? 0)
             ->values()
-            ->map(fn($u) => [
-                'id'     => $u->id,
-                'name'   => $u->full_name,
+            ->map(fn ($u) => [
+                'id' => $u->id,
+                'name' => $u->full_name,
                 'avatar' => $u->avatar,
-                'kelas'  => $u->kelas,
-                'xp'     => $u->progress->xp ?? 0,
-                'level'  => $u->progress->level ?? 1,
+                'kelas' => $u->kelas,
+                'xp' => $u->progress->xp ?? 0,
+                'level' => $u->progress->level ?? 1,
             ]);
 
         return response()->json($rows);

@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\AppContent;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
-use App\Models\AppContent;
 
 class AppDataSeeder extends Seeder
 {
@@ -38,7 +38,7 @@ class AppDataSeeder extends Seeder
                 $this->command->info('Evaluations seeded successfully.');
             }
         }
-        
+
         // Migrate questions (minigame) just in case
         $questionsPath = base_path('src/data/questions.json');
         if (File::exists($questionsPath)) {

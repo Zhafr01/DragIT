@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Progress;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,38 +13,38 @@ class AuthController extends Controller
     {
         $request->validate([
             'full_name' => 'required|string|max:100',
-            'email'     => 'required|email|unique:users,email',
-            'password'  => 'required|min:6',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
         ]);
 
         $user = User::create([
             'full_name' => $request->full_name,
-            'email'     => $request->email,
-            'password'  => Hash::make($request->password),
-            'role'      => $request->role ?? 'siswa',
-            'kelas'     => $request->kelas ?? null,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role ?? 'siswa',
+            'kelas' => $request->kelas ?? null,
         ]);
 
         // Initialize progress for new user
         Progress::create([
-            'user_id'             => $user->id,
-            'xp'                  => 0,
-            'level'               => 1,
-            'current_chapter'     => 1,
-            'completed_chapters'  => [],
-            'completed_levels'    => [],
+            'user_id' => $user->id,
+            'xp' => 0,
+            'level' => 1,
+            'current_chapter' => 1,
+            'completed_chapters' => [],
+            'completed_levels' => [],
         ]);
 
         return response()->json([
             'message' => 'Registrasi berhasil!',
-            'user'    => $user,
+            'user' => $user,
         ], 201);
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            'email'    => 'required|email',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
@@ -52,13 +52,13 @@ class AuthController extends Controller
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
-                'error' => 'Email atau password salah!'
+                'error' => 'Email atau password salah!',
             ], 401);
         }
 
         return response()->json([
             'message' => 'Login berhasil!',
-            'user'    => $user,
+            'user' => $user,
         ]);
     }
 
@@ -80,7 +80,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Profile updated successfully',
-            'user'    => $user
+            'user' => $user,
         ]);
     }
 }

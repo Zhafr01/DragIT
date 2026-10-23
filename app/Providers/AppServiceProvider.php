@@ -74,15 +74,14 @@ class AppServiceProvider extends ServiceProvider
             $parsed = parse_url($databaseUrl);
             if ($parsed) {
                 config([
-                    'database.connections.pgsql.host'     => $parsed['host'] ?? '127.0.0.1',
-                    'database.connections.pgsql.port'     => $parsed['port'] ?? 5432,
+                    'database.connections.pgsql.host' => $parsed['host'] ?? '127.0.0.1',
+                    'database.connections.pgsql.port' => $parsed['port'] ?? 5432,
                     'database.connections.pgsql.database' => ltrim($parsed['path'] ?? '/laravel', '/'),
                     'database.connections.pgsql.username' => $parsed['user'] ?? 'postgres',
                     'database.connections.pgsql.password' => $parsed['pass'] ?? '',
-                    'database.connections.pgsql.sslmode'  => 'require',
+                    'database.connections.pgsql.sslmode' => 'require',
                 ]);
             }
         }
     }
 }
-

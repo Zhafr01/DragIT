@@ -15,7 +15,7 @@ class Progress extends Model
 
     protected $casts = [
         'completed_chapters' => 'array',
-        'completed_levels'   => 'array',
+        'completed_levels' => 'array',
     ];
 
     public function user()

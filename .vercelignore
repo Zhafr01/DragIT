@@ -1,0 +1,10 @@
+/node_modules
+/backend
+/backend-dragit.zip
+/frontend-dragit.zip
+/.git
+/tests
+/storage/logs
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views

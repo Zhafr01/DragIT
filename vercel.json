@@ -1,8 +1,8 @@
 {
   "version": 2,
   "framework": null,
-  "buildCommand": "npm ci",
-  "outputDirectory": "public",
+  "buildCommand": "npm ci && npm run build",
+  "outputDirectory": "dist",
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.1",
@@ -11,20 +11,19 @@
   },
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/build/$1"
+      "src": "/api/(.*)",
+      "dest": "/api/index.php"
     },
     {
-      "src": "/favicon\\.ico",
-      "dest": "/favicon.ico"
+      "src": "/sanctum/(.*)",
+      "dest": "/api/index.php"
     },
     {
-      "src": "/robots\\.txt",
-      "dest": "/robots.txt"
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/api/index.php"
+      "dest": "/index.html"
     }
   ],
   "env": {

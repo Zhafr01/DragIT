@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Http\Request;
+
 define('LARAVEL_START', microtime(true));
 
 // Fix: Vercel sets SCRIPT_NAME to /api/index.php which causes Symfony HttpFoundation
@@ -7,7 +10,7 @@ define('LARAVEL_START', microtime(true));
 // Override to root so the full URI is preserved for Laravel routing.
 $_SERVER['SCRIPT_NAME'] = '/index.php';
 $_SERVER['PHP_SELF'] = '/index.php';
-$_SERVER['SCRIPT_FILENAME'] = __DIR__ . '/../public/index.php';
+$_SERVER['SCRIPT_FILENAME'] = __DIR__.'/../public/index.php';
 
 // CORS headers for React SPA
 header('Access-Control-Allow-Origin: *');
@@ -28,19 +31,19 @@ $dirs = [
     '/tmp/bootstrap/cache',
 ];
 foreach ($dirs as $dir) {
-    if (!is_dir($dir)) {
+    if (! is_dir($dir)) {
         mkdir($dir, 0755, true);
     }
 }
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$app = require_once __DIR__ . '/../bootstrap/app.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
+    $request = Request::capture()
 );
 
 $response->send();

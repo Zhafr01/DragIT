@@ -1,4 +1,3 @@
-import React from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { ProgressProvider } from './context/ProgressContext';

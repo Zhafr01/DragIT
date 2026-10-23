@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useAuth } from './AuthContext';
 
 const ProgressContext = createContext(null);
@@ -22,7 +22,7 @@ export function ProgressProvider({ children }) {
   const [progress, setProgress] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  const fetchProgress = async () => {
+  const fetchProgress = useCallback(async () => {
     if (!user) return setProgress(null);
     try {
       const res = await fetch(`${API_URL}/progress/${user.id}`);
@@ -42,16 +42,16 @@ export function ProgressProvider({ children }) {
           if (initial.xp >= b.xpNeeded && b.xpNeeded > 0) earnedBadges.push(b.id);
         });
         if (initial.gameHistory.length > 0) earnedBadges.push('first-game');
-        
+
         initial.badges = earnedBadges;
         setProgress(initial);
       }
     } catch (err) {
       console.error('Failed to fetch progress:', err);
     }
-  };
+  }, [user]);
 
-  const fetchLeaderboard = async () => {
+  const fetchLeaderboard = useCallback(async () => {
     try {
       const res = await fetch(`${API_URL}/progress/leaderboard/all`);
       if (res.ok) {
@@ -61,21 +61,21 @@ export function ProgressProvider({ children }) {
     } catch (err) {
       console.error('Failed to fetch leaderboard:', err);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchProgress();
     fetchLeaderboard();
-  }, [user]);
+  }, [fetchProgress, fetchLeaderboard]);
 
-  const addXP = async (amount) => {
+  const addXP = useCallback(async (amount) => {
     if (!progress || !user) return;
     try {
       // Optimistic Update
       const newXP = progress.xp + amount;
       const newLevel = Math.floor(newXP / 100) + 1;
       setProgress({ ...progress, xp: newXP, level: newLevel });
-      
+
       // Send to server
       await fetch(`${API_URL}/progress/${user.id}/xp`, {
         method: 'POST',
@@ -86,7 +86,7 @@ export function ProgressProvider({ children }) {
     } catch (err) {
       console.error('Failed to add XP', err);
     }
-  };
+  }, [progress, user, fetchLeaderboard]);
 
   const completeChapter = async (chapterId) => {
     if (!progress || !user || progress.completedChapters.includes(chapterId)) return;
@@ -105,16 +105,16 @@ export function ProgressProvider({ children }) {
     }
   };
 
-  const recordGameResult = async (levelId, score, timeTaken, total) => {
+  const recordGameResult = useCallback(async (levelId, score, timeTaken, total) => {
     if (!progress || !user) return;
     try {
       // Optimistic DB update
       const historyEntry = { levelId, score, timeTaken, totalItems: total, timestamp: new Date().toISOString() };
       const completedLevels = progress.completedLevels.includes(levelId) ? progress.completedLevels : [...progress.completedLevels, levelId];
       const badges = progress.badges.includes('first-game') ? progress.badges : ['first-game', ...progress.badges];
-      
+
       setProgress({
-        ...progress, 
+        ...progress,
         gameHistory: [historyEntry, ...progress.gameHistory],
         completedLevels,
         badges
@@ -129,7 +129,7 @@ export function ProgressProvider({ children }) {
     } catch (err) {
       console.error('Failed to record game', err);
     }
-  };
+  }, [progress, user, fetchLeaderboard]);
 
   const getLevelProgress = () => {
     if (!progress) return { current: 0, next: 100, pct: 0 };

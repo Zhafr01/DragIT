@@ -5,14 +5,10 @@
 /.git
 /.github
 /tests
-/src
 /storage/logs
 /storage/framework/cache
 /storage/framework/sessions
 /storage/framework/views
-artisan
-composer.json
-composer.lock
 phpunit.xml
 pint.json
 .env.example
@@ -20,3 +16,4 @@ Dockerfile
 docker
 railway.toml
 README.md
+/storage/pail

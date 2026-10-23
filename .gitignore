@@ -23,7 +23,6 @@ dist-ssr
 *.sw?
 
 # Laravel
-/vendor
 /.env
 /.env.backup
 /.env.production

@@ -1,5 +1,6 @@
-FROM php:8.4-cli
+FROM php:8.4-fpm
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -8,15 +9,41 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
-    libpq-dev
+    libpq-dev \
+    nginx \
+    nodejs \
+    npm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd opcache
 
+# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
+
+# Copy project files
 COPY . /app
 
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-CMD echo "DB_PORT=5432" >> .env && echo "DB_URL=${DB_URL:-${DATABASE_URL}}" >> .env && echo "DATABASE_URL=${DATABASE_URL:-${DB_URL}}" >> .env && php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}
+# Install Node dependencies & build frontend
+RUN npm ci && npm run build
+
+# Set proper permissions
+RUN chown -R www-data:www-data /app/storage /app/bootstrap/cache \
+    && chmod -R 775 /app/storage /app/bootstrap/cache
+
+# Copy nginx config
+COPY docker/nginx.conf /etc/nginx/sites-available/default
+
+# Copy entrypoint script
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+EXPOSE 8080
+
+ENTRYPOINT ["/entrypoint.sh"]

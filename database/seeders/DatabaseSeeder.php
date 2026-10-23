@@ -13,15 +13,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         // Akun Admin
         User::updateOrCreate(
             ['email' => 'admin@dragit.com'],
             [
                 'full_name' => 'Administrator',
-                'password' => bcrypt('password'),
-                'role' => 'admin',
+                'password'  => bcrypt('admin123'),
+                'role'      => 'admin',
+                'kelas'     => null,
+            ]
+        );
+
+        // Akun Siswa
+        User::updateOrCreate(
+            ['email' => 'siswa@dragit.com'],
+            [
+                'full_name' => 'Siswa Demo',
+                'password'  => bcrypt('siswa123'),
+                'role'      => 'siswa',
+                'kelas'     => '7A',
             ]
         );
 

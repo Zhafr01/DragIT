@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 
 const ProgressContext = createContext(null);
-const API_URL = 'https://dragit-dogl.onrender.com/api';
+const API_URL = '/api';
 
 const BADGES = [
   { id: 'first-game', name: 'Pemula', desc: 'Selesaikan game pertamamu', icon: '🎮', xpNeeded: 0 },
